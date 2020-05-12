@@ -1,0 +1,51 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+"Aumentando o tamanho da amostra aumentamos o poder do teste.", 
+"P(Erro do Tipo I) = 1 - P(Erro do tipo II).", 
+"P(Erro do Tipo II) = Nível de significância do teste.", 
+"A probabilidade de não cometermos erro algum no teste de hipóteses é igual a 1 - nível de
+significância.", 
+"O poder do teste é proporcional ao nível de significância, isto é, quanto mais significância mais poder."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+O erro do Tipo I é rejeitar $H_0$ quando ela é verdadeira e o do tipo II é aceitá-la quando ela é falsa. Assim:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Alternativas falsas:
+
+* P(Erro do Tipo I) não é igual a 1 - P(Erro do tipo II), porque existem 4 possibilidades: não rejeitar $H_0$ e ser verdadeira (acerto), rejeitar $H_0$ e ser verdadeira (erro tipo I), não rejeitar $H_0$ e ser falsa (erro tipo II) e rejeitar $H_0$ e ser falsa (acerto).
+
+* P(Erro do Tipo I) = Nível de significância do teste.
+
+* a probabilidade de não cometermos erro algum no teste de hipóteses é igual zero (0).
+
+* o poder do teste é inversamente proporcional ao nível de significância.
+
+Alternativa correta:
+
+* aumentando o tamanho da amostra é possível diminuir simultaneamente P(Erro do Tipo I) e P(Erro do Tipo II).
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: teoria testes de hipótese

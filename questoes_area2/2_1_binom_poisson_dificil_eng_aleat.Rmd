@@ -1,0 +1,58 @@
+```{r, include = FALSE, message = FALSE, warning = FALSE}
+library(exams)
+```
+
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questão:
+n <- sample(25:35, size = 1)
+prob <- sample(c(.1, .2, .3, .4, .5), size = 1)
+n_p <- n*prob
+
+#questions <- paste(c('$4e^{-3}$','$4e^{-2}$','$3e^{-3}$','$1 - 4e^{-3}$','$1 - 3e^{-3}$'))
+questions <- c(paste0('$',1+n_p,'e^{',-n_p,'}$'),
+               paste0('$',1+n_p,'e^{',-n_p-1,'}$'),
+               paste0('$',n_p,'e^{',-n_p,'}$'),
+               paste0('$1-',n_p,'e^{',-n_p,'}$'),
+               paste0('$1', 1-n_p,'e^{',-n_p,'}$'))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+
+A probabilidade de que um item produzido por uma máquina seja defeituoso é de `r prob*100`%. Uma amostra de `r n` itens produzidos por esta máquina é selecionada ao acaso. Use a aproximação pela distribuição de Poisson para determinar a probabilidade de que no máximo um item defeituoso seja encontrado nesta amostra.
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+A variável aleatória X = máquina ser defeituosa (1) ou não (0), pode ser modelada atravéz de uma distribuição binomial com probabilidade de sucesso igual a `r prob` e `r n` observações, ou seja, $X \sim Binomial(n = `r n`,p = `r prob`)$. O exercício pede para calcular a probabilidade de que no máximo um item defeituoso seja encontrado nesta amostra utilizando a aproximação pela distribuição de Poisson. Isso pode ser feito usando a propriedade de que, quando o número de observações tende ao infinito, então $X \sim Poisson(\lambda = n*p)$.
+
+Assim a probabilidade de no máximo uma peça ser defeituosa é igual a
+
+$P(X=0) + P(X=1)$
+
+$= \displaystyle\frac{(`r n`*`r prob`)^0e^{-`r n`*`r prob`}}{0!} + \frac{(`r n`*`r prob`)^1e^{-`r n`*`r prob`}}{1!}$
+
+$= 1*e^{-`r n*prob`} + `r n*prob`e^{-`r n*prob`}$
+
+$= `r 1 + (n*prob)`e^{-`r n*prob`}$
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: poisson binomial

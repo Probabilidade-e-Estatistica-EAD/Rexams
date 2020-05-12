@@ -1,0 +1,38 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+"Qualitativas ordinais.", 
+"Qualitativas nominais.", 
+"Quantitativas contínuas.", 
+"Quantitativas discretas.", 
+"Quantitativas constantes."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Ao longo de sua história a Intel já produziu inúmeros processadores como Core i7-4770K, Core i5-4670K, Core 2 Duo, Pentium e Pentium Pro. Se considerarmos a hierarquia de velocidade entre os processadores citados como uma variável, em qual tipo de variável se encaixa?
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+É classificada como uma variável qualitativa ordinal, pois há um sentido de ordem entre seus níveis (hierarquia de velocidade entre os processadores). Outros exemplos são faixas de idade (criança, adolescente, adulto, idoso), intensidade de cor (claro, médio, escuro) e nível de instrução (fundamental, médio, superior).
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: conceitos básicos

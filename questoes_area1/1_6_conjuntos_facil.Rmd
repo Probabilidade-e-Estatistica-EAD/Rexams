@@ -1,0 +1,66 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "A = {t, tal que 5 < t <= 10}; B = {t, tal que t > 10}; C = {t, tal que t > 8}; D = {t, tal que t > 5}; E = { }; F = {t, tal que 8 < t <= 10}; G = {t, tal que t <= 5 ou t > 10}.", 
+  "A = {t, tal que 5 < t <= 10}; B = {t, tal que t > 10}; C = {t, tal que t > 8}; D = {t, tal que t > 5}; E = {t, tal que t = 10 }; F = {t, tal que 8 < t <= 10}; G = {t, tal que t <= 5 ou t > 10}.", 
+  "A = {t, tal que t <= 5 ou t > 10}; B = {t, tal que t > 10}; C = {t, tal que t > 8}; D = {t, tal que t > 5}; E = { }; F = {t, tal que 8 < t <= 10}; G = {t, tal que 5 < t <= 10}.", 
+  "A = {t, tal que 5 < t <= 10}; B = {t, tal que t > 10}; C = {t, tal que t > 8}; D = {t, tal que t > 5}; E = { }; F = { }; G = {t, tal que t <= 5 ou t > 10}.", 
+  "A = {t, tal que 5 < t <= 10}; B = {t, tal que t > 10}; C = {t, tal que t > 8}; D = {t, tal que t < 5}; E = { }; F = { }; G = {t, tal que t <= 5 ou t > 10}."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Considere que você vai cronometrar o tempo, em segundos, para carregar uma página da web. Represente, em forma de conjuntos, os seguintes eventos:
+
+A = mais do que 5 e, no máximo, 10 segundos;
+B = mais do que 10 segundos;
+C = mais do que 8 segundos;
+D = A união B; 
+E = A intersecção B; 
+F = A intersecção C;
+G = complemento de A;
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+A = mais do que 5 e, no máximo, 10 segundos;
+A = {t, tal que 5 < t <= 10};
+
+B = mais do que 10 segundos;
+B = {t, tal que t > 10};
+
+C = mais do que 8 segundos;
+C = {t, tal que t > 8}; 
+
+D = A união B; 
+D = {t, tal que t > 5};
+
+E = A intersecção B; 
+E = { };
+
+F = A intersecção C;
+F = {t, tal que 8 < t <= 10};
+
+G = complemento de A;
+G = {t, tal que t <= 5 ou t > 10};
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: teoria da probabilidade

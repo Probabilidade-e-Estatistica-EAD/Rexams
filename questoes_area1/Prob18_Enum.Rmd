@@ -1,0 +1,35 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c("$210$", "$10$", "$6$", "$10^6$", "$6^{10}$"))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Na mega sena é preciso acertar os seis números do cartão para ganhar o prêmio maior. Se você jogar um cartão com 10 números, então o número de amostras possíveis (cartões) para concorrer ao prêmio maior é equivalente a:
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+Combinação de 10 números, agrupados 6 a 6 => 210 possibilidades.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: conceitos basicos

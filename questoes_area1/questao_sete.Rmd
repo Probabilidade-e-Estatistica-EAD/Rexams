@@ -1,0 +1,46 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+
+#resposta correta ? a primeira, as outras s?o falsas
+questions <- paste(c("I e II.",
+                   "III.",
+                   "II e IV.",
+                   "I, II e IV.",
+                   "I, III e IV."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+
+Observe o diagrama de caixa (Box-plot) do peso de 50 pacientes antes e ap?s a realiza??o de um tratamento.
+
+IMAGEM DO GR?FICO
+
+Com base nas informa??es do gr?fico, analise as afirmativas abaixo.
+
+I. Antes do tratamento, o peso mediano dos pacientes era superior a 87 kg.
+II. Antes do tratamento, 25% dos pacientes pesavam 93 kg ou mais.
+III. Ap?s o tratamento, 75% dos pacientes passaram a pesar menos de 84 kg.
+IV. Ap?s o tratamento, 25% dos pacientes passaram a pesar de 84 kg a 87 kg.
+
+Est?(?o) correta(s) apenas a(s) afirmativa(s):
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: conceitos basicos

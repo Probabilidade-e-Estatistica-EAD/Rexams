@@ -1,0 +1,39 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+"-1,0",
+"2,5",
+"1,0",
+"0,0",
+"-0,4"))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Se X é uma variável aleatória e Y = 5 – 2X, então o coeficiente de correlação linear entre X e Y é igual a:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Considerando a reta Y = 5 – 2X fornecida, temos que o coeficiente de correlação linear é igual a -1. Isso acontece porque se X e Y tiverem uma relação linear perfeita diretamente proporcional, Y = a + bX, então R = 1; se X e Y tiverem uma relação linear perfeita inversamente proporcional, Y = a - bX, então R = -1; se X e Y forem independentes, então R = 0.   
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: coeficiente de correlação

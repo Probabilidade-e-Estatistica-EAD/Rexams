@@ -1,0 +1,51 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+
+questions <- c(
+  '2,60',
+  '0,43',
+  '0,01',
+  '-0,43',
+  '-2,60'
+)
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+
+Um pesquisador avaliou se a pressão sanguínea dos candidatos do último concurso para o Tribunal de Contas se alterava no início da prova. Em condições normais, sem stress, os candidatos entre 18 e 32 anos apresentaram uma pressão sistólica média de 120 mm Hg. Após medir a pressão de 36 candidatos a cinco minutos do início da prova, foi encontrada a pressão sistólica média de 125,2 mm Hg com desvio padrão amostral de 12 mm Hg. Deve-se testar
+
+$\begin{cases}H_0: \mu = 120 \\ H_1: \mu > 120\end{cases}$
+
+O valor calculado da estatística t é:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+A estatística t para teste de hipóteses é definida como
+
+$\displaystyle\frac{\overline{X} - \mu_0}{\frac{S}{\sqrt{n}}}$
+
+No exercício, temos que $\overline{X} = 125,2$, $\mu_0 = 120$, $S = 12$ e $n = 36$. Aplicando estes números na fórmula, temos
+
+$= \displaystyle\frac{125,2 - 120}{\frac{12}{\sqrt{36}}} = \displaystyle\frac{5,2}{\frac{12}{6}} = \displaystyle\frac{5,2}{2} = 2,6$
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: estatistica t

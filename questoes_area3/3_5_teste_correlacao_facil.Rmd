@@ -1,0 +1,46 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+
+questions <- c(
+'r significativo – associação negativa entre a produtividade de amendoim e o número de lesões de cercospora, indicando que, aumentando o número de lesões de cercospora, diminui a produtividade do amendoim.',
+'r significativo – associação negativa entre a produtividade de amendoim e o número de lesões de cercospora, indicando que, aumentando o número de lesões de cercospora, aumenta a produtividade do amendoim.',
+'r significativo – associação positiva entre a produtividade de amendoim e o número de lesões de cercospora, indicando que, aumentando o número de lesões de cercospora, diminui a produtividade do amendoim.',
+'r não-significativo – associação negativa entre a produtividade de amendoim e o número de lesões de cercospora, indicando que, aumentando o número de lesões de cercospora, diminui a produtividade do amendoim.',
+'r não-significativo – as evidências amostrais não são suficientes para comprovar associação entre a produtividade de amendoim e o número de lesões de cercospora.'
+)
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+
+
+
+```
+
+Question
+========
+
+Num experimento em que se estudou a produtividade de amendoim e o número de lesões de cercospora com os valores médios das variáveis para 17 cultivares, obteve-se um coeficiente de correlação r = -0,95. Sabendo-se que, ao nível de significância de 5%, o valor mínimo de r, em termos absolutos, para ser considerado significativo é de 0,482, conclua quanto à significância do coeficiente de correlação r e o que isso significa, assinalando a alternativa correta.
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+O valor r é significativo porque de acordo com o exercício, o valor mínimo de r, em termos absolutos, para ser considerado significativo a 5%, é de 0,482. Então se o r observado for maior do que 0,482 em módulo, ele é significativo. No caso, $|r| = 0,95 > 0,482$.
+
+Se o valor r for negativo, significa dizer que há uma relação inversa entre as duas variáveis, de maneira que, quando uma cresce a outra diminui e vice-versa.
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: teste correlacao

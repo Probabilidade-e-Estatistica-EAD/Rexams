@@ -1,0 +1,55 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "$1-e^{-6}$",
+  "$1-e^{-2}$",
+  "$1-e^{-3}$",
+  "$1-e^{-4}$",
+  "$1-e^{-5}$"))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Um banco de dados possui tempo (em minutos) de resposta a uma consulta definido pela variável aleatória t. Supondo que essa variável aleatória tenha a seguinte função densidade de probabilidade:
+
+$$
+f(t) = \left \{ \begin{matrix} 2e^{-2t}, & \mbox{para }t \ge 0 \\ 0, & \mbox{para }t < 0\end{matrix} \right\}
+$$
+
+Calcule a probabilidade de a resposta demorar menos do que 3 minutos.
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+$P(T < 3) = \int_{0}^{3} f(t)\, dt$
+
+$P(T < 3) = \int_{0}^{3} 2e^{-2t}\, dt$
+
+$P(T < 3) = 2 \cdot \left [ \frac{- e^{-2t}}{2} \right ]_0^{3}$
+
+$P(T < 3) = - e^{-2 \cdot (3)}-(-1)$
+
+$P(T < 3) = 1-e^{-6}$
+
+Ou de forma mais simples, verificando que T tem distribuição exponencial com $\lambda=2$.
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: variáveis aleatórias contínuas e distribuições de probabilidade

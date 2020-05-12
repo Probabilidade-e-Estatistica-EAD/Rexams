@@ -1,0 +1,72 @@
+```{r, include = FALSE, message = FALSE, warning = FALSE}
+library(exams)
+```
+
+```{r data_generation, echo = FALSE, results = "hide"}
+# Dados da questão
+n <- sample(40:70, 1)
+mu <- sample(150:300, 1)
+var <- sample(200:400, 1)
+
+questions <- rep(NA, 5)
+questions[1] <- round(1.64/round(round(sqrt(n),3)/round(sqrt(var),3), 3),3)
+questions[2] <- round(1.64/round(round((n),3)/round((var),3), 3),3)
+questions[3] <- round(0.95/round(round(sqrt(n),3)/round(sqrt(var),3), 3),3)
+questions[4] <- round(round(sqrt(n),3)/round(sqrt(var),3), 3)
+questions[5] <- round(0.9/round(round(sqrt(n),3)/round(sqrt(var),3), 3),3)
+
+
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+ 
+Seja $\overline{X}$ a média de uma amostra aleatória simples com reposição, de tamanho `r n`, retirada de uma população Normal com média `r mu` e variância `r var`. Usando o fato que $P(Z > 1.64) = 0.05$, onde $Z$ tem uma distribuição Normal Padrão, o valor de $a$ para que $P(|\overline{X}-\mu|\le a) = 0.9$ é
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+Sabemos que se uma população tem distribuição normal com média $\mu$ e variância $\sigma^2$, então sua média amostral também terá distribuição normal, com média $\mu$ e variância $\displaystyle{\frac{\sigma^2}{n}}$. Neste caso, a média amostral foi chamada de $\overline{X}$, portanto $\overline{X} \sim N(`r mu`, \displaystyle{\frac{`r var`}{`r n`}})$.
+
+Agora vamos abrir a expressão $P(|\overline{X} - \mu|\le a) = 0,90$
+
+$P(-a < X - `r mu` < a) = 0,90$  
+
+Note que, neste caso, $X = \overline{X}$, e que por se tratar de uma distribuição contínua usar $\le$ ou < não faz diferença.
+
+$P(\displaystyle{-\frac{a}{\sqrt{\frac{`r var`}{`r n`}}}} < \displaystyle{\frac{X - `r mu`}{\sqrt{\frac{`r var`}{`r n`}}}} < \displaystyle{\frac{a}{\sqrt{\frac{`r var`}{`r n`}}}}) = 0,90$
+
+$P(\displaystyle{-\frac{a}{\frac{`r round(sqrt(var),3)`}{`r round(sqrt(n),3)`}}} < Z < \displaystyle{\frac{a}{\frac{`r round(sqrt(var),3)`}{`r round(sqrt(n),3)`}}}) = 0,90$
+
+$P(\displaystyle{-\frac{`r round(sqrt(n),3)`a}{`r round(sqrt(var),3)`}} < Z < \displaystyle{\frac{`r round(sqrt(n),3)`a}{`r round(sqrt(var),3)`}}) = 0,90$
+
+$P(-`r round(round(sqrt(n),3)/round(sqrt(var),3), 3)`a < Z < `r round(round(sqrt(n),3)/round(sqrt(var),3), 3)`a) = 0,90$
+
+
+A equação acima pode ser interpretada como a área de 0,9 em torno da média de uma normal padrão. Nesse sentido, podemos pensar que a cauda inferior precisa ter 5% de probabilidade, assim como a cauda superior. Neste sentido, $P(Z >  `r round(round(sqrt(n),3)/round(sqrt(var),3), 3)`a)$ vale 5%.
+
+De acordo com o enunciado, o ponto que satisfaz, $P(Z >  `r round(round(sqrt(n),3)/round(sqrt(var),3), 3)`a) = 0,05$ é 1,64. Portanto, $1,64 =  `r round(round(sqrt(n),3)/round(sqrt(var),3), 3)`a$
+
+$a = \displaystyle{\frac{1,64}{ `r round(round(sqrt(n),3)/round(sqrt(var),3), 3)`}}$
+
+$a =  `r round(1.64/round(round(sqrt(n),3)/round(sqrt(var),3), 3),3)`$
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: xbarra normal padrao

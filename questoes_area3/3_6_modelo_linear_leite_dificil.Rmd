@@ -1,0 +1,84 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "Podemos esperar 28,1 milhões de litros de leite produzidos para um índice pluviométrico de 24 mm.",
+  "Podemos esperar 28,9 milhões de litros de leite produzidos para um índice pluviométrico de 24 mm.",
+  "Podemos esperar 8,9 milhões de litros de leite produzidos para um índice pluviométrico de 24 mm.",
+  "Podemos esperar 24 milhões de litros de leite produzidos para um índice pluviométrico de 24 mm.",
+  "Podemos esperar 25,2 milhões de litros de leite produzidos para um índice pluviométrico de 24 mm."
+))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Produtores de leite de determinada região do país passaram a controlar sua produção com um software que registra o volume de produção de leite (em milhões de litros) e o volume de precipitação pluviométrica (em mm). Seguem os registros obtidos:
+
+|Anos|Produção de leite|Índice Pluviométrico|
+|:---|:---------------:|:------------------:|
+|2000|26|23|
+|2001|25|21|
+|2002|31|28|
+|2003|29|27|
+|2004|27|23|
+|2005|31|28|
+|2006|32|27|
+|2007|28|22|
+|2008|30|26|
+|2009|30|25|
+
+Ajuste os dados em um modelo linear.
+Considere: 
+$\sum_Y = 289$;	$\sum X \cdot Y = 7273$; $\sum X = 250$; $\sum X^2 = 6310$
+
+
+Admitindo-se, em 2010, um índice pluviométrico de 24 mm, qual deverá ser o volume esperado de produção de leite?
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Y --> produção de leite; X --> índice pluviométrico			
+
+$\beta --> b1$
+
+$b1 = \frac{\sum X \cdot Y - (\sum X \cdot \sum Y)/n}{\sum X^2 - (\sum X^2/n)}$
+
+$b1 = \frac{7273 - (250)(289)/10}{6310 - (250^2/10)}$
+
+$b1 = 0,8$
+
+$\alpha --> b0$
+
+$b0 = \mu_y - b1 \cdot \mu_x$
+
+$b0 = 28,9 - 0,8 \cdot 25$
+
+$b0 = 8,9$
+
+Portanto o modelo linear é:
+
+$y = 8,9 + 0,8 \cdot x$
+
+Tendo x = 24  ---> $y = 8,9 + 0,8 \cdot 24 = 8,9 + 19,2 = 28,1$						
+							
+Assim, podemos esperar 28,1 milhões de litros de leite produzidos para um índice pluviométrico de 24 mm.
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: regressão linear

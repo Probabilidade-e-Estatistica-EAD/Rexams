@@ -1,0 +1,52 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+"Houve melhoria na qualidade das peças produzidas com a aquisição das novas máquinas.",
+"O tamanho da amostra é inadequado para realização do teste de hipótese.",
+"Houve uma redução na qualidade das peças produzidas.",
+"Não houve modificação na qualidade das peças produzidas.",
+" O investimento em novas máquinas não refletiu em redução do percentual de peças defeituosas."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+
+Question
+========
+Uma linha de produção apresenta 15% de itens defeituosos. Após a aquisição de novas máquinas, uma amostra de 300 peças revelou que 27 eram defeituosas. Por meio de um teste unilateral de proporções, com nível de significância de 5%, chega-se à seguinte conclusão:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+$\begin{cases}H_0: \pi = 0,15 \\ H_1: \pi < 0,15\end{cases}$
+
+Para resolver este exercício, vamos fazer um teste z para a proporção de itens defeituosos. Nos foi informado pelo enunciado o tamanho de amostra $n = 300$ e a proporção de itens defeituosos $\pi_0 = 0,15$. Para descobrir a proporção p, devemos então calcular:
+
+$p = \displaystyle{\frac{27}{300} = 0,09}$
+
+Calculando a estatística do teste z:
+
+$\displaystyle{z = \frac{p - \pi_0}{\sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}}}$
+
+$\displaystyle{z = \frac{0,09 - 0,15}{\sqrt{\frac{0,15 \cdot (1 - 0,15)}{300}}} = \frac{- 0,06}{\sqrt{\frac{0,15 \cdot 0,85}{300}}} = \frac{- 0,06}{\sqrt{\frac{0,1275}{300}}} = \frac{- 0,06}{\sqrt{0,000425}} = \frac{- 0,06}{0,02061} = -2,9104}$
+
+Com $\alpha = 0,05$ e teste unilateral, temos que $z_{tab} = 1,645$. Como |-2,91| > 1,645, rejeitamos $H_0$. Portanto, podemos concluir que houve melhoria na qualidade das peças produzidas com a aquisição das novas máquinas, pois ao aceitarmos $H_1$, assuminos que a proporção de itens defeituosos é menor que 0,15.
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: teste proporção

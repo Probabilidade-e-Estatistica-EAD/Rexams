@@ -1,0 +1,38 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c("perder 25 centavos", "ganhar 25 centavos", "ganhar 50 centavos", "perder 50 centavos", "perder 75 centavos"))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Um jogador lança para o ar duas moedas honestas. Ganhará $R\$1,00$ se ocorrer uma cara e $R\$2,00$ se ocorrer duas caras. Por outro lado, perderá $R\$5,00$ se não ocorrer cara. O jogador deve esperar:
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Deve-se calcular a esperança de $X$:
+$\\E(X) = 2 \cdot \left (\frac{1}{4}\right) + 1 \cdot \left (\frac{1}{2}\right) - 5 \cdot \left (\frac{1}{4}\right)\\$
+$E(X) = \left (\frac{1}{2}\right) + \left (\frac{1}{2}\right) - \left (\frac{5}{4}\right)\\$
+$E(X) = -\frac{1}{4} = -0,25$
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: variaveis aleatorias discretas

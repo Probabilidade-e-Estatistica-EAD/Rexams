@@ -1,0 +1,56 @@
+```{r, include = FALSE, message = FALSE, warning = FALSE}
+library(exams)
+```
+
+```{r data_generation, echo = FALSE, results = "hide"}
+
+#Questões da prova:
+e <- sample(c(0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08), 1)
+e_porc <- e*100
+n <- ceiling(((1.96/e)^2)*0.24)
+
+#Respostas:
+erros <- n - sample(4:40, 4, replace = TRUE)
+
+questions <- c(n, erros[1], erros[2], erros[3], erros[4])
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+
+Question
+========
+
+Uma pesquisa recente foi realizada para avaliar o percentual da população favorável à eleição de um determinado ponto turístico para constar no selo comemorativo de aniversário da cidade. Para isso, selecionou-se uma amostra piloto e o resultado apurou 60% de intenção de votos para esse ponto turístico. Considerando que a margem de erro foi de `r e_porc`%, e que o nível de confiança utilizado foi de 95%, quantas pessoas devem ser ouvidas?
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+O exercício nos forneceu o nível de confiança = 0,95, o erro = `r e` e a proporção p = 0,6. O objetivo da questão é usar essas informações para calcular o tamanho de amostra.
+Este é o caso em que a proporção é conhecida, por isso usaremos a fórmula
+
+$n = \displaystyle{\frac{Z^2_{\alpha/2} p(1-p)}{e^2}}$
+
+$n = \displaystyle{\frac{1,96^2 \cdot 0,6(1-0,6)}{(`r e`)^2}}$
+
+$n = `r round(((1.96/e)^2)*0.24, 2)`$
+
+Temos que o tamanho mínimo para a amostra é `r ceiling(n)`.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: tamanho de amostra p conhecido

@@ -1,0 +1,49 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+# Dados da questao
+
+# Faca a resposta correta ser a primeira e as outras falsas
+
+questions <- c("insatisfatória, porque tal medida é sempre igual a zero.",
+               "boa, porque depende dos desvios da média.",
+               "insatisfatória, a não ser que se calcule sua raiz quadrada.",
+               "boa, porque dispersão é uma medida de distância.",
+               "boa, porque considera todos os valores do conjunto.")
+
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+Considere que $x_1, x_2, \ldots, x_n$ é um conjunto de $n$ valores da variável $x$, e $\bar{x} = \sum_{i}^n{x_i}/n$ é a média aritmética destes valores. A expressão $\frac{\sum_{i = 1}^n{(x_i - \bar{x})}}{n}$ é sugerida como medida de dispersão. Tal sugestão é:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Note que
+
+$$
+\begin{aligned}
+  \frac{\sum_{i = 1}^n{(x_i - \bar{x})}}{n} \\
+  & = \frac{1}{n}\sum_{i = 1}^n{x_i} - \frac{1}{n}\sum_{i = 1}^n{\bar{x}}\\
+  & = \bar{x} - \frac{n\bar{x}}{n}\\
+  & = \bar{x} - \bar{x} = 0.
+\end{aligned}
+$$
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: medidadefinicoes

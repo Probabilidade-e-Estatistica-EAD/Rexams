@@ -1,0 +1,64 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "Média = 3,04; Variância = 6,18; Haverá alteração na média e na variância.", 
+  "Média = 3,04; Variância = 8,20; Haverá alteração na média, mas na variância não.", 
+  "Média = 5,60; Variância = 6,18; Não haverá alteração na média nem na variância.", 
+  "Média = 5,60; Variância = 8,20; Haverá alteração na média e na variância.", 
+  "Média = 3,04; Variância = 6,18; Haverá alteração na média, mas na variância não."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+O departamento pessoal de uma certa empresa fez um levantamento dos salários dos 120 funcionários do setor de informática, obtendo os resultados (em salários mínimos) da tabela abaixo:
+  
+|Faixa salarial|Frequência relativa|
+|:--------------|:----------------:|
+|0 $\vdash$ 2|0,25|
+|2 $\vdash$ 4|0,40|
+|4 $\vdash$ 6|0,20|
+|6 $\vdash$ 10|0,15|
+
+Assinale a alternativa que contém os valores para a média e para a variância. Se for concedido um aumento de 100% para todos os  120 funcionários, haverá alteração na média? E na variância?
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Média:
+
+$\bar{X} = \frac{\sum x_i \cdot f_i}{n}$
+
+$\bar{X} = \frac{1 \cdot 25 + 3 \cdot 40 + 5 \cdot 20 + 8 \cdot 15}{120} = \frac{365}{120} = 3,04$
+
+Variância:
+
+$s^2 = \frac{[\sum f_i \cdot x_i^2] - n \cdot (\bar{X})^2}{n - 1}$
+
+$s^2 = \frac{[25 \cdot 1^2 + 40 \cdot 3^2 + 20 \cdot 5^2 + 15 \cdot 8^2] - 120 \cdot (3,04)^2}{120 - 1}$
+
+$s^2 = \frac{[1845] - 120 \cdot (3,04)^2}{120 - 1} = \frac{[1845] - 120 \cdot 9,2416}{120 - 1} = \frac{1845 - 1108,992}{120 - 1} = \frac{736,008}{119} = 6,1849$
+
+
+Haverá alteração, pois devido às propriedades, a média é multiplicada pela constante que seus dados foram multiplicados, então ela será multiplicada por 2. Já a variância também se altera, mas é multiplicada por 4, pois se seus dados são multiplicados por uma constante, a variância é multiplicada pelo quadrado da constante.	
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: medidas descritivas e análise exploratória de dados

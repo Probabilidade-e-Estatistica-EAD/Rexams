@@ -1,0 +1,67 @@
+```{r, include = FALSE, message = FALSE, warning = FALSE}
+library(exams)
+```
+
+
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+media <- round(runif(1, 2, 9), 2)
+dp <- round(runif(1, 1, 4), 2)
+n <- sample(8:16, 1)
+e <- round(1.96*round(dp/sqrt(n), 2), 2)
+
+ic_min <- round(media - e, 2)
+ic_max <- round(media + e, 2)
+
+#RespostaS:
+err_min <- ic_min - round(runif(4, 0.1, 0.8), 2)
+err_max <- ic_max + round(runif(4, 0.1, 0.8), 2)
+
+correta <- paste0("[", ic_min, "; ", ic_max, "]")
+erros <- paste0("[", err_min, "; ", err_max, "]")
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- c(correta, erros[1], erros[2], erros[3], erros[4])
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+A espessura média de um produto é de `r media` polegadas e o desvio padrão de `r dp` polegadas, segundo uma distribuição normal. Uma das máquinas responsável por este produto foi para inspeção do controle de qualidade. Foram coletados `r n` produtos que teriam que estar com a medida entre os limites de confiança com grau de 95%. Quais são esses limites?
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+n = `r n`, $\mu = `r media`$, $\sigma = `r dp`$ e $\alpha = 0.05$
+
+$\epsilon = z_{tab} \cdot \frac{\sigma}{\sqrt{n}}$
+
+$\epsilon = 1.96 \cdot \frac{`r dp`}{\sqrt{`r n`}}$
+
+$\epsilon = 1.96 \cdot `r round(dp/sqrt(n), 4)`$
+
+$\epsilon = `r e`\\$
+
+$I.C. = [\bar X - \epsilon;\bar X + \epsilon]$
+
+$I.C. = [`r media` - `r e`; `r media` + `r e`]$
+
+$I.C. = [`r ic_min`; `r ic_max`]$
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: intervalo de confianÃ§a mÃ©dia

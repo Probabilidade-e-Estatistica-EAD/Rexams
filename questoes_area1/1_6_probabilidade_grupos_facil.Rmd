@@ -1,0 +1,61 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "x = 25.", 
+  "x = 6.", 
+  "x = 44.", 
+  "x = 8.", 
+  "x = 16."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+As redes sociais conquistaram o mundo na última década, assim um grupo de 176 jovens foi selecionado para informar as suas preferências com relação a esse assunto. 16 informaram que usam Twitter, Facebook e Instagram; 24 utilizam Twitter e Facebook; 30 utilizam Facebook e Instagram; 22 utilizam Twitter e Instagram; 6 utilizam apenas Facebook; 9 apenas o Twitter e 5 apenas Instagram. Os demais utilizam outras redes. A probabilidade de escolher, ao acaso, um jovem deste grupo que utilize Facebook é de x%. Qual o valor de x? 
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Considere F para Facebook, T para Twitter e I para Instagram. Lembre que questões como essa de Diagrama de Venn devem ser preenchidas da intersecção mais interna para a mais externa.
+
+$F \land I  \land T = 16$
+
+$F \land T = 8$
+
+$F \land I = 14$
+
+$T \land I = 6$
+
+$F = 6$
+
+$I = 5$
+
+$T = 9$
+
+$Outras = 112$
+
+$F = 6 + 8 + 16 + 14 = 44$						
+
+$\frac{44}{176} = 0,25$
+
+$x = 25$			 			
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: teoria da probabilidade

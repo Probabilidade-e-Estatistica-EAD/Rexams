@@ -1,0 +1,86 @@
+```{r, include = FALSE, message = FALSE, warning = FALSE}
+library(exams)
+```
+
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+n_total <- sample(210:310, size = 1)
+n_problemas <- sample(20:80, size = 1)
+n <- n_total - n_problemas
+z_tab <- 1.96
+
+p <- round((n_total - n_problemas)/n_total, 3)
+p2 <- p * (1 - p); raiz <- round(p2/n_total, 4); raiz_quad <- round(sqrt(raiz), 3)
+e_confere <- z_tab * raiz_quad
+e <- round(z_tab * sqrt((p * (1 - p))/n_total), 3)
+
+IC_min <- p - e
+IC_max <- p + e
+
+# err_min <- IC_min - round(runif(4,2,8), 2)
+# err_max <- IC_max + round(runif(4,2,8), 2)
+
+# possiveis erros dos alunos no calculo do desvio?
+e_err1 <- round(z_tab * (p * (1 - p))/n_total, 3)       # usar variancia da binomial
+e_err2 <- round(z_tab * (p * (1 - p))/sqrt(n_total), 3) # raiz so no denominador
+delta <- -0.02                                          # IC de mesma amplitude
+# delta <- round(runif(1, -0.02, 0.02), 3)
+# usar fucao num_to_schoice(...) ???
+
+err_min <- c(p - e_err1, p - e_err2, (1-p) - e, IC_min + delta)   # possiveis erros
+err_max <- c(p + e_err1, p + e_err2, (1-p) + e, IC_max + delta)   # possiveis erros 
+
+correta <- paste0("[",format(IC_min, digits=3, nsmall=3),"; ", 
+                  format(IC_max, digits=3, nsmall=3),"]")
+erros <- paste0("[",format(err_min, digits=3, nsmall=3),"; ", 
+                format(err_max, digits=3, nsmall=3),"]")
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- c(correta, erros[1], erros[2], erros[3], erros[4])
+questions
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Na produção de cada lote contendo `r n_total` unidades de clipes, observou-se que `r n_problemas` tinham padrões não aceitáveis. Considerando um nível de confiança de 95%, onde o valor da normal padrão é dado por $Z = \pm 1.96$, construindo um intervalo para a produção com padrões aceitáveis teremos:
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+$P = \frac{`r n`}{`r n_total`} = `r p`$ e $\alpha = 0.05$
+
+$\epsilon = z_{tab} \cdot \sqrt{\frac{P \cdot (1 - P)}{n}}$
+
+$\epsilon = 1.96 \cdot \sqrt{ \frac{`r p` \cdot (1 - `r p`)}{`r n_total`} }$
+
+$\epsilon = 1.96 \cdot \sqrt{\frac{`r p2`}{`r n_total`}}$
+
+$\epsilon = 1.96 \cdot `r raiz_quad`$
+
+$\epsilon = `r e`$
+
+$I.C. = [P - \epsilon;P + \epsilon]$
+
+$I.C. = [`r p` - `r e`; `r p` + `r e`]$
+
+$I.C. = [`r IC_min` ; `r IC_max`]$
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: intervalo de confiança proporção

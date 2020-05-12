@@ -1,0 +1,63 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+# Dados da questao
+
+nome.distrib <- sample(x = LETTERS, size = 3, replace = FALSE)
+
+min.ficha <- 260:(260 + 4)
+max.ficha <- 973:(973 + 4)
+
+min.ficha.escolhida <- sample(min.ficha, size = 1)
+max.ficha.escolhida <- sample(max.ficha, size = 1)
+
+n.escolhido <- sample(20:30, size = 1)
+N.escolhido <- (max.ficha.escolhida - min.ficha.escolhida) + 1
+
+# min.ficha.falso <- sample(min.ficha[min.ficha != min.ficha.escolhida], size = 1)
+# max.ficha.falso <- sample(max.ficha[max.ficha != max.ficha.escolhida], size = 1)
+# 
+N.falso <- (max.ficha.escolhida - min.ficha.escolhida)
+
+# Faca a resposta correta ser a primeira e as outras falsas
+
+questions <- c(N.escolhido,
+               n.escolhido,
+               min.ficha.escolhida,
+               max.ficha.escolhida,
+               N.falso)
+
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+Os clientes da Distribuidora de Arroz `r paste(nome.distrib, collapse = "")` Ltda têm fichas de cadastro numeradas consecutivamente de `r min.ficha.escolhida` a `r max.ficha.escolhida`. Deve-se selecionar uma amostra aleatória de `r n.escolhido` clientes para serem pesquisados quanto à "satisfação de atendimento por parte da Distribuidora". O número de elementos dessa população é:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+População ou universo: esse termo é usado em estatística com um sentido bem mais amplo do que na linguagem coloquial. É entendido aqui como todo conjunto de unidades experimentais (ou observacionais) que apresenta uma ou mais características em comum. Na questão em particular, a população é formada por indivíduos clientes da Distribuidora (característica em comum das unidades observacionais). O número de elementos da população é, portanto, o número de clientes da Distribuidora, que pode ser obtido pelo total de fichas de cadastro 
+
+$$
+N = ({\rm max}_{fichas} - {rm min}_{fichas}) + 1.
+$$
+
+N = `r max.ficha.escolhida` - `r min.ficha.escolhida` + 1 = `r N.escolhido`
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: definicoes

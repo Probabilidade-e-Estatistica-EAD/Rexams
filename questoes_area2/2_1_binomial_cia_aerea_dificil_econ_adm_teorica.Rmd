@@ -1,0 +1,48 @@
+```{r, include = FALSE, message = FALSE, warning = FALSE}
+library(exams)
+```
+
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(0.741, 0.500, 0.738, 0.830, 0.835))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Os membros do departamento de vendas de uma Cia aérea sabem que com probabilidade 5% um passageiro com reserva confirmada não se apresenta para o vôo. Nesse contexto a política de vendas da Cia aérea é vender 52 passagens para um vôo que acomoda no máximo 50 passageiros. Assinale a opção que corresponde a probabilidade de que haja um lugar disponível para todo passageiro que se apresente para o vôo.
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Para calcular a probabilidade de haver um lugar disponível para todo passageiro que se apresentar para o vôo, é necessário calcular a probabilidade de que pelo menos 2 passageiros não irão aparecer para o vôo, pois são 50 lugares para 52 passagens vendidas. Tal probabilidade é calculada como segue por um modelo Binomial: ${n \choose x} \cdot p^x \cdot q^{n-x}\\$
+
+$P(X \geq 2) = 1 - P(X < 2)\\$
+$P(X < 2) = P(X = 0) + P(X = 1)\\$
+
+$P(X = 0) = {52 \choose 0} \cdot (0,05)^0\quad \cdot (0,95)^{52}\quad = 1 \cdot 1 \cdot 0,06944284 = 0,06944284\\$
+
+$P(X = 1) = {52 \choose 1} \cdot (0,05)^1\quad \cdot (0,95)^{51}\quad = 52 \cdot 0,05 \cdot 0,073097726 = 0,190054088\\$
+
+$P(X \geq 2) = 1 - P(X < 2) = 1 - (P(X = 0) + P(X = 1)) = 1 - (0,06944284 + 0,190054088) = 1 - 0,259496928 = 0,741$
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: binomial

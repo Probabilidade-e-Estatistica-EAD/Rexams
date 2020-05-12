@@ -1,0 +1,62 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+"1,445.",
+"3,46.",
+"0,425.",
+"0,692.",
+"0,375."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Uma amostra de 400 indivíduos da Cidade das Esmeraldas revelou que 170 utilizavam óculos verdes. Uma outra amostra da Cidade do Arraial dos Tucanos revelou que 150 utilizavam óculos verdes. Se fossemos executar um teste de diferença de proporções (de indivíduos que utilazam óculos verdes) nestas duas cidades, o valor da estatística de teste seria de:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Primeiro precisamos obter o valor de cada proporção:
+
+$p_1 = \displaystyle{\frac{170}{400} = 0,425}$
+
+$p_2 = \displaystyle{\frac{150}{400} = 0,375}$
+
+Assim, calculamos o erro padrão com a seguinte fórmula:
+
+$\displaystyle{EP = {\sqrt{{\frac{p_1 \cdot (1 - p_1)}{n_1}} + {\frac{p_2 \cdot (1 - p_2)}{n_2}}}}}$
+
+$\displaystyle{EP = {\sqrt{{\frac{0,425 \cdot (1 - 0,425)}{400}} + {\frac{0,375 \cdot (1 - 0,375)}{400}}}}}$
+
+$\displaystyle{EP = {\sqrt{{\frac{0,425 \cdot 0,575}{400}} + {\frac{0,375 \cdot 0,625}{400}}}} = {\sqrt{{\frac{0,244375}{400}} + {\frac{0,234375}{400}}}}}$
+
+$\displaystyle{EP = {\sqrt{0,0006109375 + 0,0005859375}} = {\sqrt{0,001196875}} = 0,034595881 \sim 0,0346}$
+
+E 0,0346 = 3,46%.
+
+E por fim, calculamos a estatística de teste Z:
+
+
+$Z = \displaystyle{\frac{p_1 - p_2}{EP}}$
+
+$Z = \displaystyle{\frac{0,425 - 0,375}{0,0346} = 1,445}$
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: erro padrão diferença de proporções

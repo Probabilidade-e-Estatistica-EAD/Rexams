@@ -1,0 +1,49 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "P(Z > 1,65) = 0,0495; P(Z < 1,65) = 0,9505; P(-1 < Z < 1) = 0,6826.",
+  "P(Z > 1,65) = 0,4505; P(Z < 1,65) = 0,0495; P(-1 < Z < 1) = 0,3413.",
+  "P(Z > 1,65) = 0,9505; P(Z < 1,65) = 0,4505; P(-1 < Z < 1) = 0,8413.",
+  "P(Z > 1,65) = 0,0495; P(Z < 1,65) = 0,9505; P(-1 < Z < 1) = 0,3413.",
+  "P(Z > 1,65) = 0,4505; P(Z < 1,65) = 0,4505; P(-1 < Z < 1) = 0,6826."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Seja Z uma variável aleatória com distribuição normal padrão, calcule: P(Z > 1,65), P(Z < 1,65) e P(-1 < Z < 1).
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+$P(Z > 1,65) = 0,5 - P(0 < Z < 1,65) = 0,5 - 0,4505 = 0,0495$
+
+------------------------------
+
+$P(Z < 1,65) = 0,5 + P(0 < Z < 1,65) = 0,5 + 0,4505 = 0,9505$
+
+------------------------------
+
+$P(-1 < Z < 1) = P(-1 < Z < 0) + P(0 < Z < 1) = 2 * P(0 < Z < 1) = 2* 0,3413 = 0,6826$
+
+------------------------------
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: variáveis aleatórias contínuas e distribuições de probabilidade

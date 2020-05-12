@@ -1,0 +1,65 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "R = -0,96 e correlação negativa forte.",
+  "R = -0,96 e correlação negativa fraca.",
+  "R = -0,62 e correlação negativa regular.",
+  "R = -0,62 e correlação negativa boa.",
+  "R = -1 e correlação perfeita."
+))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Os dados a seguir relacionam a quantidade de memória RAM do computador e o tempo de resposta do sistema (em segundos), em uma amostra de 10 computadores:
+
+Memória | 12 | 13 |	14 | 14 |	16 | 18 |	19 | 22 |	24 | 26
+
+Tempo   | 16 | 14 |	14 | 13 |	11 | 12 |	09 | 09 |	08 | 06
+
+Calcule o coeficiente de correlação de Pearson. Considerando o coeficiente de correlação calculado, como você avalia o relacionamento entre memória e tempo de resposta, na amostra observada?
+
+Considere: $\sum X \cdot Y = 1861$; $\sum X^2 = 3382$; $\sum y^2 = 1344$; $\sum X = 178$; $\sum Y = 112$ 
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+
+$R = \frac{\sum X \cdot Y - (\sum X \cdot \sum Y)/n}{\sqrt {(\sum X^2 - (\sum X)^2/n)(\sum Y^2 - (\sum Y)^2/n)}}$
+
+$R = \frac{1861 - (178)(112)/10}{\sqrt {(3382 - 178^2/10)(1344 - 112^2/10)}}$
+
+$R = \frac{-132,6}{\sqrt {213,6 \cdot 89,6}}$
+
+$R = -0,96$
+
+Considerando o coeficiente de correlação calculado, o relacionamento entre memória e tempo de resposta é uma correlação negativa forte.
+
+|R|Interpretação|
+|:---------|:------------:|
+|0 a 0,4|Fraca|
+|0,4 a 0,7|Regular|
+|0,7 a 0,8|Boa|
+|0,8 a 0,99|Forte|
+|1|Perfeita|
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: coeficiente de correlação

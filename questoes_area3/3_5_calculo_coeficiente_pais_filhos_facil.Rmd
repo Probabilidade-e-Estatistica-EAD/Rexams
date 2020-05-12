@@ -1,0 +1,53 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "R = 0,6368",
+  "R = -0,5325",
+  "R = 0,9717",
+  "R = 1.",
+  "R = -0,4544"
+))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Em uma pesquisa sobre influências genéticas, cientistas utilizaram um software para registrar o peso (kg) do pai (X) e o peso do filho (Y). Com os dados apresentados abaixo, puderam calcular o coeficiente de correlação linear de Pearson. Ao calcular tal coeficiente, o que foi que eles encontraram?
+
+Y	|	68	66	68	65	69	66	68	65	71	67
+
+X	|	65	63	67	64	68	62	70	66	68	67
+
+Considere: $\sum X \cdot Y = 44445$; $\sum X^2 = 43616$; $\sum y^2 = 45325$; $\sum X = 660$; $\sum Y = 673$ 
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+$R = \frac{\sum X \cdot Y - (\sum X \cdot \sum Y)/n}{\sqrt {(\sum X^2 - (\sum X)^2/n)(\sum Y^2 - (\sum Y)^2/n)}}$
+
+$R = \frac{44445 - (673)(660)/10}{\sqrt {(45325 - 673^2/10)(43616 - 660^2/10)}}$
+
+$R = \frac{27}{\sqrt {(32,1)(56)}}$
+
+$R = 0,6368$
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: coeficiente de correlação

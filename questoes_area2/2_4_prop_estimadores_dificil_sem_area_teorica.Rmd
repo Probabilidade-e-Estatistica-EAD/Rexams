@@ -1,0 +1,102 @@
+```{r, include=FALSE, echo= FALSE}
+require(exams)
+```
+
+
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c("A é estimador não-tendencioso e B é estimador tendencioso.", 
+                     "A é estimador não-tendencioso e variância de A é igual a 0,5 sigma ao quadrado.", ##### arrumar essa parte de sigma ao quadrado
+                     "B é estimador não-tendencioso e variância de B é igual a 0,5 sigma ao quadrado.", 
+                     "B é estimador tendencioso e variância de B é igual à variância de A.", 
+                     "A e B são estimadores tendenciosos e possuem a mesma variância."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Sabe-se que $x_1$ , $x_2$ e $x_3$ representam, respectivamente, o primeiro, segundo e terceiro elemento de uma amostra de tamanho três, retirada de uma população com média $\mu$ e variância $\sigma^2$. Sabe-se, também, que A e B são estimadores da média populacional, onde $A = \frac{3}{4} x_1 + \frac{1}{8} x_2 + \frac{1}{8} x_3$ e $B = \frac{3}{4} x_1 + \frac{1}{8} x_2$ . Com essas informações tem-se que:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+
+É necessário calcular a esperança e a variância dos estimadores para responder a questão. 
+
+Para o estimador A: 
+
+$$
+\begin{align*}
+\mathbb{E}(A) &= \mathbb{E}\left(\frac{3}{4} x_1 + \frac{1}{8} x_2 + \frac{1}{8} x_3\right) \\ 
+&= \frac{3}{4}  \mathbb{E}(x_1) + \frac{1}{8}  \mathbb{E}(x_2) + \frac{1}{8}  \mathbb{E}(x_3) \\
+&= \frac{3}{4}  \mu + \frac{1}{8}  \mu + \frac{1}{8}  \mu \\
+&= \mu \times(\frac{3}{4} + \frac{1}{8} + \frac{1}{8}) \\
+&= \mu
+\end{align*}
+$$
+
+E
+
+$$
+\begin{align*}
+\mathbb{V}ar(A) &= \mathbb{V}ar\left(\frac{3}{4} x_1 + \frac{1}{8} x_2 + \frac{1}{8} x_3\right) \\ 
+&= \frac{9}{16}  \mathbb{V}ar(x_1) + \frac{1}{64}  \mathbb{V}ar(x_2) + \frac{1}{64}  \mathbb{V}ar(x_3) \\
+&= \frac{9}{16}  \sigma^2 + \frac{1}{64}  \sigma^2 + \frac{1}{64}  \sigma^2 \\
+&= \sigma^2 \times(\frac{36}{64} + \frac{1}{64} + \frac{1}{64}) \\
+&= \frac{38}{64}\sigma^2 \\
+&= \frac{19}{32}\sigma^2 \approx 0.59 \sigma^2
+\end{align*}
+$$
+
+Para o estimador B: 
+
+$$
+\begin{align*}
+\mathbb{E}(B) &= \mathbb{E}\left(\frac{3}{4} x_1 + \frac{1}{8} x_2\right) \\ 
+&= \frac{3}{4}  \mathbb{E}(x_1) + \frac{1}{8}  \mathbb{E}(x_2)  \\
+&= \frac{3}{4}  \mu + \frac{1}{8}  \mu  \\
+&= \mu \times(\frac{3}{4} + \frac{1}{8}) \\
+&= \frac{7}{8}\mu
+\end{align*}
+$$
+
+E
+
+$$
+\begin{align*}
+\mathbb{V}ar(B) &= \mathbb{V}ar\left(\frac{3}{4} x_1 + \frac{1}{8} x_2 \right) \\ 
+&= \frac{9}{16}  \mathbb{V}ar(x_1) + \frac{1}{64}  \mathbb{V}ar(x_2)  \\
+&= \frac{9}{16}  \sigma^2 + \frac{1}{64}  \sigma^2  \\
+&= \sigma^2 \times(\frac{36}{64} + \frac{1}{64}) \\
+&= \frac{37}{64}\sigma^2  \approx 0.58 \sigma^2
+\end{align*}
+$$
+Pelas alternativas pode-se concluir que: 
+
++ A variância de A e B não são iguais, 
+
++ Não são $0.5\sigma^2$,
+
++ Como $\mathbb{E}(A) = \mu$ então A é um estimador não-tendencioso para a média populacional e 
+
++ Como $\mathbb{E}(B) \neq \mu$ então B é um estimador tendencioso para a média populacional.
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: prop. estimadores

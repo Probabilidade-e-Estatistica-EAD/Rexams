@@ -1,0 +1,62 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+
+library(MASS)
+
+# Dados da questao
+
+status <- sample(x = c("sorte", "azar"), size = 1)
+
+prob.jogador <- 0
+if (status == "sorte") {
+  prob.jogador <- c(sample(x = c(2/3, 3/4), size = 1),
+                    sample(x = c(4/5, 5/6), size = 1),
+                    sample(x = c(6/7, 7/8), size = 1))
+}else{
+  prob.jogador <- c(sample(x = c(1/3, 3/4), size = 1),
+                    sample(x = c(2/5, 5/6), size = 1),
+                    sample(x = c(3/7, 7/8), size = 1))
+}
+
+# Solução
+
+sol <- as.character(fractions(prod(prob.jogador)))
+err <- as.character(fractions(min(1, sum(prob.jogador))))
+err2 <- as.character(fractions(1 - prod(prob.jogador)))
+err3 <- as.character(fractions(prod(1 - prob.jogador)))
+err4 <- as.character(fractions(mean(prob.jogador)))
+
+# Faca a resposta correta ser a primeira e as outras falsas
+questions <- c(sol, err, err2, err3, err4)
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Em um jogo de final de campeonato, os times foram para decisão nos pênaltis. No time “vermelhão“ três jogadores foram escolhidos, sendo as probabilidades deles marcarem um gol são `r as.character(fractions(prob.jogador[1]))`; `r as.character(fractions(prob.jogador[2]))`; e `r as.character(fractions(prob.jogador[3]))`, considerando que cada um só irá cobrar uma vez, e que haja independência entre essas cobranças, a probabilidade de todos acertarem é de?
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Considerando a independência entre os jogadores, para obter a probabilidade de todos acertarem, basta multiplicar as probabilidade de cada um deles acertar.
+
+P(todos acertarem) = $P(A)*P(B)*P(C)=$
+
+P(todos acertarem) = `r as.character(fractions(prob.jogador[1]))` * `r as.character(fractions(prob.jogador[2]))` * `r as.character(fractions(prob.jogador[3]))` = `r sol`
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: conceitos basicos

@@ -1,0 +1,62 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "84,13% de probabilidade de que todos os pedidos sejam atendidos. Seriam necessárias, no mínimo, 184 unidades no estoque para probabilidade de atendimento dos pedidos de 99%.",
+  "50% de probabilidade de que todos os pedidos sejam atendidos. Seriam necessárias, no mínimo, 105 unidades no estoque para probabilidade de atendimento dos pedidos de 99%.",
+  "90,56% de probabilidade de que todos os pedidos sejam atendidos. Seriam necessárias, no mínimo, 270 unidades no estoque para probabilidade de atendimento dos pedidos de 99%.",
+  "65,89% de probabilidade de que todos os pedidos sejam atendidos. Seriam necessárias, no mínimo, 322 unidades no estoque para probabilidade de atendimento dos pedidos de 99%.",
+  "20,45% de probabilidade de que todos os pedidos sejam atendidos. Seriam necessárias, no mínimo, 50 unidades no estoque para probabilidade de atendimento dos pedidos de 99%."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+O número de pedidos de compra de certo produto que uma empresa recebe por semana distribui-se normalmente, com média 125 e desvio padrão 25. Se em uma dada semana o estoque disponível é de 150 unidades, qual é a probabilidade de que todos os pedidos sejam atendidos? Qual deveria ser o estoque para que se tivesse 99% de probabilidade de que todos os pedidos fossem atendidos? 
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Considerando X como o número de pedidos, a probabilidade de que todos sejam atendidos é dada por P(X < 150), pois, para que sejam atendidos não podem ultrapassar a quantidade disponível.
+
+$\mu = 125$ e $\sigma = 25$
+
+$Z = \frac{X - \mu}{\sigma}$
+
+$Z = \frac{150 - 125}{25}$
+
+$Z = \frac{25}{25} = 1$
+
+$P(X < 150) = P(Z < 1) = 0,5 + P(0 < Z < 1) = 0,8413$
+
+Ou seja, 84,13% de probabilidade de que todos os pedidos sejam atendidos com estoque de 150 unidades.
+
+Em relação ao estoque necessário para 99% de probabilidade de atendimento dos pedidos: 2,33 é o valor que retorna uma probabilidade de 99% (consultando a tabela de distribuição acumulada da normal padrão).
+
+$P(X < x) = P\left (z< \frac{x - 125}{25} \right ) = P(z< 2,33)$
+
+Logo, $2,33 = \frac{x - 125}{25}$
+
+$125 + (25 \cdot 2,33) = x$
+
+$183,25 = x$
+
+Assim seriam necessárias no mínimo 184 unidades no estoque para probabilidade de atendimento dos pedidos de 99%. 
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: variáveis aleatórias contínuas e distribuições de probabilidade

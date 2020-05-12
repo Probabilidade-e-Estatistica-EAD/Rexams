@@ -1,0 +1,64 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c("0,28",
+                   "0,56",
+                   "0,5",
+                   "0,8",
+                   "0,32"))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+Os funcionários do setor de contabilidade de uma empresa são divididos em dois grupos, os que ganham acima
+de 5 salários e os que ganham abaixo disso. A probabilidade de ganhar acima de 5 salários é de 20%. Além
+disso, a probabilidade de um indivíduo ter curso superior dado que ganha um salário mais alto é de 80%. Para os
+funcionários de menor rendimento essa probabilidade é de 50%. Sabendo que um funcionário possui curso superior, 
+qual a probabilidade dele ganhar mais de 5 salários?
+
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Considere:
+
+Probabilidade de ter curso superior = $P(CS)$
+
+Probabilidade de ganhar acima de 5 salários = $P(+5)$
+
+Probabilidade de ganhar abaixo de 5 salários = $P(-5)$
+
+
+$P(+5)$ = 0,2 ;  $P(-5)$ = 0,8 ;  
+
+$P(CS \mid +5)$ = 0,8 ;  $P(CS \mid -5)$ = 0,5
+
+O que queremos é:
+
+$P(+5 \mid CS) = \frac{P(+5 \cap CS)}{P(CS)} =  \frac{P(+5)*P(CS \mid +5)} {(P(CS \mid +5) * P(+5)) + (P(CS \mid -5) * P(-5))}$
+
+
+$P(+5 \mid CS) = \frac{(0,2 * 0,8)}{(0,8 * 0,2) + (0,5 * 0,8)} = \frac{0,16}{0,56} = 0,28$
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: conceitos basicos

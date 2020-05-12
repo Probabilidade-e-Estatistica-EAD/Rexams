@@ -1,0 +1,51 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c("0,57 ; 0,29 ; 0,14", "0,57 ; 0,35 ; 0,22", "0,57 ; 0,27 ; 0,17", "0,56 ; 0,29 ; 0,17", "0,56 ; 0,28 ; 0,15"))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Em uma corrida de carros, os três corredores eram: Monteiro (M), Doner (D) e Rubem (R). A probabilidade de Monteiro ganhar é duas vezes a de Doner e este tem duas vezes a probabilidade de Rubem. Quais são as probabilidades de cada um ganhar: M, D e R respectivamente?
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Sabemos que a corrida só tem os três corredores e que somentre um deles pode vencer, logo, as três probabilidades somam 1.
+
+$P(M) + P(D) + P(R)=1$
+
+Rubem é o que tem menor probabilidade de ganhar e chamaremos esta de p. As demais probabilidade serão proporcionais.
+
+$P(M) + P(D) + P(R)=4p+2p+p=1$
+
+$7p=1$ logo, $p=0,14$
+
+Assim,
+
+$P(M)=0,57$
+$P(D)=0,29$
+$P(R)=0,14$
+
+
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: conceitos basicos

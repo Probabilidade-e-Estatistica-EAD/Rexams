@@ -1,0 +1,65 @@
+```{r, include = FALSE, message = FALSE, warning = FALSE}
+library(exams)
+```
+
+
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questão
+tempo <- sample(2:8, size = 1)
+
+#Respostas:
+questions <- c(paste0('$', 1 + (tempo*2) + ((2*tempo)^2)/2, 'e^{', -tempo*2, '}$'),
+               paste0('$', 1 + ((2*tempo)^2)/2, 'e^{-2}$'),
+               paste0('$', (tempo*2) + ((2*tempo)^2)/2, 'e^{-2}$'),
+               paste0('$', 1 + (tempo*2), 'e^{', -tempo, '}$'),
+               paste0('$', 1 + ((2*tempo)^2)/2, 'e^{', -tempo*2, '}$'))
+
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+
+Question
+========
+
+Suponha que as pessoas se dirijam ao caixa de um mercado de acordo com um processo Poisson com taxa média de 2 clientes por minuto. A probabilidade de que, num intervalo de `r tempo` minutos, no máximo dois clientes se dirijam ao caixa é dada por:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+Em um processo de Poisson, temos que o número de ocorrências de um certo evento X até um certo tempo t ($N_t$) tem distribuição de Poisson com média t*média do número de ocorrências no instante t ($\lambda$). Ou ainda, $N_t\sim Poisson(\lambda t)$ (lembre-se de que o parâmetro da Poisson é igual a sua média).
+
+No exercício, temos que a taxa média de clientes por minuto, $\lambda$, é 2, e o enunciado pergunta qual é a $P(N_`r tempo` \le 2)$, porque é em um intervalo de `r tempo` minutos. Neste caso, $N_`r tempo` \sim Poisson(2*`r tempo`)$
+
+Dessa forma, as contas ficam
+
+$P(N_`r tempo` \le 2)$
+
+$= P(N_`r tempo` = 0) + P(N_`r tempo` = 1) + P(N_`r tempo` = 2)$
+
+$= \displaystyle\frac{e^{-`r tempo*2`}*`r tempo*2`^0}{0!} + \frac{e^{-`r tempo*2`}*`r tempo*2`^1}{1!} + \frac{e^{-`r tempo*2`}*`r tempo*2`^2}{2!}$
+
+$= \displaystyle\frac{e^{-`r tempo*2`}*1}{1} + \frac{e^{-`r tempo*2`}*`r tempo*2`}{1} + \frac{e^{-`r tempo*2`}*`r (tempo*2)^2`}{2}$
+
+$= e^{-`r tempo*2`} + `r tempo*2`e^{-`r tempo*2`} + `r ((2*tempo)^2)/2`e^{-`r tempo*2`}$
+
+$= `r 1 + (tempo*2) + ((2*tempo)^2)/2`e^{-`r tempo*2`}$
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: processo poisson

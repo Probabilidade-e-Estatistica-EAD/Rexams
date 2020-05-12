@@ -1,0 +1,60 @@
+```{r, include = FALSE, message = FALSE, warning = FALSE}
+library(exams)
+```
+
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questão:
+prob <- round(runif(1, 0.2, 0.5), 1)
+x <- sample(1:4, size = 1)
+resp <- (x/2)*(prob^2) - 0^2
+
+valores <- c(0.38, 0.42, 0.50, 0.55)
+erros <- resp + valores
+
+questions = c(resp, erros[1], erros[2], erros[3], erros[4])
+
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+
+Uma variável aleatória contínua, X, tem função densidade de probabilidade f(x) igual a
+
+$f(x) = \begin{cases} `r x`x, \text{ se } 0 < x < 1 \\ 0, \text{ caso contrário}\end{cases}$
+
+Assim, pode-se afirmar que $P (0 < x < `r prob`)$ é igual a
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+Para calcular $P (a < X < b)$ sendo X uma variável aleatória contínua com função densidade de probabilidade igual a f(x), precisamos calcular a área abaixo da curva f(x) entre os pontos a e b, ou ainda, calcular
+
+$\displaystyle\int_{a}^{b}f(x)dx$
+
+Neste caso, vamos calcular
+
+$\displaystyle\int_{0}^{`r prob`}`r x`xdx$
+
+Perceba que o intervalo 0 < x < `r prob` é entre 0 e 1, e portanto usamos f(x) = `r x`x e não f(x) = 0.
+
+$\displaystyle\int_{0}^{`r prob`}`r x`xdx = \left (\frac{`r x`x^2}{2}\right)_{0}^{`r prob`} = \frac{`r x`}{2}(`r prob`)^2-0^2 = `r (x/2)*(prob^2)` - 0^2 = `r (x/2)*(prob^2) - 0^2`$
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: densidade probabilidade

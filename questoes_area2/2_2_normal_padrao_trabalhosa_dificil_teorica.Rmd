@@ -1,0 +1,145 @@
+```{r, include = FALSE, message = FALSE, warning = FALSE}
+library(exams)
+```
+
+
+```{r data_generation, echo = FALSE, results = "hide"}
+
+questions <- c('A probabilidade de um projeto ser avaliado num período entre 28 e 35 horas é superior a 10%.',
+'A probabilidade de um projeto ser avaliado em menos de 35 horas é inferior a 10%.',
+'10% dos projetos requerem tempo de avaliação superior a 46 horas.',
+'Apenas 5% dos projetos levam mais do que 50 horas.',
+'Pelo menos 25% dos projetos são avaliados em tempo inferior a 30 horas.')
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+
+O tempo que os analistas de uma empresa de consultoria levam para avaliar um projeto tem média de 40 horas com desvio padrão de 5 horas. Considere que esse tempo seja normalmente distribuído. Avalie os itens abaixo, a partir dos dados apresentados:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+* A probabilidade de um projeto ser avaliado num período entre 28 e 35 horas é superior a 10%.
+
+$P(28<X<35)$
+
+$= P(\displaystyle\frac{28-40}{5}<Z<\frac{35-40}{5})$ transformação na normal para a normal padrão
+
+$= P(-2,4<Z<-1)$
+
+$= P(1<Z<2,4)$ graças ao fato de a normal ser simétrica
+
+$= P(0<Z<2,4) - P(0<Z<1)$
+
+$= 0,4918 - 0,3413$ olhar na tabela da normal padrão
+
+$= 0,1505$
+
+**Verdadeira**
+
+* A probabilidade de um projeto ser avaliado em menos de 35 horas é inferior a 10%.
+
+$P(X<35)$
+
+$= P(Z<\displaystyle\frac{35-40}{5})$ transformação na normal para a normal padrão
+
+$= P(Z<-1)$
+
+$= P(Z>1)$ graças ao fato de a normal ser simétrica
+
+$= 0,5 - P(0<Z<1)$ 
+
+$= 0,5 - 0,3413$ olhar na tabela da normal padrão
+
+$= 0,1587$
+
+**Falso**
+
+* 10% dos projetos requerem tempo de avaliação superior a 46 horas.
+
+$P(X>x) = 0,1$ para qual $x$ essa afirmação é verdadeira?
+
+$P(Z>z) = 0,1$
+
+$0,5 - P(0<Z<z) = 0,1$
+
+$P(0<Z<z) = 0,4$
+
+$Z = 1,28$ olhar o valor na tabela da normal padrão
+
+$Z = \displaystyle\frac{X - \mu}{\sigma}$ 
+
+$1,28 = \displaystyle\frac{X - 40}{5}$
+
+$5*1,28 = X - 40$
+
+$6,4 + 40 = X$
+
+$X = 46,4$
+
+**Falso**
+
+* Apenas 5% dos projetos levam mais do que 50 horas.
+
+$P(X>x) = 0,05$ para qual $x$ essa afirmação é verdadeira?
+
+$P(Z>z) = 0,05$
+
+$0,5 - P(0<Z<z) = 0,05$
+
+$P(0<Z<z) = 0,45$
+
+$Z = 1,645$ olhar o valor na tabela da normal padrão
+
+$Z = \displaystyle\frac{X - \mu}{\sigma}$ 
+
+$1,645 = \displaystyle\frac{X - 40}{5}$
+
+$5*1,645 = X - 40$
+
+$8,2 + 40 = X$
+
+$X = 48,2$
+
+**Falso**
+
+* Pelo menos 25% dos projetos são avaliados em tempo inferior a 30 horas.
+
+$P(X<x) = 0,25$ para qual $x$ essa afirmação é verdadeira?
+
+$P(Z<-z) = P(-z<Z<0) = P(0<Z<z) = 0,25$
+
+$Z = -0,675$ olhar o valor na tabela da normal padrão
+
+$Z = \displaystyle\frac{X - \mu}{\sigma}$ 
+
+$-0,675 = \displaystyle\frac{X - 40}{5}$
+
+$5*(-0,675) = X - 40$
+
+$-3,375 + 40 = X$
+
+$X = 36,6$
+
+**Falso**
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: normal padrao trabalhosa

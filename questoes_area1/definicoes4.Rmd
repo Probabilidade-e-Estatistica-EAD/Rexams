@@ -1,0 +1,43 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+# Dados da questao
+
+# Faca a resposta correta ser a primeira e as outras falsas
+
+questions <- c("Uma série histórica é o registro da variação de uma certa característica ao longo do tempo.",
+               "Em estatística, entende-se por população um conjunto de pessoas.",
+               "A variável é discreta quando pode assumir qualquer valor dentro de determinado intervalo.",
+               "A frequência relativa de uma variável é o número de repetições dessa variável.",
+               "A amplitude total é a diferença entre dois valores quaisquer do atributo.")
+
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+Assinale a alternativa correta:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+População ou universo: esse termo é usado em estatística com um sentido bem mais amplo do que na linguagem coloquial. É entendido aqui como todo conjunto de unidades experimentais (ou observacionais) que apresenta uma ou mais características em comum.  
+Uma variável quantitativa discreta assume valores em um conjunto contável.  
+A frequência relativa de um valor de uma variável é o número de vezes que este valor ocorre no conjunto de dados dividido pelo total de elementos do conjunto de dados.  
+A amplitude total de uma variável quantitativa é a diferença entre os extremos (mínimo e máximo) do conjunto de dados.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: definicoes

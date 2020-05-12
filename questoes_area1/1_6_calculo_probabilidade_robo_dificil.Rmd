@@ -1,0 +1,66 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "Áreas A, B, C, D = 9%. Áreas E, F, G, H = 16%.", 
+  "Áreas A, B, C, D = 16%. Áreas E, F, G, H = 9%.", 
+  "Áreas A, B, C, D = 15%. Áreas E, F, G, H = 10%.", 
+  "Áreas A, B, C, D = 10%. Áreas E, F, G, H = 15%.", 
+  "Áreas A, B, C, D = 5%. Áreas E, F, G, H = 20%.."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Um robô criado para detectar minas em um campo de guerra está sendo testado em laboratório para pequenas escalas. Desse modo, os cientistas projetaram uma região delimitada por um círculo externo de raio 5 km e um círculo interno de raio 3 km. Quais as probabilidades de o robô encontrar minas em cada sub-região da área de teste?
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.align='center', out.width="50%"}
+
+![foto](foto.png)
+               
+``` 
+
+![foto](foto.png)
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Área do círculo externo = $25\pi$					
+Área do círculo interno = $9\pi$					
+					
+Área da borda = $25\pi - 9\pi = 16\pi$			
+Área de cada sub-região da borda = $\frac{16\pi}{4} = 4\pi$			
+Área de cada sub-região do círculo interno = $\frac{9\pi}{4} = 2,25\pi$			
+
+$25\pi --- 100\%$	
+
+$4\pi --- x$
+
+$x = 16\%$	 	
+
+$25\pi --- 100\%$
+
+$2,25\pi --- x$
+
+$x = 9\%$
+					
+Áreas A, B, C, D = 9%. Áreas E, F, G, H = 16%.					
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: teoria da probabilidade

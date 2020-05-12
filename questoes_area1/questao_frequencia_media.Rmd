@@ -1,0 +1,66 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+notas = sample(seq(0,6,0.1), 3, replace = F)
+
+questions = round((6 - (mean(notas)*0.4))/0.6, digits = 2)
+
+i = 1
+while (unique(length(questions)) < 5) {
+  i = i + 1
+  questions[i] = questions + sample(seq(-1,1,0.01),4)
+  if(questions[i] >= 10){
+    questions = questions[1:i-1]
+    i = i-1
+  }
+}
+
+questions <- paste("$", gsub("^ +", "", fmt(questions, 2)), "$", sep = "")
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+
+A tabela abaixo apresenta a distribuição de frequências das notas obtidas num teste de matemática, 
+realizado por 50 estudantes.
+
+------------------------
+Notas	Frequência
+------------------------
+0 |- 2 | **4**
+
+2 |- 4 | **12**
+
+4 |- 6 | **15**
+
+6 |- 8 | **13**
+
+8 |-|10 | **6**
+
+------------------------
+
+A nota média desses estudantes é
+A)	5,0
+B)	5,2
+C)	5,5
+D)	5,8
+E)	6,0
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: media de notas

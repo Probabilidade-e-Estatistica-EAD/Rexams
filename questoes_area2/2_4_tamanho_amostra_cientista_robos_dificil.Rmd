@@ -1,0 +1,46 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "n = 16577",
+  "n = 20300.",
+  "n = 17801.",
+  "n = 12424.",
+  "n = 19630."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Um cientista deseja estimar a proporção populacional de robôs que realizam operações matemáticas, entre os vários tipos específicos de que dispõe. De uma amostra inicial de 30 robôs, 4 eram do tipo que realizam operações matemáticas. Utilizando o máximo produto de $p \cdot (1 - p)$, com grau de confiança de 0,99 e erro relativo de estimação de 0,01, qual o tamanho de amostra necessário?
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Como o máximo produto de $p \cdot (1-p) = 0,25$:
+
+$n = z^2 \cdot \frac{p \cdot (1-p)}{\epsilon^2}$ 
+
+$n = 2,575^2 \cdot \frac{0,25}{0,01^2}$
+
+$n = \frac{6,6306 \cdot 0,25}{0,0001}$
+
+$n = 16576,5625$
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: estimação

@@ -1,0 +1,39 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+"A prática é economicamente recomendável.",
+"A prática não é economicamente recomendável.",
+"Nada se pode concluir sobre a economicidade da prática.",
+"Para se concluir sobre a economicidade da prática, deve-se fazer um teste de hipótese.",
+"A informação fornecida pelo intervalo de confiança de 95% não é suficiente para decidir sobre a economicidade da prática."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Em um experimento, estudou-se o efeito da irrigação sobre o rendimento do milho, utilizando comparação de pares de observações com doze propriedades, onde, em cada uma, se instalou uma parcela irrigada e a outra não. No final do experimento, observou-se a diferença média d = 950kg/ha em favor das parcelas onde se aplicou a irrigação. Com os dados obtidos, estimou-se, com confiança de 95%, que os acréscimos mínimo e máximo no rendimento, decorrentes do uso de irrigação, são, respectivamente, 650kg/ha e 1250kg/ha. Sabendo-se que o custo de aplicação de irrigação é
+equivalente a 500kg/ha, com confiança de 95%, qual a recomendação quanto à economia da prática?
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Com $\alpha = 0,05$ e $\bar{d} = 950\mbox{kg/ha}$, podemos concluir que a prática é economicamente recomendável, pois os acréscimos mínimo e máximo no rendimento, decorrentes do uso de irrigação, são, respectivamente, 650 kg/ha e 1250 kg/ha e o custo de aplicação da irrigação é equivalente a 500 kg/ha. Assim, mesmo que exista um gasto com a irrigação, ele é coberto pelo acréscimo no rendimento.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: teoria testes duas médias pareadas

@@ -1,0 +1,54 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c("Apenas a I e a IV.",
+                   "Apenas a III.",
+                   "Apenas a I.",
+                   "Apenas a I, a II e a III.",
+                   "I, II, III e IV."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+Considere as seguintes afirmações.
+
+I - A amostra estratificada divide a população em subgrupos homogêneos de acordo com determinadas características 
+como sexo ou faixa etária, selecionando uma amostra proporcional a cada um desses subgrupos.
+II - Na amostragem não probabilística os elementos da amostra são escolhidos aleatoriamente.
+III - A amostragem sistemática não é muito conveniente quando a população está naturalmente ordenada.
+IV - A amostra aleatória simples enumera os elementos da população e seleciona cada elemento com igual probabilidade. 
+
+Quais estão corretas?
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+I- V.
+
+II- F. Amostragem probabilística: Todos os elementos da população têm probabilidade conhecida e diferente de zero de participar da amostra. A realização deste tipo de amostragem só é possível se a população for finita e totalmente acessível.
+Amostragem não probabilística: Presença dos elementos na amostra deve-se a outros critérios. Por exemplo, quando somos obrigados a colher a amostra na parte da população a que temos acesso.
+
+III- F. Amostragem sistemática: Quando os elementos da população se apresentam ordenados e a retirada dos elementos da amostra e feita periodicamente, temos uma amostragem sistemática.
+
+IV- V.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: conceitos basicos

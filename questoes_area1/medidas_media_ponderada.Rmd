@@ -1,0 +1,62 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+# Dados da questao
+
+feno <- sample(x = 1:4, size = 3, replace = FALSE)
+proteina <- sample(x = 10:20, size = 3, replace = FALSE)
+
+# solução
+
+media <- round(sum(feno * proteina)/sum(feno), 1)
+
+## single-choice incl. typical errors
+
+err <- round(sum(proteina)/3, 1)
+err2 <- round(sum(proteina)/sum(feno), 1)
+err <- sample(x = c(err, err2), size = 1)
+
+sc <- num_to_schoice(correct = media,
+                     wrong = err,
+                     range = c(max(0, media - 2),
+                               min(50, media + 2)),
+                     delta = 0.15,
+                     method = "delta",
+                     digits = 1)
+
+sc$questions <- gsub("\\$", "", sc$questions)
+sc$questions <- gsub("\\.", ",", sc$questions)
+sc$questions <- paste(sc$questions, "%", sep = "")
+
+```
+
+Question
+========
+Uma fábrica adquiriu, três carregamentos de feno de alfafa que variaram na quantidade entregue e no seu conteúdo de proteína, conforme tabela abaixo.
+
+| Carregamento    |        1        |        2        |        3        |
+| :-------------- | :-------------: | :-------------: | :-------------: |
+| Feno, toneladas |   `r feno[1]`   |   `r feno[2]`   |   `r feno[3]`   |
+| Proteínas, %    | `r proteina[1]` | `r proteina[2]` | `r proteina[3]` |
+
+
+Assinale a alternativa que contém o valor correto da percentagem média de proteína que resulta da mistura dos três carregamentos.
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(sc$questions, markup = "markdown")
+```
+
+Solution
+========
+Suponha que para os dados $x_1, x_2, \ldots, x_n$ possuem os seguintes pesos $p_1, p_2, \ldots, p_n$, então __a média aritmética ponderada__ é dada por $\bar{x}_p = \frac{\sum_{i=1}^n{x_ip_i}}{\sum_{i=1}^n{p_i}}$. Na questão em particular, os pesos são dados pelo número de toneladas de feno de cada carregamento.
+
+$\bar{x}_p = \frac{`r proteina[1]` \cdot `r feno[1]` + `r proteina[2]` \cdot `r feno[2]` + `r proteina[3]` \cdot `r feno[3]`}{`r feno[1]` + `r feno[2]` + `r feno[3]`}$ = `r media`
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(sc$solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(sc$solutions, single = TRUE)`
+exname: medidas resumo dados grupados

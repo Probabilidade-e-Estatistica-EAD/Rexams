@@ -1,0 +1,56 @@
+```{r, include = FALSE, message = FALSE, warning = FALSE}
+library(exams)
+```
+
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questão:
+prob <- round(runif(1, 0.1, 0.6), 1)
+
+questions <- c(paste0('$1 -e^{',-4*prob,'}$'),
+               paste0('$e^{',prob,'}$'),
+               paste0('$1 - e^{',-prob,'}$'),
+               paste0('$e^{',-4*prob,'}$'),
+               paste0('$1 -', prob,'e^{-',4*prob,'}$'))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+
+Considere que o número de falhas de certo tipo de placa térmica é de `r prob` defeitos por $m^2$. Na confecção da superfície de um armário, é necessário cobrir uma superfície de $2 m \times 2 m$ com essa placa. A probabilidade de que haja pelo menos uma falha nessa superfície é de
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Se assumirmos uma variável alatória X como $1m^2$ da placa apresentar uma falha, então a probabilidade de sucesso neste caso é de `r prob`. Isso significa que X tem distribuição de Bernoulli com probabilidade `r prob`, ou $X \sim Bernoulli(p = `r prob`)$.
+
+Na confecção, foram usadas 4 placas, pois a superfície tinha $4m^2$, então foram feitas 4 realizações de X. Portanto, utilizando da propriedade $\sum\limits_{i=1}^{n}X_i \sim Binomial(n,p)$, se $X_i \sim Bernoulli(p);\forall i \in \{1,2,...,n\}$, podemos considerar um novo evento $Y = \sum\limits_{i=1}^{4}X_i$, que representa o número de falhas na superfície de $4m^2$.
+
+Utilizando a aproximação da Poisson pela Binomial, no qual se $X \sim Binomial(n,p)$ quando o número de observações tende ao infinito, então $X \sim Poisson(\lambda = n*p)$, temos que $\lambda = n*p = 4*`r prob` = `r 4*prob`$. Assim $Y \sim Poisson(\lambda = `r 4*prob`)$
+
+A probabilidade de que pelo menos uma falha ocorra, $P(Y \ge 1)$, pode ser expressa como $1 - P(Y < 1)$, ou ainda, $1 - P(Y = 0)$
+
+$= 1 - \displaystyle\frac{e^{-`r 4*prob`}*`r 4*prob`^0}{0!}$
+
+$= 1 - \displaystyle\frac{e^{-`r 4*prob`}*1}{1}$
+
+$= 1 - e^{`r -4*prob`}$
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: bernoulli binom poisson

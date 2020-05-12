@@ -1,0 +1,46 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+
+questions <- c("2400 pessoas","50 pessoas","100 pessoas","1200 pessoas","4800 pessoas")
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+
+Uma pesquisa recente foi realizada para avaliar o percentual da população favorável à eleição de um determinado ponto turístico para constar no selo comemorativo de aniversário da cidade. Para isso, selecionou-se uma amostra piloto e o resultado apurou 50% de intenção de votos para esse ponto turístico. Considerando que a margem de erro foi de 2 pontos percentuais, para mais ou para menos, e que o nível de confiança utilizado foi de 95%, foram ouvidas, aproximadamente:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+O exercício nos forneceu as seguintes informações: Nível de confiança = 0,95, erro = 0,02, proporção = 0,5. O objetivo da questão é usar essas informações para calcular o tamanho de amostra. Este é o caso em que a proporção é conhecida, por isso usaremos a fórmula
+
+$n = \displaystyle{\frac{Z^2_{\alpha/2} p(1-p)}{e^2}}$
+
+$n = \displaystyle{\frac{(1,96)^2 0,5(1-0,5)}{(0,02)^2}}$
+
+$n = \displaystyle{\frac{3,8416 *0,25}{0,0004}}$
+
+$n = \displaystyle{\frac{0,9604}{0,0004}}$
+
+$n = 2401$
+
+Temos que aproximadamente 2400 pessoas foram ouvidas.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: tamanho de amostra p conhecido

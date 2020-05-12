@@ -1,0 +1,54 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+
+questions <- c(
+  'basta calcular o intervalo de confiança para $\\mu$ com $(1-\\alpha)\\%$ de confiança e verificar se este intervalo contém ou não o valor zero para verificar se a hipótese nula do teste para uma média ($H_0: \\mu = 0$ contra $H_1: \\mu \\ne 0$) deve ser rejeitada ao nível de significância $\\alpha$.',
+  'a estatística t de student com n-2 graus de liberdade (em que n é o tamanho da amostra) é a indicada para o teste de hipóteses para proporções no caso da variância da proporção populacional ser desconhecida.',
+  'a probabilidade do erro tipo II é calculada pela probabilidade de não se rejeitar a hipótese nula, quando esta for verdadeira, e a probabilidade do erro tipo I é calculada pela probabilidade de rejeitar a hipótese nula quando esta for falsa.',
+  'o teste t, utilizado na comparação de duas médias, é sempre um teste bilateral, pois o objetivo é avaliar se a diferença entre as duas médias é significativa.',
+  'o p-valor de um teste de hipóteses bilateral ou bicaudal é igual a duas vezes a probabilidade da região interna delimitada pelo valor crítico de teste.'
+)
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+
+Baseado na teoria de teste de hipóteses, pode-se dizer que
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+Alternativas falsas:
+
+* a estatística t de student com n-**1** graus de liberdade (em que n é o tamanho da amostra) é a indicada para o teste de hipóteses para **média** no caso **da variância** populacional ser desconhecida.
+
+* a probabilidade do erro tipo II é calculada pela probabilidade de não se rejeitar a hipótese nula, quando esta for **falsa**, e a probabilidade do erro tipo I é calculada pela probabilidade de rejeitar a hipótese nula quando esta for **verdadeira**.
+
+* o teste t, utilizado na comparação de duas médias, **nem sempre** um teste bilateral, pois o objetivo é avaliar se a diferença entre as duas médias é significativa. **Lembre-se, isso pode acontecer por meio de desigualdade entre as médias, não apenas por diferença, por exemplo:**
+
+$\begin{cases}H_0: \mu_a = \mu_b \\ H_1: \mu_a < \mu_b\end{cases}$
+
+* o p-valor de um teste de hipóteses bilateral ou bicaudal é igual a duas vezes a probabilidade da região **externa** delimitada pelo valor crítico **da estatística de teste, assumindo que a hipótese nula é verdadeira**.
+
+Alternativa correta:
+
+* basta calcular o intervalo de confiança para $\mu$ com $(1-\alpha)\%$ de confiança e verificar se este intervalo contém ou não o valor zero para verificar se a hipótese nula do teste para uma média ($H_0: \mu = 0$ contra $H_1: \mu \ne 0$) deve ser rejeitada ao nível de confiança $\alpha$.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: tudo

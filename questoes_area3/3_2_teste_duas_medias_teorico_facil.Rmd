@@ -1,0 +1,48 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+
+questions <- c(
+  "Teste t para duas amostras independentes supondo variâncias iguais.",
+  "Teste t para duas amostras independentes supondo variâncias diferentes.",
+  "Teste t para duas amostras emparelhadas (pares de obs.).",
+  "Teste de homogeneidade para as variâncias.",
+  "Teste z para uma média."
+)
+
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+Em uma fábrica, duas máquinas estão ajustadas para encher cada garrafa com 1 litro de refrigerante. Para comparar a eficiência destas duas máquinas, uma amostra de tamanho 100 foi coletada aleatoriamente de cada máquina. A tabela abaixo apresenta os resultados encontrados.
+
+||Máquina A|Máquina B|
+|:---------------|:---------:|:-----------:|
+|Tamanho da amostra|100|100|
+|Média de refrigerante (em litros)|0,98|1,02|
+|Desvio padrão|1,00|1,00|
+
+Qual dos testes abaixo é o mais adequado para comparar as quantidades médias de refrigerantes?
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+A resposta correta é "Teste t para duas amostras independentes supondo variâncias iguais", porque de fato temos amostras de duas máquinas independentes e também podemos supor variâncias iguais conforme os desvios padrões fornecidos.
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: estatistica t

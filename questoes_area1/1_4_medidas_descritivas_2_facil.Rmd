@@ -1,0 +1,81 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "Amplitude total = 10; Desvio padrão = 2,25; CV = 45,3%.", 
+  "Amplitude total = 11; Desvio padrão = 2,25; CV = 50,0%.", 
+  "Amplitude total = 10; Desvio padrão = 2,92; CV = 58,8%.", 
+  "Amplitude total = 11; Desvio padrão = 2,92; CV = 45,3%.", 
+  "Amplitude total = 11; Desvio padrão = 3,80; CV = 76,6%."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Em uma loja de computadores, certo funcionário fez um levantamento dos preços dos produtos da loja e os registrou como segue na tabela:
+
+|Faixa de preços (em 1000 reais)|Frequência relativa|
+|:-----------|:-----:|
+|1 $\vdash$ 3|0,2|
+|3 $\vdash$ 5|0,36|
+|5 $\vdash$ 7|0,26|
+|7 $\vdash$ 9|0,12|
+|9 $\vdash$ 11|0,06|
+|Total|1|
+
+
+Assinale a alternativa com os valores adequados para amplitude total, desvio padrão e coeficiente de variação.
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Considere que a amplitude total é calculada por $a_t = ES - EI$, sendo ES o extremo superior do conjunto de dados ordenado e EI o extremo inferior do conjunto de dados ordenado. Assim:
+
+$a_t = ES - EI$
+
+$a_t = 11 - 1$
+
+$a_t = 10$
+
+Média:
+$\bar{X} =\frac{\sum f_i \cdot x_i} {n}$
+
+$\bar{X} = \frac{20 \cdot 2 + 36 \cdot 4 + 26 \cdot 6 + 12 \cdot 8 + 6 \cdot 10}{100} = \frac{496}{100} = 4,96$
+
+Variância:
+
+$s^2 = \frac{[\sum f_i \cdot x_i^2] - n \cdot (\bar{X})^2}{n - 1}$
+
+$s^2 = \frac{[20 \cdot 2^2 + 36 \cdot 4^2 + 26 \cdot 6^2 + 12 \cdot 8^2 + 6 \cdot 10^2] - 100 \cdot (4,96)^2}{100 - 1}$
+
+$s^2 = \frac{[2960] - 100 \cdot 24,6016}{100 - 1} = \frac{2960 - 2460,16}{100 - 1} = \frac{499,84}{99} = 5,0488$
+
+E lembre que o desvio padrão é a raiz quadrada da variância:
+
+$s = \sqrt{s^2}$
+
+$s = \sqrt{5,0488} = 2,2469$
+
+Coeficiente de variação:
+
+$CV = \frac{s}{\bar x} \cdot 100$
+
+$CV = \frac{2,2469}{4,96} \cdot 100 = 0,4530 \cdot 100 = 45,30\%$
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: medidas descritivas e análise exploratória de dados

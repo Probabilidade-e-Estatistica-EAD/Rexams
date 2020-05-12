@@ -1,0 +1,100 @@
+```{r, include = FALSE, message = FALSE, warning = FALSE}
+library(exams)
+```
+
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questão:
+prob <- round(runif(1, -0.9, -0.1), 1)
+
+questions = c(0.5,0.25)
+
+i=2
+while(length(questions) < 5){
+  i=i+1
+  questions[i] = questions[1] + sample(seq(-0.4,0.25,0.01),1)
+  if(any(questions[i] == questions[1:i-1])){
+    i=i-1
+    questions = questions[1:i]
+  }
+}
+
+questions <- as.character(questions)
+questions <- paste("$",substr(questions,1,1),",",substr(questions,3,4),"$",sep="")
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+
+Uma variável aleatória X tem função densidade de probabilidade dada por:
+
+$f(x) = \begin{cases}kx, \text{ se } -1 < x < 0 \\ x^2, \text{ se } 0 \le x < 1 \end{cases}$
+
+onde k é uma constante. A probabilidade de que X seja menor do que `r prob` é
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+A probabilidade de que X seja menor do que -0,5 pode ser escrita como $P(X < `r prob`)$, mas note que f(x) não está definida para valores menores do que -1. Portanto, $P(X < `r prob`) = P(-1 < X < `r prob`)$
+
+Para calcular $P (a < x < b)$ sendo X uma variável aleatória contínua com função densidade de probabilidade igual a f(x), precisamos calcular a área abaixo da curva f(x) entre os pontos a e b, ou ainda, calcular
+
+$\displaystyle\int_{a}^{b}f(x)dx$
+
+Neste caso, vamos calcular
+
+$\displaystyle\int_{-1}^{`r prob`}kxdx$
+
+$= k\displaystyle\int_{-1}^{`r prob`}xdx$
+
+$= \displaystyle k\left[\frac{x^2}{2}\right]_{-1}^{`r prob`}$
+
+$= \displaystyle k \left[\frac{(`r prob`)^2}{2} - \frac{(-1)^2}{2}\right]$
+
+$= \displaystyle k\left[\frac{`r prob^2`}{2} - \frac{1}{2}\right]$
+
+$= \displaystyle k\left[\frac{`r (prob^2) - 1`}{2}\right]$
+
+$= \displaystyle `r ((prob^2) - 1)/2`k$
+
+Agora, precisamos descobrir o valor de k para prosseguir com as contas. Usaremos uma das propriedades da função densidade de probabilidade que é o fato de ela integrar 1 dentro de seu domínio, ou ainda
+
+$\displaystyle\int_{-\infty}^{\infty}f(x)dx = 1$
+
+Neste caso podemos integrar entre -1 e 1, porque fora deste intervalo a função vale 0, assim como sua integral. Então para descobrirmos k, temos
+
+$\displaystyle\int_{-1}^{1}f(x)dx = 1$
+
+$\displaystyle\int_{-1}^{0}kxdx + \displaystyle\int_{0}^{1}x^2dx = 1$ aqui podemos separar a função em 2 partes, conforme o intervalo de X (tente desenhar a função f(x) no papel, a ideia ficará mais clara).
+
+$\displaystyle k\left[\frac{x^2}{2}\right]_{-1}^{0} + \left[\frac{x^3}{3}\right]_{0}^{1} = 1$
+
+$\displaystyle k\left[\frac{0^2}{2} - \frac{(-1)^2}{2}\right] + \left[\frac{1^3}{3} + \frac{0^3}{3}\right] = 1$
+
+$\displaystyle k \left[-\frac{1}{2}\right] + \frac{1}{3} = 1$
+
+$\displaystyle-\frac{k}{2} = \frac{2}{3}$
+
+$\displaystyle k = -\frac{4}{3}$
+
+Substituindo o valor de k
+
+$P(X < `r prob`) = \displaystyle `r ((prob^2) - 1)/2`k = \displaystyle `r ((prob^2) - 1)/2` \cdot \left (\frac{-4}{3}\right) = `r round((((prob^2) - 1)/2) * (-4/3), 3)`$
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: densidade prob integra um

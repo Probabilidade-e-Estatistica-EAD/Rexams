@@ -1,0 +1,42 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+# Dados da questao
+
+# Faca a resposta correta ser a primeira e as outras falsas
+
+questions <- paste(
+  c("A amostragem aleatória simples pode ser realizada com e sem reposição.",
+    "Um plano de amostragem corretamente elaborado garante que os resultados serão iguais aos que seriam obtidos se fosse utilizado toda a população.",
+    "A opção pela amostragem, em relação ao censo, garante a redução de tempo, mas conduz sempre ao incremento de custo e à perda de precisão.",
+    "Uma amostra aleatória extraída de uma população deve superar, no tamanho, a 5% do número de elementos populacionais.",
+    "Para que uma amostra seja representativa é necessário que ela represente pelo menos 10% da população.")
+)
+
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+Assinale a opção correta:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Uma amostra é qualquer fração (subconjunto) da população. Uma amostra é dita representativa quando esta apresenta as mesmas características da sua população de origem, mas isto não quer dizer que as estatísticas calculadas na amostra serão iguais aos parâmetros populacionais. Em geral, a amostragem é menos custosa, no que diz respeito a tempo e logística, entre outros, que a realização de um censo populacional. Existem diversos procedimentos de amostragem, entre eles, a amostragem aleatória simples, que pode ser realizada com reposição (a unidade sorteada para a amostra pode ser sorteada novamente) e sem reposição (a unidade já sorteada para a amostra não pode mais ser sorteada).
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: definicoes

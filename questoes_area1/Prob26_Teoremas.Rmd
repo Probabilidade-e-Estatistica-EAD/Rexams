@@ -1,0 +1,58 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c("a probabilidade de pelo menos um morto.", "a probabilidade de ambos vivos.", "a probabilidade de pelo menos um vivo.", "a probabilidade de ambos mortos.", "a probabilidade de $x$ vivo e $y$ morto ou $y$ vivo e $x$ vivo."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Sendo $q_x$ a probabilidade de uma pessoa de idade $x$ falecer nesta idade $x$ e $q_y$ a probabilidade de uma pessoa de idade $y$ falecer nesta idade $y$ e $p_x = (1 - q_x)$ e $p_y = (1 - q_y)$, pode-se afirmar que o resultado da equação $[1 - p_x p_y]$ indica:
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Vamos considerar:
+
+$q_x$ = probabilidade de estar morto em "x" 
+
+$q_y$ = probabilidade de estar morto em "y" 
+
+$p_x = (1-q_x)$ = probabilidade de estar vivo em "x" 
+
+$p_y = (1-q_y)$ = probabilidade de estar vivo em "y" 
+
+ 
+Desta forma:
+
+$p_x p_y$ = Probabilidade de ambos estarem vivos nas em "x" e "y"
+ 
+
+Logo, o complementar será:
+
+$1-p_x p_y$ = Probabilidade de pelo menos um estar morto em "x" e "y"
+
+
+
+
+
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: conceitos basicos

@@ -1,0 +1,51 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "Não, não há evidência de alteração na variância; aceita-se H0.",
+  "Não, não há evidência de alteração na variância; rejeita-se H0.",
+  "Sim, há evidência de alteração na variância; aceita-se H0.",
+  "Sim, há evidência de alteração na variância; rejeita-se H0.",
+  "O teste não se aplica à situação."
+))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Em certo banco de dados, o tempo para realização das buscas é aproximadamente normal, com média de 53 s e desvio padrão de 14 s. Depois de realizadas algumas modificações no sistema, observou-se que, em 30 consultas, o tempo médio caiu para 45 s. Suponha que, nas 30 observações, o desvio padrão do tempo para a realização das buscas no banco de dados foi de 12 s. Há evidência de alteração na variância? Use o nível de significância de 1%.
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+$n = 30$; $\sigma_0 = 14$; $S = 12$; $\alpha = 0,01$
+
+$H0: \sigma^2 = \sigma_0^2$
+
+$H1: \sigma^2 \neq \sigma_0^2$
+
+$Q = \frac {(n-1) \cdot S^2}{\sigma_0^2}$
+
+$Q = \frac {(29)12^2}{14^2}$
+
+$Q = 21,3061$
+
+Consultando a tabela da distribuição qui-quadrado temos q inferior = 13,12 e q superior = 52,34. Assim o q calculado não ultrapassa os limites e H0 não é rejeitada. Ou seja, não há evidência de alteração na variância.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: testes de hipótese variância

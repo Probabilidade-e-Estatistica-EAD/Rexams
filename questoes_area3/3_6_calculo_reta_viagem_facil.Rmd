@@ -1,0 +1,65 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "y = 10 + 12x.",
+  "y = 12 + 10x.",
+  "y = 16 + 20x.",
+  "y = 5 + 70x.",
+  "y = 70 + 5x."
+))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Sejam Y = despesa com viagem, X = duração da viagem (em dias). 
+Para uma amostra com n = 102 obteve-se: $\sum X = 510$; $\sum Y = 7140$; $\sum X^2 = 4150$; $\sum X \cdot Y = 54900$; $\sum Y^2 = 740200$; $\mu_y = 70$; $\mu_x = 5$. 
+
+Obtenha a reta $y = \alpha + \beta x$.
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+$\beta --> b1$
+
+$b1 = \frac{\sum X \cdot Y - (\sum X \cdot \sum Y)/n}{\sum X^2 - (\sum X^2/n)}$
+
+$b1 = \frac{54900 - (510)(7140)/102}{4150-510^2/102}$
+
+$b1 = 12$
+
+$\alpha --> b0$
+
+$b0 = \mu_y - b1 \cdot \mu_x$
+
+$b0 = 70 - 12 \cdot 5$
+
+$b0 = 70 - 60 = 10$
+
+Como:
+
+$y = \alpha + \beta \cdot x$
+
+Então:
+
+$y = 10 + 12 \cdot x$
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: regressão linear

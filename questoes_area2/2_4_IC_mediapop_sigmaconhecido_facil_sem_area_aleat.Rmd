@@ -1,0 +1,67 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+mu = 20.3
+questions = 0.196
+
+i=1
+while(length(questions) < 5){
+  i=i+1
+  questions[i] = questions[1] + sample(c(seq(-0.146,-0.03,0.001), seq(0.03,3.604,0.001)),1)
+  if(any(questions[i] == questions[1:i-1])){
+    i=i-1
+    questions = questions[1:i]
+  }
+}
+
+min = mu-questions
+max = mu+questions
+
+min <- as.character(min)
+max <- as.character(max)
+questions <- paste("(",substr(min,1,2),",",substr(min,4,6)," ; ",substr(max,1,2),",",substr(max,4,6),")",sep="")
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+
+Uma amostra aleatória simples de tamanho 400 de uma distribuição normal foi observada, verificando-se uma média amostral igual a 20,3 com um desvio padrão conhecido igual a 2,0. Um intervalo com 95% de nível de confiança para a média populacional será dado por:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+O intervalo de confiança para a média populacional de uma distribuição normal com variância conhecida é dada pela fórmula
+
+$IC(\mu,1-\alpha) = \left[\overline{X}-Z_{\alpha/2}\displaystyle{\frac{\sigma}{\sqrt{n}}};\overline{X}+Z_{\alpha/2}\displaystyle{\frac{\sigma}{\sqrt{n}}}\right]$
+
+Onde $\mu$ é a média populacional desconhecida, $1-\alpha$ é o nível de confiança, $\overline{X}$ é a média amostral, $Z_{\alpha/2}$ é o valor tabelado da normal padrão no qual $P(Z>z) = \displaystyle{\frac{\alpha}{2}}$, ou seja, $Z_{\alpha/2}$ é o valor da normal padrão no qual a área a direita dele é $\displaystyle{\frac{\alpha}{2}}$. $\sigma$ é o desvio padrão conhecido e $n$ é o tamanho de amostra.
+
+Começaremos com o valor tabelado de $Z$. Com o nível de confiança de 95% temos, $1 - \alpha = 0,95$, $\alpha = 0,05$. Procurando o valor de $Z$ na tabela, encontramos que $Z_{0,025} = 1,96$.
+
+Agora temos todos as informações necessárias.
+
+$IC(\mu,0,95) = \left[20,3-1,96\displaystyle{\frac{2}{\sqrt{400}}};20,3+1,96\displaystyle{\frac{2}{\sqrt{400}}}\right]$
+
+$IC(\mu,0,95) = \left[20,3-1,96\displaystyle{\frac{2}{20}};20,3+1,96\displaystyle{\frac{2}{20}}\right]$
+
+$IC(\mu,0,95) = [20,3-0,196;20,3+0,196]$
+
+$IC(\mu,0,95) = [20.104;20,496]$
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: Ic media sigma conhecido

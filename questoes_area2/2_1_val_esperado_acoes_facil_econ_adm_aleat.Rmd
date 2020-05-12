@@ -1,0 +1,67 @@
+```{r, include = FALSE, message = FALSE, warning = FALSE}
+library(exams)
+```
+
+
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+x <- sample(6:15, size = 1)
+y <- sample(1:4, size = 1)
+min <- x - y; max <- x + y
+prob1 <- round(runif(1,.2,.7), 1)
+aux1 <- 1 - prob1
+prob2 <- round(runif(1,.1, aux1), 1)
+prob3 <- 1 - (prob1 + prob2)
+valor_esp <- round((x*prob1) + (max*prob2) + (min*prob3), 3)
+
+#Respostas:
+rand <- round(runif(4, min = 4.5, max = 15.5), digits = 1)
+
+err1 <- round((x*prob1) - (max*prob2) + (min*prob3),3)
+err2 <- round((x*prob1) + (max*prob2) - (min*prob3), 3)
+err3 <- round((x+prob1) + (max*prob2) + (min*prob3), 3)
+err4 <- round((x*prob1) + (max*prob2), 3)
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- c(paste("R$", valor_esp),
+               paste("R$", err1),
+               paste("R$", err2),
+               paste("R$", err3),
+               paste("R$", err4)) 
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+O preço de determinada ação fica constante, aumenta ou diminui $R\$ `r y`$ por dia com probabilidades `r prob1`, `r prob2` e `r prob3` respectivamente. Assinale a opção que dá o valor esperado do preço da ação amanhã se seu preço hoje é $R\$ `r x`$.
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Deve-se calcular a esperança de $X$ com os seguintes valores possíveis: $R\$ `r x`$ = preço constante, $R\$ `r max`$ = preço aumenta e $R\$ `r min`$ = preço diminui.
+
+$E(X) = \displaystyle{\sum_{j=1}^{\infty}x_j\cdotp(p_j)}$
+
+$E(X) = \displaystyle{`r x` \cdot (`r prob1`) + `r max` \cdot (`r prob2`) + `r min` \cdot (`r prob3`)}$
+
+$E(X) = \displaystyle{(`r x*prob1`) + (`r max * prob2`) + (`r min * prob3`)}$
+
+$E(X) = \displaystyle{ `r valor_esp`}$ 
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: variaveis aleatorias discretas

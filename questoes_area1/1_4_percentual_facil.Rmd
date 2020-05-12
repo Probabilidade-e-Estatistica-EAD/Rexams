@@ -1,0 +1,60 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "80% desenvolvedores e 20% técnicos.", 
+  "70% desenvolvedores e 30% técnicos.", 
+  "50% desenvolvedores e 50% técnicos.", 
+  "75% desenvolvedores e 25% técnicos.", 
+  "10% desenvolvedores e 90% técnicos."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+O salário médio anual pago a todos os funcionários em uma empresa era de R\$5000,00. Os salários médios anuais pagos a todos os funcionários desenvolvedores e técnicos em informática eram de R\$5200,00 e R$4200,00, respectivamente. Determine os percentuais de funcionários desenvolvedores e de técnicos em informática empregados pela empresa.
+  
+  
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Considere d = proporção de desenvolvedores e t = proporção de técnicos. Considere Xm o salário médio anual, Xd o salário médio dos desenvolvedores e Xt o salário médio dos técnicos.
+
+$d + t = 1$
+
+$d = 1 - t$
+
+$Xm = d \cdot Xd + t \cdot Xt$
+
+$5000 = d \cdot 5200 + t \cdot 4200$		
+
+$5000 = (1 - t) \cdot 5200 + 4200 \cdot t$ 		
+
+$5000 = 5200 - 5200t + 4200t$ 		
+
+$5200t - 4200t = 5200 - 5000$		
+
+$1000t = 200$		
+
+$t = \frac {200}{1000} = 0,2$
+
+Logo, d = 0,8. 		
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: medidas descritivas e análise exploratória de dados

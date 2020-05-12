@@ -1,0 +1,65 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "[14,25 ; 16,64].",
+  "[13,37 ; 17,52].",
+  "[13,37 ; 15,44].",
+  "[14,25 ; 15,44].",
+  "[15,44 ; 17,52]."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Um robô criado para executar análise numérica está sendo avaliado de acordo com seu desempenho. O cientista responsável forneceu como entrada para o programa implementado 14 operações similares e obteve os seguintes tempos de processamento (em milissegundos): 12,0; 13,5; 16,0; 15,7; 15,8; 16,5; 15,0; 13,1; 15,2; 18,1; 18,5; 12,3; 17,5; 17,0. Construa um intervalo de confiança para o tempo médio de processamento, com nível de confiança de 95.   
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+$\alpha = 0,05$
+
+$\bar X = \frac{12,0 + 13,5 + 16,0 + 15,7 + 15,8 + 16,5 + 15,0 + 13,1 + 15,2 + 18,1 + 18,5 + 12,3 + 17,5 + 17,0}{14}$
+
+$\bar X = \frac{216,2}{14}$
+
+$\bar X = 15,4429$
+
+-------------------------------
+
+$S^2 = \frac{\Big[\sum_1^k f_i \cdot X_i^2\Big] - n \cdot (\bar X)^2}{n - 1}$
+
+$S^2 = \frac{3394,68 - 3338,7643}{13} = 4,3026$
+
+$S = 2,0743$
+
+$\epsilon = t \cdot \frac{S}{\sqrt n}$
+
+$\epsilon = 2,160 \cdot \frac{2,0743}{\sqrt 14}$
+
+$\epsilon = 1,1974$
+
+-------------------------------
+
+$IC = [\bar X - \epsilon; \bar X + \epsilon]$
+
+$IC = [14,2454 ; 16,6403]$
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: intervalo de confiança

@@ -1,0 +1,40 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "estaremos sujeitos a cometer erro do tipo II, que não é controlado.", 
+  "estaremos sujeitos a cometer erro do tipo I, que não é controlado.", 
+  "o nível de significância aumentaria muito ao decidir por aceitar.", 
+  "o erro do tipo II é, nesse caso, igual ao erro do tipo I.", 
+  "o erro envolvido estará acima de 80%."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+No teste de hipóteses podemos aceitar ou rejeitar $H_0$. Quando aceitamos $H_0$, nada podemos afirmar por que:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Alternativa correta:
+
+* estaremos sujeitos a cometer erro do tipo II, que não é controlado, porque ao aceitarmos $H_0$ podemos cometer apenas erro do tipo II. Para cometer um erro do tipo I, teríamos que rejeitar $H_0$.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: teoria testes de hipótese

@@ -1,0 +1,71 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+# Dados da questao
+
+# Faca a resposta correta ser a primeira e as outras falsas
+
+questions <- c("A mediana encontra-se na classe de R$ 900 até R$ 1000.",
+               "O desvio padrão dos salários é próximo de R$ 1000.",
+               "A mediana encontra-se na classe de R$ 1000 até R$ 1100.",
+               "O salário médio é de aproximadamente R$ 1100.",
+               "A moda encontra-se na classe de R$ 1000 até R$ 1100.")
+
+
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+Considere a seguinte distribuição das frequências absolutas dos salários mensais, em reais, referentes a 200 trabalhadores de uma indústria.
+
+| Classes de Salário             | Nº de trabalhadores |
+| :----------------------------- | :-----------------: |
+| R$ 800 $\vdash$ R$ 900         |         50          |
+| R$ 900 $\vdash$ R$ 1000        |         70          |
+| R$ 1000 $\vdash$ R$ 1100       |         40          |
+| R$ 1100 $\vdash$ R$ 1200       |         30          |
+| R$ 1200 $\vdash\dashv$ R$ 1300 |         10          |
+
+Sobre essa distribuição de salários é correto afirmar que:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+A moda encontra-se na classe R\$ 900 até R\$ 1000, pois é a que tem maior frequência.  
+
+A mediana encontra-se na classe R\$ 900 até R\$ 1000. Como o número de funcionários estudados é par, 200,  deve-se ordenar, em ordem crescente, os valores de acordo com a sua frequência e selecionar os dois valores do meio e calcular sua média aritmética. 
+
+O salário médio é de R\$ 990.  
+
+$\bar{X} = \frac{\sum x_i \cdot f_i}{n}$
+
+$\bar{X} = \frac{850 \cdot 50 + 950 \cdot 70 + 1050 \cdot 40 + 1150 \cdot 30 + 1250 \cdot 10}{200} = \frac{198000}{200} = 990$
+
+
+O desvio padrão é de R\$ 116. 
+
+$s^2 = \frac{[\sum x_i^2 \cdot f_i] - n \cdot (\bar{X})^2}{n - 1}$
+
+$s^2 = \frac{[850^2 \cdot 50 + 950^2 \cdot 70 + 1050^2 \cdot 40 + 1150^2 \cdot 30 + 1250^2 \cdot 10] - 200 \cdot (990)^2}{200 - 1} = 13467,34$
+
+
+$s = \sqrt{13467,34} = 116,05$
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: medidas resumo dados grupados

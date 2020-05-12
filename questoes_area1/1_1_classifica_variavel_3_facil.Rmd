@@ -1,0 +1,38 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+"Variável discreta.", 
+"Variável contínua.", 
+"Constante.", 
+"Variável qualitativa.", 
+"Variável categórica."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Classifique a variável: número de pessoas que visitam um site em um certo período de tempo.
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+É classificada como uma variável discreta, pois é um número que pode ser listado/contado, ou seja, assume valores inteiros não negativos (0, 1, 2, 3, ...). Não é possível que o número de pessoas que visitam um site em um certo período de tempo seja um valor fracionado ou negativo.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: conceitos básicos

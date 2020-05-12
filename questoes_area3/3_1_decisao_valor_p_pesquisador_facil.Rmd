@@ -1,0 +1,39 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "Decide-se pela hipótese alternativa (rejeita hipótese nula) e o risco de ter sido tomada a decisão errada é de 5%.",
+  "Decide-se pela hipótese alternativa (rejeita hipótese nula) e o risco de ter sido tomada a decisão errada é de 1%.",
+  "Decide-se pela hipótese alternativa (rejeita hipótese nula) e o risco de ter sido tomada a decisão errada é de 10%.",
+  "Decide-se pela hipótese nula (rejeita hipótese alternativa) e o risco de ter sido tomada a decisão errada é de 5%.",
+  "Decide-se pela hipótese nula (rejeita hipótese alternativa) e o risco de ter sido tomada a decisão errada é de 1%."
+))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Para verificar as hipóteses de seu trabalho, um pesquisador fez vários testes estatísticos (um para cada hipótese de pesquisa), adotando para cada teste o nível de significância de 5%. Em um dado teste, o valor $p$ foi 0,0001. Qual deve ser a conclusão (decide-se pela hipótese nula ou pela hipótese alternativa)? Qual é o risco de o pesquisador estar tomando a decisão errada? 
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Decide-se pela hipótese alternativa (rejeita-se a hipótese nula), pois o valor de p é inferior ao valor de alfa, 5%. O risco de ter sido tomada a decisão errada é equivalente ao nível de significância, 5%.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: testes de hipótese

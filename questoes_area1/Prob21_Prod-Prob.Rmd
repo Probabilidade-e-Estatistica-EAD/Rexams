@@ -1,0 +1,84 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+
+library(MASS)
+
+#Dados da questao
+
+n <- sample(x = c(12, 13, 14), size = 1)
+n.martelo <- ifelse(n == 12, 5, ifelse(n == 13, 6, 7))
+n.lima <- n - n.martelo
+
+martelo <- rep("MM", n.martelo %/% 2)
+martelo <- c(martelo, rep("MB", n.martelo - length(martelo)))
+
+lima <- rep("LM", n.lima %/% 2)
+lima <- c(lima, rep("LB", n.lima - length(lima)))
+ferramentas <- c(table(c(martelo, lima)))
+
+# Solução
+
+prob.LB <- ferramentas["LB"]/sum(ferramentas)
+prob.MM.dado.LB <- ferramentas["MM"]/(sum(ferramentas) - 1)
+
+prob.MM <- ferramentas["MM"]/sum(ferramentas)
+prob.LB.dado.MM <- ferramentas["LB"]/(sum(ferramentas) - 1)
+
+prob <- (prob.LB * prob.MM.dado.LB) + (prob.MM * prob.LB.dado.MM)
+sol <- as.character(fractions(prob))
+
+err <- as.character(fractions(1 - prob))
+prob2 <- prob.LB * prob.MM.dado.LB
+err2 <- as.character(fractions(prob2))
+prob3 <- prob.MM + prob.LB
+err3 <- as.character(fractions(prob3))
+prob4 <- prob.MM * prob.LB
+err4 <- as.character(fractions(prob4))
+
+
+#Faca a resposta correta ser a primeira e as outras falsas
+
+questions <- c(sol, err2, err3, err4, err)
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Uma caixa de ferramentas contem `r sum(ferramentas[c("MM", "MB")])` martelos, sendo `r ferramentas["MM"]` com cabo de madeira e `r ferramentas["MB"]` com cabo de borracha. A caixa também contem `r sum(ferramentas[c("LM", "LB")])` limas, sendo `r ferramentas["LM"]` com cabo de madeira e `r ferramentas["LB"]` com cabo de borracha. Retirando-se 2 ferramentas de forma aleatória e sem reposição, a probabilidade de que uma seja martelo com cabo de madeira e a outra uma lima com cabo de borracha é:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+É dado que a caixa tem ao todo `r sum(ferramentas)` ferramentas.
+
+Vamos chamar de MM - martelo cabo de madeira e de LB - lima cabo de borracha.
+
+Queremos calcular: $P(MM \cap LB)=?$ 
+
+Possibilidades de retirar as duas peças em sequência: MM e LB ou LB e MM
+
+Assim,
+
+$P(MM \cap LB)=P(MM)*P(LB|MM)+P(LB)*P(MM|LB)$ 
+
+$P(MM \cap LB)= \frac{`r ferramentas["MM"]`}{`r sum(ferramentas)`}*\frac{`r ferramentas["LB"]`}{`r sum(ferramentas)-1`}+\frac{`r ferramentas["LB"]`}{`r sum(ferramentas)`}*\frac{`r ferramentas["MM"]`}{`r sum(ferramentas)-1`} = `r as.character(fractions(prob))`$
+
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: conceitos basicos

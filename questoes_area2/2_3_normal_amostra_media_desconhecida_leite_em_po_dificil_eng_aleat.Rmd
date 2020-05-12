@@ -1,0 +1,92 @@
+```{r, include = FALSE, message = FALSE, warning = FALSE}
+library(exams)
+```
+
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questão:
+x <- 1000
+dp <- sample(8:12, size = 1)
+porc <- round(runif(1, 0.05, 0.09), 2)
+prob <- 1 - porc
+z <- round(qnorm(prob, 0, 1), 2)
+
+p <- round(z*dp + x, 3)
+
+pacotes <- 4
+peso <- sample(4000:4100, size = 1)
+
+aux <- pacotes*(dp^2)
+
+z2 <- round((peso - (pacotes*p))/round((sqrt(pacotes*dp^2)), 3), 3)
+
+valor_acum <- round(pnorm(z2, 0, 1), 3)
+
+erro_1 <- round(valor_acum - 0.354, 3)
+erro_2 <- round(valor_acum - 0.455, 3)
+erro_3 <- round(valor_acum + 0.355, 3)
+erro_4 <- round(valor_acum + 0.454, 3)
+
+questions <- c(valor_acum, erro_1, erro_2, erro_3, erro_4)
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+
+Uma máquina de empacotar leite em pó, o faz segundo uma Normal com média P e desvio padrão `r dp` g. O peso médio P deve ser regulado para que apenas `r porc*100`% dos pacotes tenham menos do que `r x` g. Com a máquina assim regulada, a probabilidade de que o peso total de `r pacotes` pacotes escolhidos ao acaso seja inferior a `r peso` g é:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+Vamos considerar X como uma variável aleatória que representa o peso dos pacotes preenchidos pela máquina. Assim, $X \sim N(p,`r dp`^2)$. Vamos primeiramente descobrir o peso desconhecido p.
+
+Utilizando a fórmula da normal padrão:
+
+$Z = \displaystyle{\frac{X-\mu}{\sigma}}$
+
+O valor de Z precisa ser tal que acumule `r porc` de probabilidade. Olhando na tabela da normal padrão, encontramos que esse valor é `r z`. Então
+
+$`r z` = \displaystyle{\frac{`r x`-p}{`r dp`}}$
+
+$`r z` * `r dp` = `r x`-p$
+
+$`r round(z*dp,3)`-`r x` = -p$
+
+$p = `r p`$
+
+Agora sabemos que $X \sim N(`r p`, `r dp`^2)$
+
+Tendo conhecimento de que, se $X_1,X_2,...,X_n$ são variáveis aleatórias independentes com distribuição normal com média $\mu_1,\mu_2,...,\mu_n$ e variância $\sigma^2_1,\sigma^2_2,,...,\sigma^2_n,$ respectivamente, então $\sum\limits_{i=1}^{n}X_i \sim N\left(\sum\limits_{i=1}^{n}\mu_i, \sum\limits_{i=1}^{n}\sigma^2_i\right)$. Ou ainda, soma de variáveis aleatórias normais tem média igual a soma das médias individuais e variância igual a soma das variâncias individuais. Neste caso, então, temos
+
+$\sum\limits_{i=`r pacotes`}^{n}X_i \sim N(`r pacotes` * `r p`, `r pacotes` * `r dp^2`)$
+
+$\sum\limits_{i=`r pacotes`}^{n}X_i \sim N(`r pacotes*p`, `r round(sqrt(aux), 3)`^2)$
+
+A probabilidade de que o peso total de `r pacotes` pacotes escolhidos ao acaso seja inferior a `r pacotes*p` g pode ser calculada usando, novamente, a normal padrão
+
+$Z = \displaystyle{\frac{`r peso`- `r pacotes*p`}{`r round(sqrt(aux), 3)`}}$
+
+$Z = \displaystyle{\frac{`r peso - (pacotes*p)`}{`r round(sqrt(aux), 3)`}}$
+
+$Z = `r z2`$
+
+Olhando na tabela da normal padrão, temos que o valor acumulado até `r z2` é `r valor_acum`, aproximadamente.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: amostra leite em po

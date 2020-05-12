@@ -1,0 +1,58 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c("90 %.", "80 %.", "12 %.", "60 %.", "40 %."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Ana participou de um concurso e aguarda com ansiedade os resultados das provas que acabou de fazer. Ana estima em 80% a probabilidade de obter conceito A em Estatística, em 40% a probabilidade de obter conceito A em Raciocínio Lógico, e em 36% a probabilidade de obter conceito A em Estatística e Raciocínio Lógico. Hoje, Ana recebeu o resultado da prova de Raciocínio Lógico e verificou que não tirou conceito A. Assim, a probabilidade de Ana também tirar conceito A em Estatística é igual a
+
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+Considere:
+
+Probabilidade de tirar A em Estatística = $P(AE) = 0,8$
+
+Probabilidade de tirar A em Raciocício lógico = $P(AR) = 0,4$
+
+Probabilidade de tirar A em Estatística e Raciocício lógico = $P(AE \cap AR) = 0,36$
+
+O que queremos é:
+
+$P(AE|AR^c) = \frac{P(AE \cap AR^c)}{P(AR^c)}$
+
+Obtemos,
+
+$P(AE \cap AR^c) = P(AE) - P(AE \cap AR) = 0,8-0,36=0,44$
+
+$P(AR^c) = 1-P(AR)=1-0,4=0,6$
+
+Assim,
+
+$P(AE|AR^c) = \frac{P(AE \cap AR^c)}{P(AR^c)} = \frac{0,44}{0,6} = 0,73$
+
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: conceitos basicos

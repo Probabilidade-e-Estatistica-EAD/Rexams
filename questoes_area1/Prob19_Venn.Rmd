@@ -1,0 +1,59 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c("0,36", "0,20", "0,30", "0,38", "0,86"))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Uma pesquisa entre a população masculina de Pelotas com idade entre 30 e 45 anos revelou, entre outros resultados, que 60% deles eram depressivos; 38% alcoólatras e 22% impotentes sexuais. Outros detalhes mostravam que 26% eram, ao mesmo tempo, depressivos e alcoólatras; 14% eram depressivos e impotentes sexuais; 17% eram alcoólatras e impotentes sexuais e 11% apresentavam os 3 problemas juntos. Determine a probabilidade de que um homem qualquer de Pelotas, selecionado aleatoriamente na faixa etária citada, seja depressivo ou impotente, mas não alcoólatra.
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Temos que: 
+
+$P(D) = 0,60$ 
+
+$P(A) = 0,38$ 
+
+$P(I) = 0,22$ 
+
+$P(D \cap A)=0,26$ 
+
+$P(D \cap I)=0,14$ 
+
+$P(A \cap I)=0,17$ 
+
+$P(D \cap A \cap I)=0,11$ 
+
+
+Queremos: 
+
+$P(D \cup I \cap \bar{A})=?$ 
+
+$P(D \cup I)=P(D)+P(I)-P(A \cap I)=0,60+0,22-0,14=0,68$ 
+
+$P(D \cup I \cap \bar{A})=P(D \cup I)-P(D \cap A)-P(A \cap I)+P(D \cap A \cap I)=0,68-0,26-0,17+0,11=0,36$ 
+
+Fazendo um diagrama de venn fica fácil visualizar e entender as contas que feitas.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: conceitos basicos

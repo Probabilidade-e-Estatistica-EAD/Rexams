@@ -1,0 +1,44 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "O valor esperado sob H0 é 3,00 acertos.",
+  "O valor esperado sob H0 é 6,00 acertos.",
+  "O valor esperado sob H0 é 5,00 acertos.",
+  "O valor esperado sob H0 é 4,00 acertos.",
+  "O valor esperado sob H0 é 1,75 acertos."
+))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Para testar se uma I.A. tem algum conhecimento sobre o assunto para o qual foi programada, elaboraram-se 12 testes do tipo certo-errado. A I.A. acertou 11. Para refinar ainda mais os testes, elaboraram-se novamente 12 testes, mas agora cada um com 4 possibilidades de escolha. Ela atingiu 5 acertos. Formule as hipóteses em termos do parâmetro p = probabilidade de acerto de cada questão no teste de múltipla escolha e responda: Qual o número esperado de acertos sob H0?
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+H0: p = 0,25 (possibilidade de chute) e H1: p > 0,25 (possibilidade de conhecimento). 
+
+$n \cdot p = 12 \cdot 0,25 = 3$
+
+O valor esperado sob H0 é 3 acertos.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: testes de hipótese

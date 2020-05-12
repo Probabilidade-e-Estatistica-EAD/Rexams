@@ -1,0 +1,60 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+# Dados da questao
+
+media.a <- sample(x = 3:8, size = 1)
+cv.a <- 1/2
+s.a <- media.a * cv.a
+
+media.b <- 3:8
+media.b <- media.b[media.b != media.a]
+media.b <- sample(x = media.b, size = 1)
+cv.b <- 1/2
+s.b <- media.b * cv.b
+
+# Faca a resposta correta ser a primeira e as outras falsas
+
+questions <- c("As notas na turma A e B tiveram a mesma variabilidade.",
+               "As notas da turma A variaram mais que na turma B.",
+               "As notas da turma B variaram mais que na turma A.",
+               "As notas na turma A são mais homogêneas que as da turma B.",
+               "As notas na turma B são mais homogêneas que as da turma A.")
+
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+Realizou-se uma prova de matemática para duas turmas. Os resultados foram os seguintes:
+
+- Turma A : $\bar{x}$ =  `r media.a` e $s$ = `r gsub("\\.", ",", as.character(s.a))`
+- Turma B : $\bar{x}$ = `r media.b` e $s$ = `r gsub("\\.", ",", as.character(s.b))`
+
+Com esses resultados, é correto afirmar:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Pelo coeficiente de variação $CV = \frac{s}{\bar{x}}$ percebe-se que os dois grupos possuem a mesma variabilidade.
+
+CV_A = $\frac{ `r s.a`}{ `r media.a`}$ = `r cv.a`  
+ 
+CV_B = $\frac{ `r s.b`}{ `r media.b`}$ = `r cv.b`
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: definicoes

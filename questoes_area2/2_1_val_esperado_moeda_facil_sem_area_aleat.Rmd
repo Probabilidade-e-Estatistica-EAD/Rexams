@@ -1,0 +1,51 @@
+```{r, include = FALSE, message = FALSE}
+library(exams)
+```
+
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+nomes1 <- sample(c("Andre", "João", "Pedro", "Luís", "José", "Carlos"), 1)
+nomes2<- sample(c("Sandra", "Maria", "Ana", "Carolina", "Sofia", "Luciana"), 1)
+valor1 <- sample(1:4, 1)
+valor2 <- sample(5:8, 1)
+
+valor_esp <- (-valor1)*(3/4) + valor2*(1/4)
+
+erro1 <- round(valor_esp, 2) - round(runif(2, 0.5, 1.5), 1)
+erro2 <- round(valor_esp, 2) + round(runif(2, 2.0, 3.5), 1)
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- c(valor_esp, erro1[1], erro1[2], erro2[1], erro2[2])
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+`r nomes1` e `r nomes2` jogam, cada um, uma moeda. Se do lançamento dessas duas moedas resultar duas caras, `r nomes1` paga a `r nomes2` $R\$ `r valor2`$. Dando qualquer outro resultado, `r nomes2` paga a `r nomes1` $R\$ `r valor1`$. Supondo que ambas as moedas sejam estatisticamente honestas, o valor esperado, em reais, dos ganhos de `r nomes2` (considerando-se como ganhos negativos os valores que ela paga à `r nomes1`) é igual a:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Deve-se calcular a esperança de $X$ com as seguintes considerações: 2 caras = +`r valor2` (`r nomes2` ganha $R\$`r valor2`$) e outros resulados = -`r valor1` (`r nomes2` perde $R\$`r valor1`$).
+
+$\\E(X) = -`r valor1` \cdot \left (\frac{3}{4}\right) + `r valor2` \cdot \left (\frac{1}{4}\right)$
+
+$\\E(X) = `r -valor1*(3/4)` + `r valor2*(1/4)` = `r valor_esp`$
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: variaveis aleatorias discretas

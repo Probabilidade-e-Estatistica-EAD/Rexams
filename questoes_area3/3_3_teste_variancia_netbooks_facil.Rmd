@@ -1,0 +1,53 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "Rejeita-se H0, ou seja, é possível afirmar que a produção está desobedecendo ao padrão exigido.",
+  "Aceita-se H0, ou seja, é possível afirmar que a produção está desobedecendo ao padrão exigido.",
+  "Aceita-se H0, ou seja, não é possível afirmar que a produção está desobedecendo ao padrão exigido.",
+  "Rejeita-se H0, ou seja, não é possível afirmar que a produção está desobedecendo ao padrão exigido.",
+  "Rejeita-se H1, ou seja, não é possível afirmar que a produção está desobedecendo ao padrão exigido."
+))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Para a produção de netbooks, é exigido que eles pesem em média 500 g com um desvio padrão de no máximo 10 g, obedecendo a uma distribuição normal. Considerando uma amostra de 16 netbooks, foi observada uma variância de 196 g². É possível afirmar que a produção está desobedecendo ao padrão exigido quanto a variabilidade? Utilize significância de 5%.
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+$n = 16$; $\sigma_0 = 10$; $S = 14$; $\alpha = 0,05$
+
+$H0: \sigma^2 = \sigma_0^2$
+
+$H1: \sigma^2 > \sigma_0^2$
+
+$Q = \frac {(n-1) \cdot S^2}{\sigma_0^2}$
+
+$Q = \frac {(16-1) \cdot 196}{100}$
+
+$Q = 29,4$
+
+$GL = n-1 = 15$
+
+Assim, rejeita-se H0, pois o valor da direita na tabela é 25,00 e $q_c = 29,4$. Ou seja, é possível afirmar que a produção está desobedecendo ao padrão exigido.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: testes de hipótese variância

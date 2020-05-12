@@ -1,0 +1,50 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "2 flores.",
+  "3 flores.",
+  "10 flores.",
+  "15 flores.",
+  "50 flores."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Um florista faz estoque de uma flor de curta duração que lhe custa R\$0,50 e que ele vende a R$1,50 no primeiro dia em que a flor está na loja. Toda flor que não é vendida nesse primeiro dia não serve mais e é jogada fora. Seja X a variável aleatória que denota o número de flores que os fregueses compram diariamente. Utilizando seu histórico de vendas, o florista pôde descobrir que a função de probabilidade de X é dada pela tabela abaixo:
+
+|x|0|1|2|3|
+|:---|:---:|:---:|:---:|:---:|
+|p(x)|0,1|0,4|0,3|0,2|
+
+Quantas flores o florista deveria ter em estoque a fim de maximizar o valor esperado do seu lucro?
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Calculando-se a esperança da variável obtém-se 1,6 flores, assim, arredondando para cima, duas flores.					
+$E(X) = 0 \cdot (0,1) + 1 \cdot (0,4) + 2 \cdot (0,3) + 3 \cdot (0,2)$					
+
+$E(X) = 0 + 0,4 + 0,6 + 0,6$				
+
+$E(X) = 1,6$					
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: variáveis aleatórias discretas e distribuições de probabilidade

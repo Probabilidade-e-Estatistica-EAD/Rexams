@@ -1,0 +1,70 @@
+```{r, include = FALSE, message = FALSE}
+library(exams)
+```
+
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+n1 <- sample(2000:3000, size = 1)
+n2 <- sample(1000:1500, size = 1)
+
+p <- round(n2/n1, 3)
+z <- round(qnorm(p),2)
+
+media <- sample(60:85, size = 1)
+dp <- sample(10:20, size = 1)
+
+x <- ceiling(round((z * dp) + media, 3))
+
+#Respostas: 
+rand1 <- x + sample(2:5, size = 2, replace=FALSE)
+rand2 <- x - sample(6:9, size = 2, replace=FALSE)
+
+corret <- paste(x, "minutos")
+err1 <- paste(rand1, "minutos")
+err2 <- paste(rand2, "minutos")
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- c(corret, err1[1], err1[2], err2[1], err2[2])
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Com base em concursos anteriores observou-se que o tempo para concluir a prova é normalmente distribuído com média igual a `r media` minutos com desvio padão de `r dp` minutos. Um novo concurso será realizado com o mesmo nível de complexidade, admitindo-se uma repetição do padrão anterior. Se o novo concurso envolve `r n1` candidatos o tempo máximo a ser estipulado para a prova, de tal forma que até `r n2` candidatos possam concluí-la, é: (Considere três casas decimais)
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+n = `r n1` candidatos e $\mu = `r media` min$ e $\sigma = `r dp` min\\$
+
+$\frac{`r n2`}{`r n1`} = `r p`\\$ (proporção de canditados que finalizam a prova no tempo)
+
+-----------------------------------------
+
+$Z = \frac{X - \mu}{\sigma}\\$
+
+$`r z` = \frac{X - `r media`}{`r dp`}\\$
+
+$X = (`r z` \cdot `r dp`) + `r media`\\$
+
+$X = `r x`$
+
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: distribuição normal

@@ -1,0 +1,79 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "$H0: \\mu_A = \\mu_B$ e $H1: \\mu_A \\neq \\mu_B$. Não rejeita H0, assim não é possível afirmar que os sistemas diferem entre si em relação ao tempo de processamento.",
+  "$H0: \\mu_A = \\mu_B$ e $H1: \\mu_A > \\mu_B$. Não rejeita H0, assim é possível afirmar que os sistemas diferem entre si em relação ao tempo de processamento.",
+  "$H0: \\mu_A = \\mu_B$ e $H1: \\mu_A \\neq \\mu_B$. Rejeita H0, assim é possível afirmar que os sistemas diferem entre si em relação ao tempo de processamento.",
+  "$H0: \\mu_A = \\mu_B$ e $H1: \\mu_A > \\mu_B$. Rejeita H0, assim não é possível afirmar que os sistemas diferem entre si em relação ao tempo de processamento.",
+  "$H0: \\mu_A = \\mu_B$ e $H1: \\mu_A < \\mu_B$. Rejeita H0, assim não é possível afirmar que os sistemas diferem entre si em relação ao tempo de processamento."
+))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Dois sistemas A e B foram submetidos a um experimento computacional de 8 processos, sendo anotados os tempos que cada um gastou no processamento, em segundos, obtendo-se os seguintes resultados:
+
+|A|B|
+|:---|:---:|
+|11|05|
+|08|07|
+|15|13|
+|02|06|
+|07|04|
+|18|10|
+|09|03|
+|10|12|
+
+É possível afirmar que os sistemas diferem entre si? Enuncie as hipóteses estatísticas para média e teste as hipóteses com nível de significância igual a 5%.
+
+Considere $S_A^2 = 24$ e $S_B^2 = 14$
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+$\bar A = 10$; $\bar B = 7,5$; $S_A^2 = 24$; $S_B^2 = 14$; $\alpha = 0,05$; $n = 8$; $m = 8$
+
+$H0: \mu_A = \mu_B$
+
+$H1: \mu_A \neq \mu_B$
+
+$S = \sqrt{\frac{(n-1) \cdot S_A^2 +(m-1) \cdot S_B^2}{n+m-2}}$
+
+$S = \sqrt {\frac{(7 \cdot 24)+(7 \cdot 14)}{14}}$
+
+$S = \sqrt{\frac{266}{14}}$
+
+$S = \sqrt {19}$
+
+$S = 4,3588$
+
+$t_c = \frac {\bar A - \bar B}{S \cdot \sqrt{\frac{1}{n}+\frac{1}{m}}}$
+
+$t_c = \frac {10 - 7,5}{4,3588 \cdot \sqrt{\frac{1}{8}+\frac{1}{8}}}$
+
+$t_c = \frac{2,5}{4,3588 \cdot \sqrt{0,25}}$
+
+$t_c = 1,1471$
+
+Utilizando a tabela de T-studente, obtemos $t_{tab} = 2,145$ e não rejeitamos H0. Para que H0 seja rejeitado é necessário que $|t_c| > t_{tab}$. Ou seja, não é possível afirmar que os sistemas diferem entre si em relação ao tempo de processamento.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: testes de hipótese média

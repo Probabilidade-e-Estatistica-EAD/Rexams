@@ -1,0 +1,39 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+"Variável contínua.", 
+"Constante.", 
+"Variável discreta.", 
+"Variável qualitativa.", 
+"Variável categórica."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Classifique a variável: tempo de resposta de um sistema computacional.
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+É classificada como uma variável contínua, pois é um número que pode, teoricamente, assumir qualquer valor em um intervalo de números reais. Alguns exemplos de outros casos que envolvem variáveis contínuas são peso, altura, tempo, velocidade e temperatura.
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: conceitos básicos

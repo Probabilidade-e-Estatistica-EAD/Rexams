@@ -1,0 +1,48 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "P(X > 1) = 0,8009.",
+  "P(X > 1) = 0,1991.",
+  "P(X > 1) = 0,9010.",
+  "P(X > 1) = 0,0990.",
+  "P(X > 1) = 0,2958."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Suponha que as requisições a um sistema ocorram de forma independente e que a taxa média de ocorrências é três requisições por minuto, constante no período em análise. Calcule a probabilidade de ocorrer mais de uma requisição no próximo minuto.
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Considere X = número de requisições por minuto. X~Exp(3)
+
+$P(X > 1) = 1 - P(X \le 1) = 1 - (P(X=0) + P(X=1))$
+
+$P(X = 0) = \frac {e^{-3} \cdot 3^0}{0!} = 0,04979$
+
+$P(X = 1) = \frac {e^{-3} \cdot 3^1}{1!} = 0,14936$
+
+$P(X > 1) = 1 - 0,1991 = 0,8009$
+
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: poisson

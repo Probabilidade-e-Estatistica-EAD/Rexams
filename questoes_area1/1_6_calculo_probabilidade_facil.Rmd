@@ -1,0 +1,45 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "2,5%.", 
+  "1%.", 
+  "2%.", 
+  "0,5%.", 
+  "3%."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Depois de um período de testes, verificou-se que um programa em C corre um risco de 2% de não oferecer resposta satisfatória. No programa em Java, o risco cai para 1%. O risco de ambos os programas apresentarem resposta insatisfatória é de 0,5%. Qual é a probabilidade de pelo menos um dos programas apresentar resposta insatisfatória?
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Pelo menos um apresentar resposta insatisfatória, quer dizer no mínimo um deles ou os dois, ou seja, a probabilidade da união.
+
+$P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+
+$P(A \cup B) = 0,02 + 0,01 - 0,005$
+
+$P(A \cup B) = 0,025 = 2,5\%$
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: teoria da probabilidade

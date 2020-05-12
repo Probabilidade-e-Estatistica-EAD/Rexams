@@ -1,0 +1,55 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "Aceita-se H0, pois a proporção observada de máquinas defeituosas é de apenas 0,125.",
+  "Rejeita-se H0, pois a proporção observada de máquinas defeituosas é de 0,125.",
+  "Aceita-se H0, pois a proporção observada de máquinas defeituosas é de apenas 0,25.",
+  "Rejeita-se H0, pois a proporção observada de máquinas defeituosas é de 0,9.",
+  "Aceita-se H0, pois a proporção observada de máquinas defeituosas é de apenas 0,875."
+))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Em um projeto são utilizados robôs para interagirem secretamente com seres humanos, por voz, para testar quão confortáveis as pessoas se sentem ao interagir com uma máquina sem saber do fato. O cientista que comanda a empresa que fornece os robôs para o projeto garante que 90% das máquinas que forneceu estão de acordo com as especificações exigidas. Testando uma amostra de 200 máquinas, revelaram-se 25 defeituosas. Teste a afirmativa do cientista com um nível de significância de 5% e $H0: \pi = \pi_0; H1: \pi < \pi_0$, com $\pi_0 = 0,9$.
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+$n = 200$; $\alpha = 0,05$; $p = 1 - \frac{25}{200} = 1 - 0,125 = 0,875$
+
+$H0: \pi = 0,9$
+
+$H1: \pi < 0,9$
+
+$z_c = \frac{p - \pi_0}{\pi_0 \cdot (1 - \pi_0)} \cdot \sqrt n$
+
+$z_c = \frac{0,875 - 0,9}{0,9 \cdot (1 - 0,9)} \cdot \sqrt {200}$
+
+$z_c = \frac{-,025}{\sqrt{0,09}}\cdot \sqrt {200}$
+
+$z_c = \frac{-,025}{0,3}\cdot \sqrt {200}$
+
+$z_c = -1,1785$
+
+Como $z_{tab} = 1,645$, aceita-se H0, pois $|z_c = -1,1785| < z_{tab} = 1,645$.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: testes de hipótese proporção

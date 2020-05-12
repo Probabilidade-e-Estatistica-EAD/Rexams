@@ -1,0 +1,66 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "[24,72 ; 47,08].",
+  "[25,02 ; 46,78].",
+  "[25,02 ; 35,90].",
+  "[24,72 ; 35,90].",
+  "[35,90 ; 46,78]."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Sob condições normais, realizaram-se dez observações sobre o tempo de resposta de uma consulta a certo banco de dados. Os resultados, em segundos, foram: 28, 35, 43, 23, 62, 38, 34, 27, 32, 37. Construa um intervalo de confiança para o tempo médio de uma consulta, sob condições normais, e assinale a alternativa com valores aproximados. Use alfa igual a 0,01.
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+$n = 10$ e $\alpha = 0,01$
+
+$\bar X = \frac{28 + 35 + 43 + 23 + 62 + 38 + 34 + 27 + 32 + 37}{10}$
+
+$\bar X = \frac{359}{10}$
+
+$\bar X = 35,9$
+
+-------------------------------
+
+$S^2 = \frac{\Big[\sum_1^k f_i \cdot X_i^2\Big] - n \cdot (\bar X)^2}{n - 1}$
+
+$S^2 = \frac{13953 - 12888,1}{9} = 118,3222$
+
+$S = 10,8776$
+
+$\epsilon = t \cdot \frac{S}{\sqrt n}$
+
+$\epsilon = 3,250 \cdot \frac{10,8776}{\sqrt 10}$
+
+$\epsilon = 3,250 \cdot 3,4398$
+
+$\epsilon = 11,179$
+
+-------------------------------
+
+$IC = [\bar X - \epsilon; \bar X + \epsilon]$
+
+$IC = [24,721; 47,079]$
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: intervalo de confiança

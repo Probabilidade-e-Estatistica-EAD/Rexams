@@ -1,0 +1,56 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "Não, pois a média agora é de, aproximadamente, 22,5 anos.", 
+  "Não, pois a média agora é de, aproximadamente, 21 anos.", 
+  "Não, pois a média agora é de, aproximadamente, 19,5 anos.", 
+  "Sim, pois a média agora é de, aproximadamente, 25 anos.", 
+  "Sim, pois a média agora é de, aproximadamente, 24 anos."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+A idade média dos candidatos a um curso de informática sempre foi baixa, da ordem de 22 anos. Como esse curso foi planejado para atender a todas as idades, decidiu-se fazer uma campanha de divulgação. Para verificar se a campanha foi ou não eficiente, fez-se um levantamento da idade dos candidatos à última promoção, e os resultados estão na tabela a seguir:
+  
+  |Idade|Frequência|Porcentagem|
+  |:----|:--------:|:---------:|
+  |18 $\vdash$ 20|18|36|
+  |20 $\vdash$ 22|12|24|
+  |22 $\vdash$ 26|10|20|
+  |26 $\vdash$ 30|8|16|
+  |30 $\vdash$ 36|2|4|
+  |Total|50|100|
+  
+  
+Baseando-se nesses resultados, você diria que a campanha produziu algum efeito (isto é, a idade média aumentou)?
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+$\bar{X} = \frac{\sum x_i \cdot f_i}{n}$  
+  
+$\bar{X} = \frac{19 \cdot 18 + 21 \cdot 12 + 24 \cdot 10 + 28 \cdot 8 + 33 \cdot 2}{50} = \frac{1124}{50} = 22,48$
+
+Não, pois a média agora é de, aproximadamente, 22,5 anos; o que é uma alteração praticamente não significativa.
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: medidas descritivas e análise exploratória de dados

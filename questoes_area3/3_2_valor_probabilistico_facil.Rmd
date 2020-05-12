@@ -1,0 +1,41 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- c(
+"Como o p-valor do teste é 0,0892 não há evidência para rejeitar $H_0: \\mu = 100$.", 
+"Como o p-valor do teste é 0,0446 conclui-se por $H_0: \\mu = 100$.", 
+"Como o p-valor do teste é 0,0446 conclui-se por $H_1: \\mu \\neq 100$.", 
+"Como o p-valor do teste é 0,0223 conclui-se por $H_1: \\mu \\neq 100$.",
+"Não se pode tirar nenhuma conclusão, pois não foram informados o tamanho da amostra, a média amostral e o desvio padrão amostral.")
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Considere o teste da hipótese $H_0: \mu = 100$ contra alternativa $H_1: \mu \neq 100$ em uma amostra da distribuição normal com média $\mu$ e variância $\sigma^2$. O valor da estatística teste t com distribuição de Student sob a hipótese $H_0$: $\mu$ = 100 é de –1,7864 e sabe-se que P(t $\geq$ 1,7864) = 0,0446. Suponha que a probabilidade de erro do tipo I esteja sendo controlada em 5%. Assinale a resposta correta.
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+$\begin{cases}H_0: \mu = 100 \\ H_1: \mu \neq 100\end{cases}$
+
+Considerando que o valor da estatística teste t com distribuição de Student sob a hipótese $H_0: \mu = 100$ é de –1,7864 e sabendo que P(t $\geq$ 1,7864) = 0,0446. Para um teste bilateral, então o p-valor é de $2 \cdot 0.0446 = 0.0892$ e não há evidência para rejeitar $H_0: \mu = 100$.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: testes de hipótese p_valor

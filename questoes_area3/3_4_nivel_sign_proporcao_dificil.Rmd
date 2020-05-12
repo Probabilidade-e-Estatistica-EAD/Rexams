@@ -1,0 +1,47 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+"0,05", 
+"0,025", 
+"0,10", 
+"0,90", 
+"0,95"))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Para testar a hipótese de que uma moeda é honesta, adotou-se a seguinte regra de decisão: não rejeitar a hipótese nula ($H_0: \pi = 0,5$), se o número de caras, em uma amostra de 100 lances, estiver entre 40 (inclusive) e 60 (inclusive); caso contrário, rejeitá-la. Qual a probabilidade (aproximada) de ser rejeitada a hipótese nula, quando ela for correta?
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+$\begin{cases}H_0: \pi = 0,5 \\ H_1: \pi \neq 0,5\end{cases}$
+
+Deseja-se saber qual o nível de significância do teste, assim precisamos saber qual o valor da estatística do teste para as seguintes situações: quando o número de caras é igual a 40 e igual a 60.
+
+$\displaystyle{z = \frac{p - \pi_0}{\sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}} = \frac{0,4 - 0,5}{\sqrt{\frac{0,5 \cdot (1 - 0,5)}{100}}} = \frac{-0,1}{0,05} = -2}$
+
+$\displaystyle{z = \frac{p - \pi_0}{\sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}} = \frac{0,6 - 0,5}{\sqrt{\frac{0,5 \cdot (1 - 0,5)}{100}}} = \frac{0,1}{0,05} = 2}$
+
+Para obter a probabilidade de interesse (o nível de significância) precisamos encontrar a área na Distribuição Normal Padrão que seja menor que -2 e maior que 2. Olhando na tabela, achamos o valor 0,4772 para a área entre 0 e 2. A probabilidade que queremos é a área maior que 2 (em dobro, pois queremos também a área menor que -2. Logo o nível de significância é 2(0,5-0,4772) = 0,0456, ou seja, aproximadamente 0,05.
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: teste proporcao

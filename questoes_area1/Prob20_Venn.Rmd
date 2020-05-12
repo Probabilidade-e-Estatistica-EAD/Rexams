@@ -1,0 +1,73 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+# Dados da questao
+
+ferramentas <- 14
+cubos <- sample(x = 5:8, size = 1)
+cilindros <- ferramentas - cubos
+
+cubos.brancos <- sample(2:(cubos - 2), size = 1)
+cubos.verdes <- cubos - cubos.brancos
+
+cilindros.brancos <- sample(2:(cilindros - 2), size = 1)
+cilindros.verdes <- cilindros - cilindros.brancos
+
+verdes <- cubos.verdes + cilindros.verdes
+
+# solução
+
+prob <- paste( (cubos + verdes - cubos.verdes ), "/14", sep = "")
+
+## single-choice incl. typical errors
+
+err <- paste( (cubos + verdes), "/14", sep = "")
+err2 <- paste( (cubos * verdes), "/196", sep = "")
+err3 <- paste( cubos.verdes, cubos, sep = "/")
+err4 <- paste( (14 - (cubos + verdes - cubos.verdes) ), "/14", sep = "")
+
+
+# Faca a resposta correta ser a primeira e as outras falsas
+questions <- c(prob, err, err2, err3, err4)
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Uma caixa contém `r cilindros` cilindros, sendo `r cilindros.brancos` brancos e `r cilindros.verdes` verdes. A caixa também contém `r cubos` cubos, sendo `r cubos.brancos` brancos e `r cubos.verdes` verdes. Retirando-se apenas uma peça de forma aleatória, a probabilidade de encontrar um cubo ou uma peça qualquer da cor verde é:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Defina os eventos aleatórios $C = \{cubo\}$, um cubo é sorteado da caixa; e $V = \{verde\}$, uma peça verde é sorteada. Queremos calcular a probabilidade do evento $\{C\cup V\}$, que é dada por
+
+$$
+P(C\cup V) = P(C) + P(V) - P(C\cap V).
+$$
+
+Na questão, temos que $P(C)$ = `r cubos`/14, $P(V)$ = `r verdes`/14 e $P(C\cap V)$ = `r cubos.verdes`/14.
+
+
+Assim,
+
+$$
+P(C\cup V) = \frac{`r cubos`}{14}+\frac{`r verdes`}{14}-\frac{`r cubos.verdes`}{14}=\frac{`r cubos + verdes - cubos.verdes`}{14}.
+$$
+
+
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: conceitos basicos

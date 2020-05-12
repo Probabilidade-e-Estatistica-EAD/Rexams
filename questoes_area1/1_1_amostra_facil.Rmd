@@ -1,0 +1,38 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+"Amostra é o subconjunto criado pela impossibilidade de lidar com um conjunto inteiro devido à sua dimensão.", 
+"Amostra é a metodologia de obtenção das amostragens.", 
+"Amostra é o conjunto de todos os elementos de interesse que têm pelo menos uma característica em comum.", 
+"Amostra é o conjunto de todos os objetos que formam o universo de nosso estudo e que são passíveis de serem observados.", 
+"Amostra é o conjunto de elementos mais homogêneo possível entre os elementos da população estudada."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Defina amostra em poucas palavras.
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+Amostra é parte de uma população, o subconjunto criado pela impossibilidade de lidar com um conjunto inteiro devido à sua dimensão. Tem a finalidade de representar a população ao máximo e deve apresentar as mesmas características da população. Amostragem é a metodologia de obtenção das amostras.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: conceitos básicos

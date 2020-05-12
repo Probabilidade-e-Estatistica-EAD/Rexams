@@ -1,0 +1,56 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  ".i) Correlação negativa forte; ii) Ausência de correlação; iii) Correlação positiva fraca; iv) Correlação positiva forte.",
+  ".i) Correlação negativa fraca; ii) Ausência de correlação; iii) Correlação positiva forte; iv) Correlação positiva fraca.",
+  ".i) Correlação negativa forte; ii) Correlação perfeita; iii) Correlação positiva boa; iv) Correlação positiva forte.",
+  ".i) Correlação negativa fraca; ii) Correlação perfeita; iii) Correlação positiva regular; iv) Correlação positiva boa.",
+  ".i) Correlação negativa regular; ii) Correlação boa; iii) Correlação perfeita; iv) Correlação positiva regular."
+))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Considerando os coeficientes de correlação apresentados abaixo, classifique-os:
+
+.  i) R = -0,97    .    ii) R = 0    .   iii) R = 0,2    .   iv) R = 0,99
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+.i) Correlação negativa forte; 
+
+.ii) Ausência de correlação; 
+
+.iii) Correlação positiva fraca; 
+
+.iv) Correlação positiva forte.
+
+|R|Interpretação|
+|:---------|:------------:|
+|0 a 0,4|Fraca|
+|0,4 a 0,7|Regular|
+|0,7 a 0,8|Boa|
+|0,8 a 0,99|Forte|
+|1|Perfeita|
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: coeficiente de correlação

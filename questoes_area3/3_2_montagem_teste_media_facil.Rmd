@@ -1,0 +1,60 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "apenas a linha 2 tende a reduzir o tempo de montagem.", 
+  "a linha 1 tende a aumentar o tempo de montagem.", 
+  "as duas novas linhas de produção tendem a reduzir o tempo de montagem.", 
+  "nenhuma das duas linhas tendem a reduzir o tempo de montagem.", 
+  "nenhuma das alternativas está correta."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+O tempo de montagem de um equipamento apresenta uma distribuição normal com média igual a 30 minutos e desvio padrão igual a 5 minutos. Novas linhas de produção foram idealizadas para reduzir o tempo de montagem. A montagem de 36 novos equipamentos em cada uma das duas novas linhas de produção apresentou os seguintes resultados:
+
+|`Linha de Produção`|`Média (min)`|
+|:-----:|:-----:|
+|`1`|`28.5`|
+|`2`|`27`|
+
+Através dos Testes Unilaterais de Médias, com nível de significância de 2,5%, constata-se que:
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+$\begin{cases}H_0: \mu = 30 \\ H_1: \mu < 30\end{cases}$
+
+A estatística t para teste de hipóteses é definida como
+
+$\displaystyle\frac{\overline{X} - \mu_0}{\frac{S}{\sqrt{n}}}$
+
+Para a linha 1, temos que $\overline{X} = 28,5$, $\mu_0 = 30$, $S = 5$ e $n = 36$. Aplicando estes números na fórmula, temos
+
+$\displaystyle\frac{28,5 - 30}{\frac{5}{\sqrt{36}}} = \displaystyle\frac{-1,5}{\frac{5}{6}} = \displaystyle\frac{-9}{5} = -1,8$
+
+Para a linha 2, temos que $\overline{X} = 27$, $\mu_0 = 30$, $S = 5$ e $n = 36$. Aplicando estes números na fórmula, temos
+
+$\displaystyle\frac{27 - 30}{\frac{5}{\sqrt{36}}} = \displaystyle\frac{-3}{\frac{5}{6}} = \displaystyle\frac{-18}{5} = -3,6$
+
+Como $t_tab = 2,03$ (está entre os graus de liberdade 30 e 40) com $\alpha = 0,025$: para a linha 1 não se rejeita $H_0$, pois |-1,8| < 2,03; para a linha 2 rejeita-se $H_0$, pois |-3,6| > 2,03. Assim, apenas a linha 2 tende a reduzir o tempo de montagem.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: testes de hipótese média

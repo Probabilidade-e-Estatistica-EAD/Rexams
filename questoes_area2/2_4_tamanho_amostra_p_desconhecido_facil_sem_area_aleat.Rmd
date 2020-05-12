@@ -1,0 +1,66 @@
+```{r, include = FALSE, message = FALSE, warning = FALSE}
+library(exams)
+```
+
+
+```{r data_generation, echo = FALSE, results = "hide"}
+#Questões da prova:
+e <- sample(c(0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08), 1)
+e_porc <- e*100
+n <- ceiling(((1.96/e)^2)*0.25)
+
+#Respostas:
+erros <- n - sample(4:40, 4, replace = TRUE)
+
+questions <- c(n, erros[1], erros[2], erros[3], erros[4])
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+
+Com o objetivo de avaliar a preferência do eleitor às vésperas de uma eleição para prefeito num município serrano do Rio Grande do Sul, planeja-se um levantamento por amostragem. Considere que seja admissível um erro de até `r e_porc`%, com 95% de confiança, para as estimativas percentuais dos vários candidatos. Com base nessas informações, assinale a alternativa correta quanto ao número de eleitores que devem ser pesquisados.
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+O exercício nos forneceu o nível de confiança = 0,95 e o erro = `r e`. O objetivo da questão é usar essas informações para calcular o tamanho de amostra. Perceba que este é o caso em que a proporção é desconhecida, então a fórmula que antes era
+
+$n = \displaystyle{\frac{Z^2_{\alpha/2} p(1-p)}{e^2}}$
+
+Agora será
+
+$n = \displaystyle{\left(\frac{Z_{\alpha/2}}{e}\right)^2}*0,25$
+
+usamos 0,25 no lugar de p(1-p), porque este é o maior valor possível de p(1-p). Trabalhamos com o pior caso já que não sabemos o valor de p(1-p).
+
+As contas seguem como
+
+$n = \displaystyle{\left(\frac{1,96}{`r e`}\right)^2}*0,25$
+
+$n = (`r round(1.96/e, 3)`)^2*0,25$
+
+$n = `r round((1.96/e)^2, 3)`*0,25$
+
+$n = `r round(((1.96/e)^2)*0.25, 3)`$
+
+Temos que o tamanho mínimo para a amostra é `r ceiling(n)`.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: tamanho de amostra p desconhecido

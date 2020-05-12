@@ -1,0 +1,52 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+
+questions <- c(
+  '$H_0: \\rho = 0,50$ vs. $H_1: \\rho > 0,50$ e $T = 4,36$',
+  '$H_0: \\rho \\ne 0,50$ vs. $H_1: \\rho < 0,50$ e $T = 4,1$',
+  '$H_0: \\rho = 0,50$ vs. $H_1: \\rho > 0,50$ e $T = 3$',
+  '$H_0: \\rho \\ne 0,50$ vs. $H_1: \\rho > 0,50$ e $T = 4,36$',
+  '$H_0: \\rho = 0,50$ vs. $H_1: \\rho \\ne 0,50$ e $T = 3$'
+)
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+
+Durante muito tempo, o coeficiente de correlação entre a nota final num curso de treinamento de agentes de saúde e sua produtividade, após 6 meses de curso, foi 0,50. Foram introduzidas modificações no curso, com o intuito de aumentar a correlação. O coeficiente de correlação de uma amostra de 28 agentes submetidos ao novo curso foi de 0,65. Quanto ao estabelecimento das hipóteses $H_0$ (nula) e $H_1$ (alternativa), podemos afirmar que as hipóteses e a estatística de teste são respectivamente:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+
+
+```
+
+Solution
+========
+
+O objetivo do estudo é saber se as modificações introduzidas no curso aumentariam a correlação da produtividade dos agentes de saúde e suas respectivas notas finais no final do curso. Portanto, o teste precisa ser do tipo
+
+$\begin{cases}H_0: \rho = 0,50 \\ H_1: \rho > 0,50\end{cases}$
+
+
+Usamos a estatística $\displaystyle{T = \frac{r\sqrt{n-2}}{\sqrt{1-r^2}}}$
+
+Sabemos que $n=28$ e que $r = 0,65$, então vamos calcular $T$:
+
+$\displaystyle{T = \frac{r\sqrt{n-2}}{\sqrt{1-r^2}} = \frac{0,65\sqrt{28-2}}{\sqrt{1-0,65^2}} = \frac{3,31}{0,7599} = 4,36}$
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: hipoteses correlacao

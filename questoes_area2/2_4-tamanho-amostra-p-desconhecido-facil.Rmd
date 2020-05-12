@@ -1,0 +1,54 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+
+questions <- c("600","100","750","1000","2000")
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+
+```
+
+Question
+========
+
+Com o objetivo de avaliar a preferência do eleitor às vésperas de uma eleição para prefeito num município serrano do Rio Grande do Sul, planeja-se um levantamento por amostragem. Considere que seja admissível um erro de até 4%, com 95% de confiança, para as estimativas percentuais dos vários candidatos. Com base nessas informações, assinale a alternativa correta quanto ao número aproximado de eleitores que devem ser pesquisados.
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+O exercício nos forneceu o nível de confiança = 0,95 e o erro = 0,04. O objetivo da questão é usar essas informações para calcular o tamanho de amostra. Perceba que este é o caso em que a proporção é desconhecida, então a fórmula que antes era
+
+$n = \displaystyle{\frac{Z^2_{\alpha/2} p(1-p)}{e^2}}$
+
+Agora será
+
+$n = \displaystyle{\left(\frac{Z_{\alpha/2}}{e}\right)^2}*0,25$
+
+usamos 0,25 no lugar de p(1-p), porque este é o maior valor possível de p(1-p), trabalhamos com o pior caso já que não sabemos o valor de p(1-p).
+
+As contas seguem como
+
+$n = \displaystyle{\left(\frac{1,96}{0,04}\right)^2}*0,25$
+
+$n = (49)^2*0,25$
+
+$n = 2401*0,25$
+
+$n = 600,25$
+
+Temos aproximadamente 600 eleitores.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: tamanho de amostra p desconhecido

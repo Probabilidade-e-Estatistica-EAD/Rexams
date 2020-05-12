@@ -1,0 +1,48 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "$H0: \\mu = 70$ e $H1: \\mu > 70.$",
+  "$H0: \\mu > 70$ e $H1: \\mu = 70.$",
+  "$H0: \\mu > 71$ e $H1: \\mu = 71.$",
+  "$H0: \\mu = 70$ e $H1: \\mu < 70.$",
+  "$H0: \\mu = 16$ e $H1: \\mu > 16.$"
+))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Padrões técnicos exigem que o nível de ruído em CPDs seja de, no máximo, 70 dB. Foram analisados 16 CPDs de várias organizações, obtendo-se os seguintes valores máximos de ruído:
+		
+		78	73	68	65	72	64	77	80					
+		82	78	65	72	61	79	58	65
+		
+Suponha que os 16 CPDs analisados são uma amostra aleatória de CPDs do país. Para verificar se na média os CPDs atendem aos padrões técnicos, como você construiria as hipóteses?
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+$H0: \mu = 70$
+
+$H1: \mu > 70$
+
+Porque no enunciado é dito que para que os CPDs atendam aos padrões técnicos, eles devem ter ruído de, no máximo, 70 dB.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: testes de hipótese

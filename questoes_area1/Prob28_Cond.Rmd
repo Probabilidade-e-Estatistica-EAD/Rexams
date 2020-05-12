@@ -1,0 +1,50 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c("Apenas a I.", "Apenas a I e a II.", "Apenas a II.", "Apenas a III.", "A I, a II e a III."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Considere as afirmações abaixo.  
+I – Se $P(A \mid B) \geq  P(A)$, então $P(B \mid A) \geq P(B)$.  
+II – Os eventos $A$ e $\bar{A}$ sempre serão independentes.  
+III – Se $P(A)=0,5$ e $P(B)=0,3$ e $A$ e $B$ são independentes, então $P(A \cup B) = 0,8$.  
+Quais estão corretas?
+
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+
+I - Verdadeiro.
+
+Se vale que $P(A \mid B) = \frac{P(A \cap B)}{P(B)} \geq  P(A)$, permutamos P(A) e P(B) na expressão e temos que $\frac{P(A \cap B)}{P(A)} \geq  P(B)$, onde $\frac{P(A \cap B)}{P(A)}=P(B \mid A)$
+
+
+II - Falso.
+
+Para serem independentes, é necessário que P($A$ intersecção $\bar{A}$) = $P(A)$ * $P(\bar{A})$. No entanto, como são eventos complementares, sabemos que a intersecção entre eles é igual a zero.
+
+III - Falso. 
+
+$P(A \cup B)$ = $P(A)$ + $P(B)$ - P(A intersecção B), como são independentes, P(A intersecção B) = $P(A)$ * $P(B)$. Então, $P(A \cup B)$ = 0.5 + 0.3 - 0.15 = 0.65
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: conceitos basicos

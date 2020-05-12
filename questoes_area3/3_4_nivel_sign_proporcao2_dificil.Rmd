@@ -1,0 +1,53 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+"2,28%", 
+"1,56%", 
+"4,36%", 
+"5,34%", 
+"6,78%"))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Seja $p$ a proporção de torcedores de um certo time de futebol numa população muito grande. Deseja-se testar $H_0: p = 0,1$ versus $H_1: p > 0,1$ com base numa amostra aleatória simples de tamanho 400, utilizando-se o seguinte critério: rejeitar $H_0$ se o número de torcedores do time na amostra for maior do que 52. O nível de significância desse teste é, aproximadamente, de:
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+$\begin{cases}H_0: p= 0,1 \\ H_1: p > 0,1\end{cases}$
+
+Primeiramente, devemos calcular a estatística do teste z:
+
+$\displaystyle{z = \frac{p - p_0}{\sqrt{\frac{p_0 \cdot (1 - p_0)}{n}}}}$
+
+Mas antes disso, devemos encontrar o valor para p.
+
+$p = \displaystyle{\frac{52}{400} = 0,13}$
+
+Cálculo da estatítica do teste:
+
+$\displaystyle{z = \frac{0,13 - 0,1}{\sqrt{\frac{0,1 \cdot (1 - 0,1)}{400}}} = \frac{0,03}{\sqrt{\frac{0,1 \cdot 0,9}{400}}} = \frac{0,03}{\sqrt{\frac{0,09}{400}}} = \frac{0,03}{\sqrt{0,000225}} = \frac{0,03}{0,015} = 2}$
+
+Assim, para rejeitarmos $H_0$ devemos usar o teste unilateral à direita e $z > z_{tab}$, ou seja, devemos obter a probabilidade de encontrar um valor maior que 2 para Z na Distribuição da Normal Padrão. Ao observarmos a tabela, encontramos o valor 0,4772 para a área entre 0 e 2. A probabilidade que queremos é a área maior que 2. Logo o nível de significância é 0,5-0,4772 = 0,0228, ou seja, 2,28%.
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: teste proporcao

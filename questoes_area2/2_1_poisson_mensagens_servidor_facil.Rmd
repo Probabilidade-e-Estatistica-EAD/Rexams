@@ -1,0 +1,45 @@
+```{r data_generation, echo = FALSE, results = "hide"}
+#Dados da questao
+
+#Faca a resposta correta ser a primeira e as outras falsas
+questions <- paste(c(
+  "P(X = 2) = 0,0843.",
+  "P(X = 2) = 0,0682.",
+  "P(X = 2) = 0,3091.",
+  "P(X = 2) = 0,5074.",
+  "P(X = 2) = 0,0937."))
+solutions <- c(TRUE, rep(FALSE, 4))
+
+o <- sample(1:5)
+questions <- questions[o]
+solutions <- solutions[o]
+```
+
+Question
+========
+Mensagens chegam a um servidor de acordo com uma distribuição de Poisson, com taxa média de cinco chegadas por minuto. Qual é a probabilidade de que duas chegadas ocorram em um minuto?
+
+```{r questionlist, echo = FALSE, results = "asis"}
+answerlist(questions, markup = "markdown")
+```
+
+Solution
+========
+$P(X = x) = \frac {e^{-\lambda} \cdot \lambda^x}{x!}$
+
+$P(X = 2) = \frac {e^{-5} \cdot 5^2}{2!}$
+
+$P(X = 2) = \frac{0,006737946999 \cdot 25} {2}$
+
+$P(X = 2) = 0,0843$
+
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+answerlist(ifelse(solutions, "Correta", "Incorreta"), markup = "markdown")
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(solutions, single = TRUE)`
+exname: poisson
