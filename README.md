@@ -22,3 +22,5 @@ e respostas sugerimos o site do próprio projeto [R/exams](http://www.r-exams.or
 
 ### Da impressão das provas
 É recomendado imprimir com o clipe do lado esquerdo no topo, e NÃO escolher a opção “Ajustar a área imprimível”.
+
+### As pastas apresentam alguns exemplos de exercícios, para acesso ao banco de questões completo, enviar e-mail para mhbarbian@gmail.com
