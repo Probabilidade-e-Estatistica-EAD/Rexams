@@ -1,6 +1,10 @@
 # MAT02219EAD
 Material de aula da disciplina de "Probabilidade e Estatística" do Departamento de Estatística da UFRGS.
 
+## Aplicativo visualização das questões
+Aplicativo desenvolvido pelo professor Fernando Mayer do Departamento de Estatística da UFPR: http://shiny.leg.ufpr.br/fernandomayer/rexams/
+
+
 ## Do exams
 Ver tutorial em português: https://gianlima.github.io/r-exams-tutorial/index.html e
 
