@@ -1,0 +1,159 @@
+---
+title: "Pôster: Geração aleatória e correção automática de questões através do `R`/`exams`"
+# author: "Markus Stein"
+date: "Julho 2022"
+output: pdf_document
+    # toc: yes
+header-includes:
+    - \usepackage{fancyhdr}
+always_allow_html: yes
+---
+\addtolength{\headheight}{1.0cm}
+\pagestyle{fancyplain} 
+\lhead{\includegraphics[height=1.5cm]{logoIME.png}}
+\rhead{\includegraphics[height=1.5cm]{logoEAD.png}}
+<!-- \chead{UNIVERSIDADE FEDERAL DO RIO GRANDE DO SUL \\ -->
+<!-- INSTITUTO DE MATEMÁTICA E ESTATÍSTICA \\ -->
+<!-- DEPARTAMENTO DE ESTATÍSTICA \\ -->
+<!-- \vspace{0.3cm} -->
+<!-- MAT02219 - Probabilidade e Estatística - 2021/2 -->
+<!-- } -->
+\renewcommand{\headrulewidth}{0pt} 
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introdução
+* Planejar e executar avaliações é um dos grandes desafios no processo de ensino e aprendizagem. 
+	+ Em turmas EAD esse aspecto também necessita de maior atenção. 
+
+* Importante criar mecanismos avaliativos que evitem a repetição de questões entre os alunos e inibam potenciais cópias/plágios. 
+	
+* Se destacam a criação de questões e a sua correção, bem como a análise dos resultados e o retorno da avaliação ao estudante.
+
+* No nosso Departamento as turmas EAD de Probabilidade e Estatística atendem entre 300 e 400 alunos nos últimos semestres. ufrgs.br/probabilidade-estatistica 
+
+## Porque `R` e o pacote `exams`?
+* Utilizar o conhecimento em `R` para auxiliar na criação de questões aleatorizadas.
+
+* Aproveitar as facilidades do formato de arquivos `Rmarkdown` (integrar códigos em `R` e texto).
+
+* Possibilidade de gerar provas impressas ou online, com correção automática.
+
+## Motivação
+* Mecanismos que auxiliem na elaboração e correção automática das avaliações possibilitam que professores tenham mais tempo para planejar o instrumento de avaliação e analisar o desempenho da turma.
+
+* A criação das questões é parte essencial no processo de flexibilização das avaliações e exige conhecimento de programação, no software `R`, pacotes `Markdown`, linguagem `Latex` e da teoria estatística envolvida.
+
+## Contribuições
+* Criação do banco de questões no formato `exams`, códigos em `R` para geração e correção automática de avaliações, no formato impresso ou `XML`.
+
+* Otimização do processo de avaliação, com o auxílio de recursos que minimizem atividades repetitivas na geração, correção, análise e divulgação dos resultados, presenciais ou à distância. 
+
+# Desenvolvimento
+
+## Criação das Questões
+
+* O desenvolvimento das questões é uma tarefa complexa que exige conhecimentos sobre construção de provas múltipla escolha bem como programação no software `R`. 
+
+* Juntamente com a criação dos enunciados e alternativas de respostas, a construção do gabarito da questão já é feita de maneira integrada com o pacote `exams`.
+
+* Diferentes tipos de formatos para respostas: abertas e única/múltipla escolha
+	+ formatos do exams: numérica (`numeric`), discursiva (`string`), única escolha (`schoice`), mútiplas escolhas (`mchoice`) e combinações entre os tipos.
+
+* No formato impresso as questões são limitadas aos formatos `schoice` e `mchoice` no momento. 
+
+* Exemplos em::: trazer figuras:::
+
+
+* Estressar/testar as questões e finalização do banco com as questões que já foram completamente testadas, para avaliar possíveis reformulações.
+
+## Banco de Questões
+
+* Organização das questões... protocolo para criação do banco???
+
+* Para pré visualizar questionário/questões: `exams2html`, ou `exams2pdf` que precisa ter alguma distribuição `Latex` instalada.
+
+## Questionários
+* O `exams` utiliza um objeto `list` com nomes das questões/caminho;
+    + cada elemento da lista pode ser um único nome ou vetor de nomes de questões;
+    + se for um vetor, a aleatorização também ocorrerá entre diferentes questões;
+
+* pare gerar exames e provas impressas `exams2nops(...)` 
+
+* para gerar `XML` para aplicação remota, no `Moodle` por exemplo, função `exams2moodle(...)`.
++ Poderíamos criar um arquivo `XML` com códigos puramente em `R` sem usar o exams, porém a estrutura e organização criado pelo exams...
+
+## Correção da avaliação
+* Com o recurso a correção se torna um trabalho puramente mecânico no formato impresso, a correção é feita com a leitura das provas feita em qualquer scanner e o reconhecimento das respostas é realizada pelo próprio pacote `exams` através de um software de reconhecimento óptico de caracteres. 
+
+* Para questões geradas nos formatos digitais, a correção é feita automaticamente após a finalização da atividade.
+
+* Retorno da atividade/correção aos estudantes através do envio automático de email com o resultado da avaliação para cada aluno, no formato impresso.  
+
+
+# Conclusões
+* Facilitar o processo de geração de questões e correção em disciplinas de massa.
+
+* Colaboração e organização do banco de questões são fundamentais.
+
+* avaliacao online tem maior flexibilidade de formatos, porém menor controle. A aleatorização como forma de evitar cópias;plágios
+* Avaliação presencial se torna escalável com baixo custo, a aplicação e geração de avaliações com a leitura óptica economiza muito tempo na correção das avaliações. 
+* Nas provas impressas, o retorno da prova corrigida para o aluno, via email, faz com que o estudante se sinta mais integrado à disciplina.
+* Torna as avaliações muito mais abrangentes e o processo de criação, correção e análise dos resultados de avaliações mais eficiente. Dessa forma o docente terá uma ferramenta para facilitar na condução de disciplinas. 
+
+* É possível criar um processo operacional, para que as ferramentas desenvolvidas sejam estendidas para outras disciplinas, ou até criar parcerias com outras Universidades, tudo via `R`, software livre e gratuito. 
+
+
+# Trabalhos futuros 
+análise do desempenho dos alunos através de aplicação da metodologia TRI (teoria de resposta ao item); 
+
+# Agradecimentos:::
+o auxílio da SEAD ... monitores...
+
+*Dúvidas e acesso às questões eviar email para...
+
+# Referências
+Achim Zeileis, Nikolaus Umlauf, Friedrich Leisch (2014). Flexible Generation of E-Learning Exams in R: Moodle Quizzes, OLAT Assessments, and Beyond. Journal of Statistical Software 58(1), 1-36.
+
+Bettina Gruen, Achim Zeileis (2009). Automatic Generation of Exams in R. Journal of Statistical Software 29(10), 1-14
+
+R Core Team (2019). R: A language and environment for statistical computing. R Foundation for  Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+
+
+
+***
+Novas referências e ideias
+
+* Criação de questões
+
+Pip Arnold & Christine Franklin (2021) What Makes a Good Statistical Question?, Journal of Statistics and Data Science Education, 29:1, 122-130, DOI: 10.1080/26939169.2021.1877582
+
+Refletem acerca de elementos para criação de questões que avaliem a compreensão dos conceitos e linguagem estatística de maneira mais completa:: 
+
+***
+* Integridade acadêmica
+
+Ayse Aysin Bilgin; Huan Lin. Designing assessment tasks to prevent cheating in a large first-year statistics unit (2022) Conference paper DOI: 10.52041/iase.errob
+
+Usam o pacote `exams` para criar questões e comparam o desempenho dos estudantes antes e durante a pandemia causada pela Covid-19. Concluem não haver diferença expressiva nos resultados das avaliações, que os instrumentos foram muito semelhantes na mensuração do conhecimento, sugerindo manter a integridade acadêmica embora no segundo período os testes tenham sido online e sem a supervisão do professor.
+
+Da mesma autora, Workshop IASE "Using the R/exams package for an efficient workflow to design, produce and mark online assessments while safeguarding the academic integrity" https://www.isi-web.org/events/node-2205
+
+***
+* Análise... temos os arquivos do livro de notas de 2019/1 a 2021/2, precisa organiazr os bancos... podemos comparar as notas ao longo do tempo... 
+
+* considerar cada ano/semestre uma coorte?
+    + Em 2019 as avaliações semanais foram online e valiam presença. As provas presenciais, com questões no formato de múltiplas alternativas e única escolha. 
+    + Em 2020 e 2021 tivemos o ERE e as avaliações semanais valiam nota. As provas remotas, sem supervisão, com questões em outros formatos também, como numéricas, ou de associação.
+
+* O que a análise poderia nos mostrar? 
+
+```{r, echo=FALSE, message=FALSE}
+library(here)
+notas20191 <- read.csv2(here("apresentacoes", "notas20191.csv"))
+```
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
