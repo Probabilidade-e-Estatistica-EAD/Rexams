@@ -93,57 +93,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * Retorno da atividade/correção aos estudantes através do envio automático de email com o resultado da avaliação para cada aluno, no formato impresso.  
 
-
-# Conclusões
-* Facilitar o processo de geração de questões e correção em disciplinas de massa.
-
-* Colaboração e organização do banco de questões são fundamentais.
-
-* avaliacao online tem maior flexibilidade de formatos, porém menor controle. A aleatorização como forma de evitar cópias;plágios
-* Avaliação presencial se torna escalável com baixo custo, a aplicação e geração de avaliações com a leitura óptica economiza muito tempo na correção das avaliações. 
-* Nas provas impressas, o retorno da prova corrigida para o aluno, via email, faz com que o estudante se sinta mais integrado à disciplina.
-* Torna as avaliações muito mais abrangentes e o processo de criação, correção e análise dos resultados de avaliações mais eficiente. Dessa forma o docente terá uma ferramenta para facilitar na condução de disciplinas. 
-
-* É possível criar um processo operacional, para que as ferramentas desenvolvidas sejam estendidas para outras disciplinas, ou até criar parcerias com outras Universidades, tudo via `R`, software livre e gratuito. 
-
-
-# Trabalhos futuros 
-análise do desempenho dos alunos através de aplicação da metodologia TRI (teoria de resposta ao item); 
-
-# Agradecimentos:::
-o auxílio da SEAD ... monitores...
-
-*Dúvidas e acesso às questões eviar email para...
-
-# Referências
-Achim Zeileis, Nikolaus Umlauf, Friedrich Leisch (2014). Flexible Generation of E-Learning Exams in R: Moodle Quizzes, OLAT Assessments, and Beyond. Journal of Statistical Software 58(1), 1-36.
-
-Bettina Gruen, Achim Zeileis (2009). Automatic Generation of Exams in R. Journal of Statistical Software 29(10), 1-14
-
-R Core Team (2019). R: A language and environment for statistical computing. R Foundation for  Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
-
-
-
-***
-Novas referências e ideias
-
-* Criação de questões
-
-Pip Arnold & Christine Franklin (2021) What Makes a Good Statistical Question?, Journal of Statistics and Data Science Education, 29:1, 122-130, DOI: 10.1080/26939169.2021.1877582
-
-Refletem acerca de elementos para criação de questões que avaliem a compreensão dos conceitos e linguagem estatística de maneira mais completa:: 
-
-***
-* Integridade acadêmica
-
-Ayse Aysin Bilgin; Huan Lin. Designing assessment tasks to prevent cheating in a large first-year statistics unit (2022) Conference paper DOI: 10.52041/iase.errob
-
-Usam o pacote `exams` para criar questões e comparam o desempenho dos estudantes antes e durante a pandemia causada pela Covid-19. Concluem não haver diferença expressiva nos resultados das avaliações, que os instrumentos foram muito semelhantes na mensuração do conhecimento, sugerindo manter a integridade acadêmica embora no segundo período os testes tenham sido online e sem a supervisão do professor.
-
-Da mesma autora, Workshop IASE "Using the R/exams package for an efficient workflow to design, produce and mark online assessments while safeguarding the academic integrity" https://www.isi-web.org/events/node-2205
-
-***
-* **Análise**: comparação da distribuição das notas anteriormente e no período do Ensino Remoto Emergencial (ERE). 
+### **Análise**: comparação da distribuição das notas anteriormente e no período do Ensino Remoto Emergencial (ERE). 
 
 <!-- + As notas de 2019 estão em arquivos separados, de 2020 e 2021 as notas estão no livro de notas das turmas no Moodle. ...precisa organiazr os bancos.. -->
 * Podemos considerar cada ano/semestre uma coorte.
@@ -215,6 +165,67 @@ text(.5, .5, "Prova 2")
 # panel 8
 plot.new()
 text(.5, .5, "Prova 3")
+
+# grafico longitudinal???
+# https://www.r-bloggers.com/2015/07/line-plots-of-longitudinal-summary-data-in-r-using-ggplot2/
 ```
+
+Bilgin e Lin (2022) Usam o pacote `exams` para criar questões e comparam o desempenho dos estudantes antes e durante a pandemia causada pela Covid-19. Concluem não haver diferença expressiva nos resultados das avaliações, que os instrumentos foram muito semelhantes na mensuração do conhecimento, sugerindo manter a integridade acadêmica embora no segundo período os testes tenham sido online e sem a supervisão do professor.
+
+
+
+# Conclusões
+* Facilitar o processo de geração de questões e correção em disciplinas de massa.
+
+* Colaboração e organização do banco de questões são fundamentais.
+
+* A avaliação
+    + **online** tem maior flexibilidade de formatos, porém menor controle. A aleatorização como forma de evitar cópias;plágios
+    + **presencial** se torna escalável com baixo custo, a aplicação e geração de avaliações com a leitura óptica economiza muito tempo na correção das avaliações. 
+    
+* Nas provas impressas, o retorno da prova corrigida para o aluno, via email, faz com que o estudante se sinta mais integrado à disciplina.
+
+* O processo torna a criação, correção e análise dos resultados de avaliações mais eficiente, dessa forma o docente terá uma ferramenta para facilitar na condução da disciplina. 
+
+* É possível criar um processo operacional, para que as ferramentas desenvolvidas sejam estendidas para diferentes formatos de cursos/disciplinas, criar parcerias com outras Universidades, tudo via `R`, software livre e gratuito. 
+
+
+# Trabalhos futuros 
+* Juntamente à análise do desempenho dos alunos podemos aplicar a metodologia de teoria de resposta ao item (TRI), para analisar o grau de dificuldade das questões auxiliando na criação de questões e composição dos questionários.
+
+# Agradecimentos:::
+o auxílio da Secretaria de Educação à Distância (SEAD/UFRGS). Aos monitores envolvidos no projeto (ufrgs.br/probabilidade-estatistica)
+
+* Dúvidas e acesso às questões eviar email para...
+
+# Referências
+Achim Zeileis, Nikolaus Umlauf, Friedrich Leisch (2014). Flexible Generation of E-Learning Exams in R: Moodle Quizzes, OLAT Assessments, and Beyond. Journal of Statistical Software 58(1), 1-36.
+
+Ayse Aysin Bilgin, Huan Lin (2022). Designing assessment tasks to prevent cheating in a large first-year statistics unit (2022) Conference paper DOI: 10.52041/iase.errob
+
+Bettina Gruen, Achim Zeileis (2009). Automatic Generation of Exams in R. Journal of Statistical Software 29(10), 1-14
+
+R Core Team (2019). R: A language and environment for statistical computing. R Foundation for  Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+
+
+
+<!-- \clearpage -->
+
+<!-- *** -->
+<!-- Novas referências e ideias -->
+
+<!-- * Criação de questões -->
+
+<!-- Pip Arnold & Christine Franklin (2021) What Makes a Good Statistical Question?, Journal of Statistics and Data Science Education, 29:1, 122-130, DOI: 10.1080/26939169.2021.1877582 -->
+
+<!-- Refletem acerca de elementos para criação de questões que avaliem a compreensão dos conceitos e linguagem estatística de maneira mais completa. -->
+
+<!-- *** -->
+<!-- * Integridade acadêmica -->
+
+<!-- Da mesma autora, Workshop IASE "Using the R/exams package for an efficient workflow to design, produce and mark online assessments while safeguarding the academic integrity" https://www.isi-web.org/events/node-2205 -->
+
+***
+
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
