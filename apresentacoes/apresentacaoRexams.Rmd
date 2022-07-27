@@ -143,17 +143,78 @@ Usam o pacote `exams` para criar questões e comparam o desempenho dos estudante
 Da mesma autora, Workshop IASE "Using the R/exams package for an efficient workflow to design, produce and mark online assessments while safeguarding the academic integrity" https://www.isi-web.org/events/node-2205
 
 ***
-* Análise... temos os arquivos do livro de notas de 2019/1 a 2021/2, precisa organiazr os bancos... podemos comparar as notas ao longo do tempo... 
+* **Análise**: comparação da distribuição das notas anteriormente e no período do Ensino Remoto Emergencial (ERE). 
 
-* considerar cada ano/semestre uma coorte?
+<!-- + As notas de 2019 estão em arquivos separados, de 2020 e 2021 as notas estão no livro de notas das turmas no Moodle. ...precisa organiazr os bancos.. -->
+* Podemos considerar cada ano/semestre uma coorte.
     + Em 2019 as avaliações semanais foram online e valiam presença. As provas presenciais, com questões no formato de múltiplas alternativas e única escolha. 
-    + Em 2020 e 2021 tivemos o ERE e as avaliações semanais valiam nota. As provas remotas, sem supervisão, com questões em outros formatos também, como numéricas, ou de associação.
+    + Em 2020 e 2021 tivemos o regime de Ensino Remoto Emergencial (ERE e as avaliações semanais valiam nota. As provas foram remotas, sem supervisão, com questões em outros formatos também, como numéricas, ou de associação, sendo incorporadas aos questionários.
 
-* O que a análise poderia nos mostrar? 
+* *Ilustração*: O que a distribuição das notas de 2019/2 e 2020/1 nos sugerem? 
+    + Uma análise cuidadosa é necessária para concluirmos sobre diferenças nos instrumentos/formatos de avaliações. Estudantes e colaboradora(o)s são bem vinda(o)s.
+    + O gráfico abaixo é apenas uma ilustração com dados limitados. Na prova 1 ainda estávamos impementando diferentes formatos do que os de única escolha utilizados nas avaliações presenciais. Ao longo do semestre 2020/1 fomos adotando diferentes formatos de questões, na prova 3 estávamos com mais questões abertas. Como sera a comparacao com semestres anteriores e posteriores ao período ilustrado? 
 
-```{r, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, message=FALSE, fig.height=3, fig.width=5, fig.align='center'}
 library(here)
-notas20191 <- read.csv2(here("apresentacoes", "notas20191.csv"))
+
+## dados
+# notas 2019/2
+notas_prova1_20192 <- read.csv2(here("apresentacoes/dados", "notas_prova1_20192.csv"), sep = ",", header = TRUE, encoding = "UTF-8" )
+notas_prova2_20192 <- read.csv2(here("apresentacoes/dados", "notas_prova2_20192.csv"), sep = ",", header = TRUE, encoding = "UTF-8" )
+notas_prova3_20192 <- read.csv2(here("apresentacoes/dados", "notas_prova3_20192.csv"), sep = ",", header = TRUE, encoding = "UTF-8" )
+notas20192 <- merge(notas_prova2_20192, notas_prova1_20192, by="cartao", all=TRUE)
+names(notas20192)[names(notas20192) == "points.x"] <- "prova2"
+names(notas20192)[names(notas20192) == "points.y"] <- "prova1"
+notas20192 <- merge(notas20192, notas_prova3_20192, by="cartao", all=TRUE) # estão faltando notas da prova 3, tem um arquivo parte2 com os mesmos dados
+names(notas20192)[names(notas20192) == "points"] <- "prova3"
+
+# notas 2020/1
+notas20201 <- read.csv2(here("apresentacoes/dados", "notas_provas_20201.csv"), sep = ",", header = TRUE, encoding = "UTF-8" )
+
+# juntando bancos
+dados <- rbind( cbind(semestre="2019/2", notas20192[,c("prova1", "prova2", "prova3")]), 
+                cbind(semestre="2020/1", notas20201[,c("prova1", "prova2", "prova3")]))
+
+## grafico - layout 8 panels
+layout(rbind(c(0,2,7,8,0),
+             c(4,1,5,6,0),
+             c(0,3,3,3,0)),
+       height = c(lcm(1), 1, lcm(2)),
+       width = c(lcm(2), 1/3, 1/3, 1/3, lcm(0.5)))
+#layout.show(3)
+#box("outer", lty = "dotted")
+
+# panel 1
+par(mar = rep(0, 4), cex = 0.8)
+yrange = c(0, 10)
+boxplot(prova1 ~ semestre, dados, xlab="", ylab="", ylim=yrange)
+
+# panel 2
+plot.new()
+text(.5, .5, "Prova 1")
+
+# panel 3
+plot.new()
+plot.window(xlim = c(0, 1), ylim = c(0, 1))
+text(.5, .25, "Semestre", cex = 1, font = 1)
+
+# panel 4
+plot.new()
+text(.25, .5, "Notas", cex = 1, font = 1, srt = 90)
+
+# panel 5
+boxplot(prova2 ~ semestre, dados, xlab="", yaxt="n", ylim=yrange)
+
+# panel 6
+boxplot(prova3 ~ semestre, dados, xlab="", yaxt="n", ylim=yrange)
+
+# panel 7
+plot.new()
+text(.5, .5, "Prova 2")
+
+# panel 8
+plot.new()
+text(.5, .5, "Prova 3")
 ```
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.

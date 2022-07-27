@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.7.25)  26 JUL 2022 12:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.7.25)  27 JUL 2022 13:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -515,11 +515,11 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 304.
 File: logoIME.png Graphic file (type png)
 <use logoIME.png>
-Package pdftex.def Info: logoIME.png  used on input line 361.
+Package pdftex.def Info: logoIME.png  used on input line 365.
 (pdftex.def)             Requested size: 98.19987pt x 42.67917pt.
 File: logoEAD.png Graphic file (type png)
 <use logoEAD.png>
-Package pdftex.def Info: logoEAD.png  used on input line 361.
+Package pdftex.def Info: logoEAD.png  used on input line 365.
 (pdftex.def)             Requested size: 86.35376pt x 42.67868pt.
 
 Package fancyhdr Warning: \headheight is too small (40.45274pt): 
@@ -529,13 +529,18 @@ Package fancyhdr Warning: \headheight is too small (40.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-5.82646pt}.
 
 [3]
+<apresentacaoRexams_files/figure-latex/unnamed-chunk-1-1.pdf, id=60, 361.35pt x 216.81pt>
+File: apresentacaoRexams_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (type pdf)
+<use apresentacaoRexams_files/figure-latex/unnamed-chunk-1-1.pdf>
+Package pdftex.def Info: apresentacaoRexams_files/figure-latex/unnamed-chunk-1-1.pdf  used on input line 394.
+(pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
 File: logoIME.png Graphic file (type png)
 <use logoIME.png>
-Package pdftex.def Info: logoIME.png  used on input line 376.
+Package pdftex.def Info: logoIME.png  used on input line 399.
 (pdftex.def)             Requested size: 98.19987pt x 42.67917pt.
 File: logoEAD.png Graphic file (type png)
 <use logoEAD.png>
-Package pdftex.def Info: logoEAD.png  used on input line 376.
+Package pdftex.def Info: logoEAD.png  used on input line 399.
 (pdftex.def)             Requested size: 86.35376pt x 42.67868pt.
 
 Package fancyhdr Warning: \headheight is too small (40.45274pt): 
@@ -544,20 +549,20 @@ Package fancyhdr Warning: \headheight is too small (40.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-5.82646pt}.
 
-[4] (./apresentacaoRexams.aux) ) 
+[4 <./apresentacaoRexams_files/figure-latex/unnamed-chunk-1-1.pdf>] (./apresentacaoRexams.aux) ) 
 Here is how much of TeX's memory you used:
- 13233 strings out of 479963
- 213346 string characters out of 5885524
+ 13257 strings out of 479963
+ 214113 string characters out of 5885524
  551281 words of memory out of 5000000
- 31110 multiletter control sequences out of 15000+600000
- 519509 words of font info for 113 fonts, out of 8000000 for 9000
+ 31121 multiletter control sequences out of 15000+600000
+ 524292 words of font info for 119 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  74i,15n,81p,1015b,558s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on apresentacaoRexams.pdf (4 pages, 365112 bytes).
+{c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
+Output written on apresentacaoRexams.pdf (4 pages, 404538 bytes).
 PDF statistics:
- 151 PDF objects out of 1000 (max. 8388607)
- 122 compressed objects within 2 object streams
+ 162 PDF objects out of 1000 (max. 8388607)
+ 129 compressed objects within 2 object streams
  31 named destinations out of 1000 (max. 500000)
- 28787 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 30840 words of extra memory for PDF output out of 35830 (max. 10000000)
 
