@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.7.25)  27 JUL 2022 14:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.7.25)  28 JUL 2022 13:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -470,16 +470,16 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 86
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 108.
-<logoIME.png, id=4, 521.95pt x 226.8475pt>
-File: logoIME.png Graphic file (type png)
-<use logoIME.png>
-Package pdftex.def Info: logoIME.png  used on input line 173.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 109.
+<imagens/logoIME.png, id=4, 521.95pt x 226.8475pt>
+File: imagens/logoIME.png Graphic file (type png)
+<use imagens/logoIME.png>
+Package pdftex.def Info: imagens/logoIME.png  used on input line 174.
 (pdftex.def)             Requested size: 98.19987pt x 42.67917pt.
-<logoEAD.png, id=5, 313.17pt x 154.77824pt>
-File: logoEAD.png Graphic file (type png)
-<use logoEAD.png>
-Package pdftex.def Info: logoEAD.png  used on input line 173.
+<imagens/logoEAD.png, id=5, 313.17pt x 154.77824pt>
+File: imagens/logoEAD.png Graphic file (type png)
+<use imagens/logoEAD.png>
+Package pdftex.def Info: imagens/logoEAD.png  used on input line 174.
 (pdftex.def)             Requested size: 86.35376pt x 42.67868pt.
 
 Package fancyhdr Warning: \headheight is too small (40.45274pt): 
@@ -490,14 +490,24 @@ Package fancyhdr Warning: \headheight is too small (40.45274pt):
 
 [1
 
-{c:/Users/User/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./logoIME.png> <./logoEAD.png>]
-File: logoIME.png Graphic file (type png)
-<use logoIME.png>
-Package pdftex.def Info: logoIME.png  used on input line 288.
+{c:/Users/User/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./imagens/logoIME.png> <./imagens/logoEAD.png>]
+<imagens/image-questao-schoice-moodle.png, id=35, 424.58624pt x 405.31425pt>
+File: imagens/image-questao-schoice-moodle.png Graphic file (type png)
+<use imagens/image-questao-schoice-moodle.png>
+Package pdftex.def Info: imagens/image-questao-schoice-moodle.png  used on input line 183.
+(pdftex.def)             Requested size: 227.6211pt x 217.28937pt.
+<imagens/image-questao-cloze-moodle.png, id=36, 400.49625pt x 445.06274pt>
+File: imagens/image-questao-cloze-moodle.png Graphic file (type png)
+<use imagens/image-questao-cloze-moodle.png>
+Package pdftex.def Info: imagens/image-questao-cloze-moodle.png  used on input line 184.
+(pdftex.def)             Requested size: 204.83093pt x 227.62415pt.
+File: imagens/logoIME.png Graphic file (type png)
+<use imagens/logoIME.png>
+Package pdftex.def Info: imagens/logoIME.png  used on input line 250.
 (pdftex.def)             Requested size: 98.19987pt x 42.67917pt.
-File: logoEAD.png Graphic file (type png)
-<use logoEAD.png>
-Package pdftex.def Info: logoEAD.png  used on input line 288.
+File: imagens/logoEAD.png Graphic file (type png)
+<use imagens/logoEAD.png>
+Package pdftex.def Info: imagens/logoEAD.png  used on input line 250.
 (pdftex.def)             Requested size: 86.35376pt x 42.67868pt.
 
 Package fancyhdr Warning: \headheight is too small (40.45274pt): 
@@ -506,19 +516,30 @@ Package fancyhdr Warning: \headheight is too small (40.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-5.82646pt}.
 
-[2]
-<apresentacaoRexams_files/figure-latex/unnamed-chunk-1-1.pdf, id=48, 361.35pt x 216.81pt>
+[2 <./imagens/image-questao-schoice-moodle.png> <./imagens/image-questao-cloze-moodle.png>]
+
+Package hyperref Warning: Suppressing empty link on input line 268.
+
+
+Package hyperref Warning: Suppressing empty link on input line 274.
+
+<imagens/image-capa-prova-impressa-corrigida.png, id=48, 603.4545pt x 292.09125pt>
+File: imagens/image-capa-prova-impressa-corrigida.png Graphic file (type png)
+<use imagens/image-capa-prova-impressa-corrigida.png>
+Package pdftex.def Info: imagens/image-capa-prova-impressa-corrigida.png  used on input line 280.
+(pdftex.def)             Requested size: 227.62082pt x 110.17574pt.
+<apresentacaoRexams_files/figure-latex/unnamed-chunk-1-1.pdf, id=49, 325.215pt x 194.7275pt>
 File: apresentacaoRexams_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (type pdf)
 <use apresentacaoRexams_files/figure-latex/unnamed-chunk-1-1.pdf>
-Package pdftex.def Info: apresentacaoRexams_files/figure-latex/unnamed-chunk-1-1.pdf  used on input line 291.
-(pdftex.def)             Requested size: 361.34912pt x 216.80946pt.
-File: logoIME.png Graphic file (type png)
-<use logoIME.png>
-Package pdftex.def Info: logoIME.png  used on input line 347.
+Package pdftex.def Info: apresentacaoRexams_files/figure-latex/unnamed-chunk-1-1.pdf  used on input line 335.
+(pdftex.def)             Requested size: 325.22412pt x 194.73294pt.
+File: imagens/logoIME.png Graphic file (type png)
+<use imagens/logoIME.png>
+Package pdftex.def Info: imagens/logoIME.png  used on input line 335.
 (pdftex.def)             Requested size: 98.19987pt x 42.67917pt.
-File: logoEAD.png Graphic file (type png)
-<use logoEAD.png>
-Package pdftex.def Info: logoEAD.png  used on input line 347.
+File: imagens/logoEAD.png Graphic file (type png)
+<use imagens/logoEAD.png>
+Package pdftex.def Info: imagens/logoEAD.png  used on input line 335.
 (pdftex.def)             Requested size: 86.35376pt x 42.67868pt.
 
 Package fancyhdr Warning: \headheight is too small (40.45274pt): 
@@ -527,20 +548,14 @@ Package fancyhdr Warning: \headheight is too small (40.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-5.82646pt}.
 
-[3 <./apresentacaoRexams_files/figure-latex/unnamed-chunk-1-1.pdf>]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 377.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 377.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 377.
-File: logoIME.png Graphic file (type png)
-<use logoIME.png>
-Package pdftex.def Info: logoIME.png  used on input line 384.
+[3 <./imagens/image-capa-prova-impressa-corrigida.png>]
+File: imagens/logoIME.png Graphic file (type png)
+<use imagens/logoIME.png>
+Package pdftex.def Info: imagens/logoIME.png  used on input line 402.
 (pdftex.def)             Requested size: 98.19987pt x 42.67917pt.
-File: logoEAD.png Graphic file (type png)
-<use logoEAD.png>
-Package pdftex.def Info: logoEAD.png  used on input line 384.
+File: imagens/logoEAD.png Graphic file (type png)
+<use imagens/logoEAD.png>
+Package pdftex.def Info: imagens/logoEAD.png  used on input line 402.
 (pdftex.def)             Requested size: 86.35376pt x 42.67868pt.
 
 Package fancyhdr Warning: \headheight is too small (40.45274pt): 
@@ -549,20 +564,42 @@ Package fancyhdr Warning: \headheight is too small (40.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-5.82646pt}.
 
-[4] (./apresentacaoRexams.aux) ) 
+[4 <./apresentacaoRexams_files/figure-latex/unnamed-chunk-1-1.pdf>]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 424.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 424.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 424.
+File: imagens/logoIME.png Graphic file (type png)
+<use imagens/logoIME.png>
+Package pdftex.def Info: imagens/logoIME.png  used on input line 431.
+(pdftex.def)             Requested size: 98.19987pt x 42.67917pt.
+File: imagens/logoEAD.png Graphic file (type png)
+<use imagens/logoEAD.png>
+Package pdftex.def Info: imagens/logoEAD.png  used on input line 431.
+(pdftex.def)             Requested size: 86.35376pt x 42.67868pt.
+
+Package fancyhdr Warning: \headheight is too small (40.45274pt): 
+(fancyhdr)                Make it at least 46.2792pt, for example:
+(fancyhdr)                \setlength{\headheight}{46.2792pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-5.82646pt}.
+
+[5] (./apresentacaoRexams.aux) ) 
 Here is how much of TeX's memory you used:
- 13266 strings out of 479963
- 214436 string characters out of 5885524
- 551541 words of memory out of 5000000
- 31124 multiletter control sequences out of 15000+600000
+ 13306 strings out of 479963
+ 216081 string characters out of 5885524
+ 551632 words of memory out of 5000000
+ 31157 multiletter control sequences out of 15000+600000
  524480 words of font info for 121 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 74i,15n,81p,1349b,580s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 74i,15n,81p,1349b,558s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on apresentacaoRexams.pdf (4 pages, 406345 bytes).
+Output written on apresentacaoRexams.pdf (5 pages, 784008 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
- 132 compressed objects within 2 object streams
- 33 named destinations out of 1000 (max. 500000)
- 30848 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 178 PDF objects out of 1000 (max. 8388607)
+ 138 compressed objects within 2 object streams
+ 36 named destinations out of 1000 (max. 500000)
+ 30863 words of extra memory for PDF output out of 35830 (max. 10000000)
 

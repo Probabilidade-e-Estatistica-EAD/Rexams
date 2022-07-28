@@ -10,8 +10,8 @@ always_allow_html: yes
 ---
 \addtolength{\headheight}{1.0cm}
 \pagestyle{fancyplain} 
-\lhead{\includegraphics[height=1.5cm]{logoIME.png}}
-\rhead{\includegraphics[height=1.5cm]{logoEAD.png}}
+\lhead{\includegraphics[height=1.5cm]{imagens/logoIME.png}}
+\rhead{\includegraphics[height=1.5cm]{imagens/logoEAD.png}}
 <!-- \chead{UNIVERSIDADE FEDERAL DO RIO GRANDE DO SUL \\ -->
 <!-- INSTITUTO DE MATEMÁTICA E ESTATÍSTICA \\ -->
 <!-- DEPARTAMENTO DE ESTATÍSTICA \\ -->
@@ -27,7 +27,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Introdução
 * Planejar e executar avaliações é um dos grandes desafios no processo de ensino e aprendizagem. 
-	+ Em turmas EAD esse aspecto também necessita de maior atenção. 
+	+ Em turmas de ensino à distância (EAD) esse aspecto necessita de maior atenção. 
 
 * Importante criar mecanismos avaliativos que evitem a repetição de questões entre os alunos e inibam potenciais cópias/plágios. 
 	
@@ -63,35 +63,51 @@ knitr::opts_chunk$set(echo = TRUE)
 * Diferentes tipos de formatos para respostas: abertas e única/múltipla escolha
 	+ formatos do exams: numérica (`numeric`), discursiva (`string`), única escolha (`schoice`), mútiplas escolhas (`mchoice`) e combinações entre os tipos.
 
-* No formato impresso as questões são limitadas aos formatos `schoice` e `mchoice` no momento. 
+\begin{figure}[h]
+    \label{figura1}
+    \centering
+    \includegraphics[width=08cm, height=08cm]{imagens/image-questao-schoice-moodle}
+    \includegraphics[width=08cm, height=08cm]{imagens/image-questao-cloze-moodle}
+    \caption{Enunciado e o gabarito de uma questão respondida no Moodle no formato `schoice` (esquerda) e no formato `cloze` (direita).}
+\end{figure}
 
-* Exemplos em::: trazer figuras:::
-
-
-* Estressar/testar as questões e finalização do banco com as questões que já foram completamente testadas, para avaliar possíveis reformulações.
+* Por fim, estressar/testar as questões, para avaliar possíveis erros e reformulações, pode ser facilitada com a função `stresstest_exercise()`. Apenas as questões que já foram completamente testadas devem compor o banco de questões. 
 
 ## Banco de Questões
 
-* Organização das questões... protocolo para criação do banco???
+* A organização das questões é fundamental para a eficiência na criação da avaliações. Um protocolo para criação de questões e inclusão no banco pode auxiliar nessa tarefa.
 
-* Para pré visualizar questionário/questões: `exams2html`, ou `exams2pdf` que precisa ter alguma distribuição `Latex` instalada.
+* Para pré visualizar um questionário/questões: 
+    + a função `exams2html()` gera um arquivo `HTML` com a(s) questão(ões); 
+    + ou a função `exams2pdf()` gera um arquivo `pdf`, mas precisa ter alguma distribuição `Latex` instalada.
 
 ## Questionários
+
 * O `exams` utiliza um objeto `list` com nomes das questões/caminho;
     + cada elemento da lista pode ser um único nome ou vetor de nomes de questões;
-    + se for um vetor, a aleatorização também ocorrerá entre diferentes questões;
+    + se for um vetor, a aleatorização também ocorrerá entre diferentes questões.
 
-* pare gerar exames e provas impressas `exams2nops(...)` 
+* Pare gerar avaliações e provas impressas a função `exams2nops(...)` auxiliam no processo.
 
-* para gerar `XML` para aplicação remota, no `Moodle` por exemplo, função `exams2moodle(...)`.
-+ Poderíamos criar um arquivo `XML` com códigos puramente em `R` sem usar o exams, porém a estrutura e organização criado pelo exams...
+* para gerar `XML` e aplicar provas remotas, no `Moodle` por exemplo, usar a função `exams2moodle(...)`.
+    + Poderíamos criar um arquivo `XML` com códigos puramente em `R` sem usar o exams, porém a estrutura e organização criado pelo exams.
 
 ## Correção da avaliação
-* Com o recurso a correção se torna um trabalho puramente mecânico no formato impresso, a correção é feita com a leitura das provas feita em qualquer scanner e o reconhecimento das respostas é realizada pelo próprio pacote `exams` através de um software de reconhecimento óptico de caracteres. 
 
-* Para questões geradas nos formatos digitais, a correção é feita automaticamente após a finalização da atividade.
+* Com a utilização do `exams` a correção das avaliações se torna um trabalho puramente mecânico, também no formato impresso.
+    + A correção é feita com a leitura das provas feita em qualquer scanner e o reconhecimento das respostas é realizada pelo próprio pacote `exams` através de um software de reconhecimento óptico de caracteres. A Figura \ref{figura2} apresenta o resultado da correção no formato impresso.
+    
+* Para questões geradas nos formatos digitais, a correção é feita automaticamente após a finalização da atividade, conforme ilustrado na Figura \ref{figura1}.
 
-* Retorno da atividade/correção aos estudantes através do envio automático de email com o resultado da avaliação para cada aluno, no formato impresso.  
+\begin{figure}[h]
+    \label{figura2}
+    \centering
+    \includegraphics[width=08cm, height=08cm]{imagens/image-capa-prova-impressa-corrigida}
+    \caption{Arquivo HTML gerado na correção automática da avaliação impressa (acima) e a folha de respostas preenchida (abaixo).}
+\end{figure}
+
+* O retorno da atividade/correção aos estudantes é realizado por envio automático de email com o resultado da avaliação para cada aluno, no formato impresso.  
+
 
 ### **Análise**: comparação da distribuição das notas anteriormente e no período do Ensino Remoto Emergencial (ERE). 
 
@@ -104,7 +120,7 @@ knitr::opts_chunk$set(echo = TRUE)
     + Uma análise cuidadosa é necessária para concluirmos sobre diferenças nos instrumentos/formatos de avaliações. Estudantes e colaboradora(o)s são bem vinda(o)s.
     + O gráfico abaixo é apenas uma ilustração com dados limitados. Na prova 1 ainda estávamos impementando diferentes formatos do que os de única escolha utilizados nas avaliações presenciais. Ao longo do semestre 2020/1 fomos adotando diferentes formatos de questões, na prova 3 estávamos com mais questões abertas. Como sera a comparacao com semestres anteriores e posteriores ao período ilustrado? 
 
-```{r, echo=FALSE, message=FALSE, fig.height=3, fig.width=5, fig.align='center'}
+```{r, echo=FALSE, message=FALSE, fig.height=2.7, fig.width=4.5, fig.align='center'}
 library(here)
 
 ## dados
@@ -173,11 +189,10 @@ text(.5, .5, "Prova 3")
 Bilgin e Lin (2022) Usam o pacote `exams` para criar questões e comparam o desempenho dos estudantes antes e durante a pandemia causada pela Covid-19. Concluem não haver diferença expressiva nos resultados das avaliações, que os instrumentos foram muito semelhantes na mensuração do conhecimento, sugerindo manter a integridade acadêmica embora no segundo período os testes tenham sido online e sem a supervisão do professor.
 
 
-
 # Conclusões
-* Facilitar o processo de geração de questões e correção em disciplinas de massa.
+* Facilitar o processo de geração de questões e correção em disciplinas de massa é necessário.
 
-* Colaboração e organização do banco de questões são fundamentais.
+* Colaboração e organização na criação de avaliações e banco de questões também são fundamentais.
 
 * A avaliação
     + **online** tem maior flexibilidade de formatos, porém menor controle. A aleatorização como forma de evitar cópias;plágios
@@ -193,10 +208,13 @@ Bilgin e Lin (2022) Usam o pacote `exams` para criar questões e comparam o dese
 # Trabalhos futuros 
 * Juntamente à análise do desempenho dos alunos podemos aplicar a metodologia de teoria de resposta ao item (TRI), para analisar o grau de dificuldade das questões auxiliando na criação de questões e composição dos questionários.
 
-# Agradecimentos:::
-o auxílio da Secretaria de Educação à Distância (SEAD/UFRGS). Aos monitores envolvidos no projeto (ufrgs.br/probabilidade-estatistica)
+# Agradecimentos
+Ao auxílio da Secretaria de Educação à Distância (SEAD/UFRGS). A(o)s monitora(e)s envolvida(o)s no projeto. 
 
-* Dúvidas e acesso às questões eviar email para...
+* **Dúvidas, colaborações e acesso às questões enviar email para...QR code...** 
+
+* [ufrgs.br/probabilidade-estatistica](http://ufrgs.br/probabilidade-estatistica)
+
 
 # Referências
 Achim Zeileis, Nikolaus Umlauf, Friedrich Leisch (2014). Flexible Generation of E-Learning Exams in R: Moodle Quizzes, OLAT Assessments, and Beyond. Journal of Statistical Software 58(1), 1-36.

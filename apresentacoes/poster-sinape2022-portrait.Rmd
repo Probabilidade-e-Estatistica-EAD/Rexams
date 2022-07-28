@@ -1,33 +1,52 @@
 ---
-title: A Better Reproducible Poster Title
+main_topsize: 0.2 #percent coverage of the poster
+main_bottomsize: 0.1
+#ESSENTIALS
+title: '**A Better Reproducible Poster Title**'
 author:
-  - name: Brent Thorne
+  - name: '**W. Brent Thorne**'
     affil: 1
-    twitter: brentthorne18
-    email: brentthorne18@gmail.com
-    orcid: 0000-0002-1099-3857
     main: true
+    orcid: '0000-0002-1099-3857'
+    twitter: brentthorne18 
+    email: bthorne2@brocku.ca
+  - name: Another G. Contributor
+    affil: 2
+    main: true
+    email: 'ag.con@posterdown.net'
+  - name: Person Three
+    affil: 3
+  - name: Person Four
+    affil: 2
+  - name: Person Five
+    affil: 3
+  - name: Person Six
+    affil: 3
+  - name: A. Seventh Author
+    affil: 2
 affiliation:
   - num: 1
-    address: Department of Earth Sceicnes, Brock University
+    address: Department of Earth Science, Brock University
+  - num: 2
+    address: Department of Graphics and Layouts, University of Posters; Canada
+  - num: 3
+    address: Another Institute of a place where work gets done, Earth, Milky Way
 main_findings:
   - "Make **better posters** with RMarkdown + **posterdown**."
-  - '![](imagens/logoEAD.png){.main_pic}'
-logoleft_name: '![](https://raw.githubusercontent.com/brentthorne/posterdown/master/images/qr-code-black.png){.main-img-left}'
-logoright_name: '![](imagens/logoIME.png){.main-img-right}'
+logoleft_name: imagens/logoIME.png
+logoright_name: https&#58;//raw.githubusercontent.com/brentthorne/posterdown/master/images/betterhexlogo.png
+logocenter_name: https&#58;//raw.githubusercontent.com/brentthorne/posterdown/master/images/qr-code-black.png
 output: 
-  posterdown::posterdown_betterland:
+  posterdown::posterdown_betterport:
     self_contained: false
     pandoc_args: --mathjax
-    highlight: haddock
     number_sections: false
-link-citations: true
 bibliography: packages.bib
+link-citations: true
 ---
 
 ```{r, include=FALSE}
-knitr::opts_chunk$set(results = 'asis',
-                      echo = FALSE,
+knitr::opts_chunk$set(echo = FALSE,
                       warning = FALSE,
                       tidy = FALSE,
                       message = FALSE,
@@ -36,15 +55,9 @@ knitr::opts_chunk$set(results = 'asis',
 options(knitr.table.format = "html") 
 ```
 
-```{r myplot, include=FALSE}
-svg('myplot.svg')
-plot(iris$Sepal.Length, iris$Sepal.Width)
-dev.off()
-```
-
 # Introduction
 
-This is the `posterdown_betterland` template for the {posterdown} package! I was inspired by the twitter thread of [Mike Morrison](https://mobile.twitter.com/mikemorrison/status/1110191245035479041) and wanted to apply the `#betterposter` concept to the reproducible (yet simple to use) functionality of the {posterdown} package [@R-posterdown]. If you're not an R user don't sweat as you do **NOT** need to use it at all! Feel free to use only the Markdown functionality of this package :)
+This is the `posterdown_betterport` template for the {posterdown} package! I was inspired by the twitter thread of [Mike Morrison](https://mobile.twitter.com/mikemorrison/status/1110191245035479041) and wanted to apply the `#betterposter` concept to the reproducible (yet simple to use) functionality of the {posterdown} package [@R-posterdown]. If you're not an R user don't sweat as you do **NOT** need to use it at all! Feel free to use only the Markdown functionality of this package :)
 
 ```{r, include=FALSE}
 knitr::write_bib(c('posterdown', 'rmarkdown','pagedown'), 'packages.bib')
@@ -70,8 +83,6 @@ To get a better understanding of how to include features like these please refer
 
 **_Now on to the results!_**
 
-<br>
-
 # Results
 
 Here you may have some figures to show off, bellow I have made a scatterplot with the infamous Iris dataset and I can even reference to the figure automatically like this, `Figure \@ref(fig:irisfigure)`, Figure \@ref(fig:irisfigure).
@@ -85,7 +96,7 @@ plot(x = iris$Sepal.Length, y = iris$Sepal.Width,
 
 Maybe you want to show off some of that fancy code you spent so much time on to make that figure, well you can do that too! Just use the `echo=TRUE` option in the r code chunk options, Figure \@ref(fig:myprettycode)!
 
-```{r myprettycode, echo=FALSE,collapse=TRUE, fig.cap='Boxplots, so hot right now!', fig.height=3.5, out.width="80%"}
+```{r myprettycode, echo=TRUE, fig.cap='Boxplots, so hot right now!', fig.height=6, out.width="80%"}
 #trim whitespace
 par(mar=c(2,2,0,0))
 #plot boxplots
@@ -100,7 +111,7 @@ How about a neat table of data? See, Table \@ref(tab:iristable):
 
 ```{r, iristable}
 knitr::kable(
-  iris[1:8,1:5], format = "html",
+  iris[1:15,1:5], format = "html",
   caption = "A table made with the **knitr::kable** function.",
   align = "c", col.names = c("Sepal <br> Length",
                              "Sepal <br> Width",
