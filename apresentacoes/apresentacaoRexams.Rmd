@@ -71,15 +71,15 @@ knitr::opts_chunk$set(echo = TRUE)
     \caption{Enunciado e o gabarito de uma questão respondida no Moodle no formato `schoice` (esquerda) e no formato `cloze` (direita).}
 \end{figure}
 
-* Por fim, estressar/testar as questões, para avaliar possíveis erros e reformulações, pode ser facilitada com a função `stresstest_exercise()`. Apenas as questões que já foram completamente testadas devem compor o banco de questões. 
+* Por fim, estressar/testar as questões, para avaliar possíveis erros e reformulações, pode ser facilitada com a função `stresstest_exercise(...)`. Apenas as questões que já foram completamente testadas devem compor o banco de questões. 
 
 ## Banco de Questões
 
 * A organização das questões é fundamental para a eficiência na criação da avaliações. Um protocolo para criação de questões e inclusão no banco pode auxiliar nessa tarefa.
 
 * Para pré visualizar um questionário/questões: 
-    + a função `exams2html()` gera um arquivo `HTML` com a(s) questão(ões); 
-    + ou a função `exams2pdf()` gera um arquivo `pdf`, mas precisa ter alguma distribuição `Latex` instalada.
+    + a função `exams2html(...)` gera um arquivo `HTML` com a(s) questão(ões); 
+    + ou a função `exams2pdf(...)` gera um arquivo `pdf`, mas precisa ter alguma distribuição `Latex` instalada.
 
 ## Questionários
 
@@ -114,7 +114,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <!-- + As notas de 2019 estão em arquivos separados, de 2020 e 2021 as notas estão no livro de notas das turmas no Moodle. ...precisa organiazr os bancos.. -->
 * Podemos considerar cada ano/semestre uma coorte.
     + Em 2019 as avaliações semanais foram online e valiam presença. As provas presenciais, com questões no formato de múltiplas alternativas e única escolha. 
-    + Em 2020 e 2021 tivemos o regime de Ensino Remoto Emergencial (ERE e as avaliações semanais valiam nota. As provas foram remotas, sem supervisão, com questões em outros formatos também, como numéricas, ou de associação, sendo incorporadas aos questionários.
+    + Em 2020 e 2021, com o ERE, as avaliações semanais valiam nota. As provas foram remotas, sem supervisão, com questões em outros formatos também, como numéricas, ou de associação, sendo incorporadas aos questionários.
 
 * *Ilustração*: O que a distribuição das notas de 2019/2 e 2020/1 nos sugerem? 
     + Uma análise cuidadosa é necessária para concluirmos sobre diferenças nos instrumentos/formatos de avaliações. Estudantes e colaboradora(o)s são bem vinda(o)s.
