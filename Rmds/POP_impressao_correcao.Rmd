@@ -1,0 +1,104 @@
+---
+title: "Procedimento Operacional Padrão (POP)"
+subtitle: "Impressão e Correção das Provas"
+output: pdf_document
+    # toc: yes
+header-includes:
+    - \usepackage{fancyhdr}
+always_allow_html: yes
+---
+\addtolength{\headheight}{1.0cm}
+\pagestyle{fancyplain} 
+\lhead{\includegraphics[height=1.5cm]{apresentacoes/imagens/logoIME.png}}
+\rhead{\includegraphics[height=1.5cm]{apresentacoes/imagens/logoEAD.png}}
+<!-- \chead{UNIVERSIDADE FEDERAL DO RIO GRANDE DO SUL \\ -->
+<!-- INSTITUTO DE MATEMÁTICA E ESTATÍSTICA \\ -->
+<!-- DEPARTAMENTO DE ESTATÍSTICA \\ -->
+<!-- \vspace{0.3cm} -->
+<!-- MAT02219 - Probabilidade e Estatística - 2021/2 -->
+<!-- } -->
+\renewcommand{\headrulewidth}{0pt} 
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Passo à passso para impressão/correção de provas no formato `pdf` geradas com o `R/exams`
+
+## 1. Impressão das provas
+* É recomendado imprimir com o clipe do lado esquerdo no topo;
+
+* **NÃO** escolher a opção “Ajustar a área de impressão”;
+
+* **NÃO** imprimir frente e verso;
+    + email de exemplo solicitando impressão
+    
+```
+Boa tarde!
+ 
+Solicito a impressão de XX cópias de cada um dos arquivos anexados.
+ 
+OBS: NÃO imprimir frente e verso, nem escolher a opção "ajustar à área de impressão".
+ 
+Muito obrigado!
+```
+
+* Grampear as folhas das provas. (Incluir a primeira folha (de respostas)? concursos entregam a folha de respostas separada do caderno de questões).
+
+* Misturar as versões das provas para aplicação.  
+
+
+## 2. Aplicação das provas
+* Ver o POP da aplicação da prova em ...   
+
+
+## 3. Após a aplicação das provas
+### organização das provas
+* Separar as provas por turma (assim identificaremos erros mais facilmente).
+
+* Conferir o número de assinaturas nas listas de presenças e o número de provas de cada turma.
+
+* Destacar a primeira folha das provas (se grampeadas), matendo as folhas de respostas separadas por turma;
+	+ podemos ir separando as folha conforme os estudantes vão entregando, os monitores podem auxiliar.
+
+### Leitura das provas
+* A impressora da nossa Universidade gera arquivos `.pdf` e `.jpg`...  
+    + o pacote exams aceita pdfs ou pngs, mas na extração final tranforma pdfs em pngs... 
+
+* Os arquivos de imagens se tornam menores se forem lidas apenas em preto/branco (ou escala de cinza), o que pode facilitar na extração das informações. (não estamos fazendo isso, testei uma e não ajudou)
+
+* Quando as provas forem grampeadas no lado esquerdo superior, as impressoras geralmente funcionam melhor escaneando as folhas de cabeça para baixo (rotacionadas em 180 gruas), assim a parte danificada é a última parte a passar pelo escaner. Isso melhora o resultados da leitura e as imagens podem ser rotacionadas usando o argumento `rotate = TRUE` na função `nops_scan()`;  
+    + rotacionando no windows... se as provas estiverem em `.jpg`, basta selecionar todos os arquivo, clicar com o botão direito em clique em `girar à direia`... fazer duas vezes para girar 180 graus;
+  	+ ou usar alguma página para transformar imagens. (FUNCIONANDO NO MOMENTO)
+
+(escaneando automaticamente aparecem mais erros do que escaneando manualmente; qual a diferença na imagem quando usamos o alimentador automático de quando usamos o leitor manual???)
+
+* Conferir o número de imagens no(s) arquivo(s) da leitura com o de assinaturas/provas. 
+
+### Correção 
+* usar o script `....R`... precisamos de
+	+ O arquivo `.rds` com as meta-informações das provas, criado pela função `exams2nops()` na geração das provas.
+	+ O arquivo `.zip` com as provas escaneadas, gerado pela função `nops_scan()`.
+	+ Um arquivo `.csv` (separado por ponto e vírgula) com informações dos nomes (nome, número de cartão dos alunos, algum id ou nome de usuário). 
+
+* Os **errros de leitura/preenchimento** podem ser corrigods iterativamente como aparece no script de correção.
+* Caso os erros de leitura/preenchimento ainda persistam, corrigir manualmente o arquivo `Daten.txt`. 
+	+ no arquivo `nops_eval....zip`, gerado pela função `nops_scan...`, abrir `Daten.txt`, que possui os resultados da leitura da identificação e respostas dos estudantes;
+	+ no mesmo arquivo `.zip` olhar os `pngs` que deram erro e arrumar os cartões mal escaneados ou mal preenchidos no arquivo `Daten.txt` (conseguimos melhorar isso?)
+  + conferir as informações da lista de alunos para corrigir os números de cartão lidos incorretamente ou mal preenchidos (com o processo funcionando os monitores podem conferir)
+
+<!-- maior resolucao menos problemas? -->
+
+* Possíveis **erros no gabarito** podem ser arrumados no arquivo `.rds`, que possui as informações das provas geradas;
+	+ usar a função `readRDS(file="")` para ler o arquivo e criar um objeto, então fazer as correções; 
+	+ e `saveRDS(object, file="")` para salvar as modificações no mesmo arquivo.
+
+
+### Retorno da avaliação...?
+* No formato impresso, enviar email com o html da correção?
+    + `mailR` tem a função `send.mail()`...  https://github.com/rpremrajGit/mailR 
+    + para contas gmail é preciso configurar smtp...
+
+* (video falando dos resultados gerais e comparações dentro da turma e outros semestres??? falar das questões que tiveram menos acertos???)
+
