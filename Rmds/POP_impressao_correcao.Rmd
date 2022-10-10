@@ -31,8 +31,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * **NÃO** escolher a opção “Ajustar a área de impressão”;
 
-* **NÃO** imprimir frente e verso;
-    + email de exemplo solicitando impressão
+* **NÃO** imprimir frente e verso; (principalmente a folha de respostas, estudantes podem usar o verso das folhas de questões como rascunho)
+    + email de exemplo solicitando impressão:  
     
 ```
 Boa tarde!

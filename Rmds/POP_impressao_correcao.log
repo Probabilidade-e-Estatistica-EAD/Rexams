@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.22)  10 OCT 2022 09:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.22)  10 OCT 2022 10:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -476,12 +476,12 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 <apresentacoes/imagens/logoIME.png, id=4, 521.95pt x 226.8475pt>
 File: apresentacoes/imagens/logoIME.png Graphic file (type png)
 <use apresentacoes/imagens/logoIME.png>
-Package pdftex.def Info: apresentacoes/imagens/logoIME.png  used on input line 190.
+Package pdftex.def Info: apresentacoes/imagens/logoIME.png  used on input line 186.
 (pdftex.def)             Requested size: 98.19987pt x 42.67917pt.
 <apresentacoes/imagens/logoEAD.png, id=5, 313.17pt x 154.77824pt>
 File: apresentacoes/imagens/logoEAD.png Graphic file (type png)
 <use apresentacoes/imagens/logoEAD.png>
-Package pdftex.def Info: apresentacoes/imagens/logoEAD.png  used on input line 190.
+Package pdftex.def Info: apresentacoes/imagens/logoEAD.png  used on input line 186.
 (pdftex.def)             Requested size: 86.35376pt x 42.67868pt.
 
 Package fancyhdr Warning: \headheight is too small (40.45274pt): 
@@ -494,18 +494,18 @@ Package fancyhdr Warning: \headheight is too small (40.45274pt):
 
 {c:/Users/User/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./apresentacoes/imagens/logoIME.png> <./apresentacoes/imagens/logoEAD.png>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 290.
+(Font)              <10> on input line 292.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 290.
+(Font)              <7> on input line 292.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 290.
+(Font)              <5> on input line 292.
 File: apresentacoes/imagens/logoIME.png Graphic file (type png)
 <use apresentacoes/imagens/logoIME.png>
-Package pdftex.def Info: apresentacoes/imagens/logoIME.png  used on input line 299.
+Package pdftex.def Info: apresentacoes/imagens/logoIME.png  used on input line 301.
 (pdftex.def)             Requested size: 98.19987pt x 42.67917pt.
 File: apresentacoes/imagens/logoEAD.png Graphic file (type png)
 <use apresentacoes/imagens/logoEAD.png>
-Package pdftex.def Info: apresentacoes/imagens/logoEAD.png  used on input line 299.
+Package pdftex.def Info: apresentacoes/imagens/logoEAD.png  used on input line 301.
 (pdftex.def)             Requested size: 86.35376pt x 42.67868pt.
 
 Package fancyhdr Warning: \headheight is too small (40.45274pt): 
@@ -516,15 +516,15 @@ Package fancyhdr Warning: \headheight is too small (40.45274pt):
 
 [2] (./POP_impressao_correcao.aux) ) 
 Here is how much of TeX's memory you used:
- 13208 strings out of 477015
- 213761 string characters out of 5825858
- 594049 words of memory out of 5000000
+ 13210 strings out of 477015
+ 213785 string characters out of 5825858
+ 593049 words of memory out of 5000000
  34052 multiletter control sequences out of 15000+600000
- 518779 words of font info for 107 fonts, out of 8000000 for 9000
+ 518873 words of font info for 108 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 74i,15n,81p,1089b,522s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 74i,15n,81p,1089b,516s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/Users/User/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on POP_impressao_correcao.pdf (2 pages, 363733 bytes).
+Output written on POP_impressao_correcao.pdf (2 pages, 363821 bytes).
 PDF statistics:
  108 PDF objects out of 1000 (max. 8388607)
  84 compressed objects within 1 object stream
